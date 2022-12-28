@@ -1,0 +1,10 @@
+<sp-access-prompt [imageSrc]="this.promptImageSrc"
+                  [heading]="this.promptHeading"
+                  [textContent]="this.promptParagraph">
+  <div options class="tw-flex" *ngIf="this.addUserBtnAction">
+    <button matRipple (click)="this.addUserBtnAction()"
+            class="btn btn-primary tw-mx-auto tw-w-[200px]">Add User</button>
+  </div>
+
+</sp-access-prompt>
+

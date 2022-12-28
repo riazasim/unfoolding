@@ -1,0 +1,14 @@
+<div class="layout-wrapper" [class.active]="this.isActive$ | async" *ngIf="this.config" [tabindex]="this.tabIndex"
+     [relativeTo]="this.redirectRoot" [routerLink]="this.config.destination">
+  <fa-icon [icon]="this.config.icon" [ngClass]="this.config.iconModifierClass" size="2x"></fa-icon>
+  <span class="menu-item-label">{{this.config.label}}</span>
+  <div class="dropright-menu" *ngIf="this.config.droprightMenuConfig">
+    <ul>
+      <li *ngFor="let droprightMenuItem of this.config.droprightMenuConfig">
+        <a [routerLink]="droprightMenuItem.destination">
+          {{droprightMenuItem.label}}
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

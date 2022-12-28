@@ -1,0 +1,50 @@
+<div class="tw-flex-grow tw-flex tw-flex-col tw-gap-y-6">
+  <div
+    class="tw-flex min-lg:tw-justify-between max-lg:tw-items-center max-lg:tw-gap-y-4 tw-flex-wrap max-lg:tw-flex-col">
+    <div class="tw-flex-grow tw-flex tw-gap-4 max-lg:tw-flex-col">
+      <h2 class="heading-5 tw-text-center !tw-font-bold">Products</h2>
+      <button matRipple class="btn btn-primary" (click)="this.addNewProduct()">
+        <fa-icon icon="plus" size="lg"></fa-icon>
+      </button>
+      <searchbar>
+        <fa-icon icon="search"></fa-icon>
+        <input input type="search" (input)="productsTable.filter = $any($event.target).value"/>
+      </searchbar>
+    </div>
+    <div class="tw-flex tw-gap-4 tw-flex-wrap tw-justify-center tw-min-h-[42px]">
+      <button matRipple [routerLink]="this.invoicesSegment" class="btn btn-primary tw-min-w-[175px]">
+        Invoices
+      </button>
+      <!--      <button matRipple [routerLink]="this.partnersSegment" class="btn btn-primary tw-min-w-[175px]">Partners-->
+      <!--      </button>-->
+    </div>
+  </div>
+  <div class="tw-flex-grow">
+    <dea-billing-products-table
+      #productsTable
+      [editAction]="this.editAction"
+      [deleteAction]="this.deleteAction"
+      [downloadAction]="this.downloadAction"
+      [data]="this.products$ | async"
+      [loading]="false"></dea-billing-products-table>
+  </div>
+</div>
+
+
+<offcanvas [show]="this.showOffcanvas">
+  <button content
+          class="tw-absolute tw-right-4 tw-top-4"
+          (click)="this.closeOffcanvas()">
+    <fa-icon icon="times" size="lg"></fa-icon>
+  </button>
+
+  <div content class="tw-w-full tw-max-w-lg tw-mx-auto tw-px-4 tw-my-10">
+    <h1 class="heading-4 tw-text-center">Add product</h1>
+    <dea-billing-product-form [id]="this.formId"
+                              (formSubmitted)="this.handleFormData($event)"
+                              [seed]="this.selectedProduct$ | async"></dea-billing-product-form>
+    <div class="tw-mt-8 min-sm:tw-mt-12 tw-text-center">
+      <button matRipple type="submit" attr.form="{{this.formId}}" class="btn btn-primary tw-min-w-xs">Save</button>
+    </div>
+  </div>
+</offcanvas>

@@ -1,0 +1,60 @@
+<div class="tw-flex-grow tw-flex tw-flex-col tw-gap-y-6">
+  <div
+    class="tw-flex min-sm:tw-justify-between max-sm:tw-items-center max-sm:tw-gap-y-4 tw-flex-wrap max-sm:tw-flex-col">
+    <h2 class="heading-5 !tw-font-bold">Billing Profiles</h2>
+    <div class="tw-flex tw-gap-4 tw-flex-wrap tw-justify-center tw-min-h-[42px]">
+      <button matRipple [routerLink]="paymentMethodsRoute" class="btn btn-primary tw-min-w-[175px]">Payment
+        Methods
+      </button>
+      <button matRipple [routerLink]="billingHistoryRoute" class="btn btn-primary tw-min-w-[175px]">Billing
+        History
+      </button>
+    </div>
+  </div>
+  <div *ngIf="billingProfiles$ | async as billingProfiles" class="tw-flex-grow">
+    <div *ngIf="billingProfiles.length > 0; else emptyListPrompt"
+         grid-presentation-layout
+         [dataSource]="billingProfiles"
+         addBtnPosition="last"
+         rowHeight="auto"
+         columnTemplate="repeat(auto-fill,minmax(min(400px,100%),1fr))"
+         [gridItemTemplate]="billingProfileTemplate">
+
+      <button card addNew (click)="addBillingProfile()"
+              class="tw-text-primary tw-font-semibold hover:tw-shadow-2xl">
+        Add new business profile
+      </button>
+
+    </div>
+  </div>
+</div>
+
+<ng-template #billingProfileTemplate let-data="data">
+  <div card class="tw-p-8 tw-min-h-[400px]">
+    <admin-billing-profile [billingProfile]="data"
+                               (deleteClicked)="deleteBillingProfile(data)"></admin-billing-profile>
+  </div>
+</ng-template>
+
+<ng-template #emptyListPrompt>
+  <admin-add-billing-profile-prompt class="tw-block tw-mt-16"
+                                        [addBillingProfileBtnClickAction]="addBillingProfile"></admin-add-billing-profile-prompt>
+</ng-template>
+
+<offcanvas [show]="showOffcanvas" class="tw-bg-body">
+
+  <button content
+          class="tw-absolute tw-right-4 tw-top-4"
+          (click)="showOffcanvas = false">
+    <fa-icon icon="times" size="lg"></fa-icon>
+  </button>
+
+  <div content class="tw-w-full tw-max-w-md tw-mx-auto tw-px-4 tw-my-10">
+    <h1 class="heading-4 tw-text-center">Add billing profile</h1>
+    <billing-profile-form id="billingProfileForm"></billing-profile-form>
+    <div class="tw-mt-8 min-sm:tw-mt-12 tw-text-center">
+      <button type="submit" form="billingProfileForm" class="btn btn-primary tw-min-w-xs">Save</button>
+    </div>
+  </div>
+
+</offcanvas>

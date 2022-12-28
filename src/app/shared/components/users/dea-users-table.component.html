@@ -1,0 +1,83 @@
+<div class="tw-w-full">
+  <ng-scrollbar track="horizontal" [autoHeightDisabled]="false">
+    <table class="sp-access-material-table no-wrap tw-overflow-hidden" matSort
+           [class.loading]="this.loading" aria-label="Usage Table"
+           cdk-table [dataSource]="this.dataSource">
+
+      <ng-container cdkColumnDef="firstName">
+        <th cdk-header-cell *cdkHeaderCellDef scope="col"
+            mat-sort-header="firstName">First Name
+        </th>
+        <td cdk-cell *cdkCellDef="let row">{{row.firstName}}</td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="lastName">
+        <th cdk-header-cell *cdkHeaderCellDef scope="col"
+            mat-sort-header="lastName">Last Name
+        </th>
+        <td cdk-cell *cdkCellDef="let row">{{row.lastName}}</td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="position">
+        <th cdk-header-cell *cdkHeaderCellDef scope="col"
+            mat-sort-header="position">Position
+        </th>
+        <td cdk-cell *cdkCellDef="let row">{{row.position}}</td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="email">
+        <th cdk-header-cell *cdkHeaderCellDef scope="col"
+            mat-sort-header="email">Email
+        </th>
+        <td cdk-cell *cdkCellDef="let row">{{row.email}}</td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="phoneNumber">
+        <th cdk-header-cell *cdkHeaderCellDef scope="col"
+            mat-sort-header="phoneNumber">Phone Number
+        </th>
+        <td cdk-cell *cdkCellDef="let row">{{row.phoneNumber}}</td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="actions">
+        <th cdk-header-cell *cdkHeaderCellDef scope="col">
+        </th>
+        <td cdk-cell *cdkCellDef="let row">
+          <div class="tw-flex tw-gap-x-4 tw-text-primary">
+            <button class="tw-text-primary hover:tw-text-primary-light"
+                    *ngIf="this.goToUserAction"
+                    (click)="this.goToUserAction(row.id)">
+              <fa-icon icon="eye" size="lg"></fa-icon>
+            </button>
+            <button class="tw-text-primary hover:tw-text-primary-light"
+                    *ngIf="this.deleteUserAction"
+                    (click)="this.deleteUserAction(row.id)">
+              <fa-icon icon="trash-alt" size="lg"></fa-icon>
+            </button>
+
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- Header and Row Declarations -->
+      <tr cdk-header-row *cdkHeaderRowDef="this.displayedColumns"></tr>
+      <tr cdk-row *cdkRowDef="let row; columns: this.displayedColumns"></tr>
+      <tr *cdkNoDataRow>
+        <td [colSpan]="this.displayedColumns.length">
+          <span *ngIf="this.loading">
+            Se încarcă datele
+          </span>
+          <span
+            *ngIf="this.dataSource.data.length === 0 && !this.loading">Nu există înregistrări</span>
+          <span
+            *ngIf="this.dataSource.data.length > 0  && !this.loading">Nicio înregistrare nu corespunde criteriilor de căutare</span>
+        </td>
+      </tr>
+    </table>
+  </ng-scrollbar>
+
+  <mat-paginator [class.!tw-hidden]="this.dataSource.data.length === 0" class="paginator tw-rounded-b-[10px]"
+                 hidePageSize
+                 aria-label="Select page" pageSize="10">
+  </mat-paginator>
+</div>

@@ -1,0 +1,157 @@
+<form [formGroup]="formGroup"
+      (ngSubmit)="submit()"
+      class="sp-access-bootstrap-form tw-flex tw-flex-col tw-my-8">
+
+  <div class="tw-mt-8 tw-w-full tw-flex tw-flex-col tw-flex-wrap min-md:tw-flex-row tw-gap-y-8 tw-gap-x-8">
+
+    <div *ngIf="name as name"
+         class="tw-flex tw-flex-col tw-flex-grow">
+
+      <label class="sp-access-form-label">Customer name</label>
+      <input type="text" formControlName="fullName" class="sp-access-form-control"/>
+
+      <ng-container *ngIf="name.touched">
+        <small class="errors-container" *ngIf="this.name.errors as validationErrors">
+          <span *ngFor="let error of validationErrors | keyvalue" class="invalid">
+            {{error.value.message | transloco }}
+          </span>
+        </small>
+      </ng-container>
+
+    </div>
+
+    <div *ngIf="this.country as country"
+         class="tw-flex tw-flex-col">
+
+      <label class="sp-access-form-label">Country</label>
+      <select  formControlName="country" class="sp-access-form-control">
+        <option value="RO">
+          Romania
+        </option>
+        <option value="BG">
+          Bulgary
+        </option>
+      </select>
+
+      <ng-container *ngIf="country.touched">
+        <small class="errors-container" *ngIf="this.country.errors as validationErrors">
+          <span *ngFor="let error of validationErrors | keyvalue" class="invalid">
+            {{error.value.message | transloco }}
+          </span>
+        </small>
+      </ng-container>
+
+    </div>
+
+  </div>
+
+  <div class="tw-mt-8 tw-w-full tw-flex tw-flex-col tw-flex-wrap min-md:tw-flex-row tw-gap-y-8 tw-gap-x-8">
+
+    <div *ngIf="this.taxId as taxId"
+         class="tw-flex tw-flex-col tw-flex-grow">
+
+      <label class="sp-access-form-label">Tax ID</label>
+      <input type="text" formControlName="taxId" class="sp-access-form-control"/>
+
+      <ng-container *ngIf="taxId.touched">
+        <small class="errors-container" *ngIf="this.taxId.errors as validationErrors">
+          <span *ngFor="let error of validationErrors | keyvalue" class="invalid">
+            {{error.value.message | transloco }}
+          </span>
+        </small>
+      </ng-container>
+
+    </div>
+
+    <div *ngIf="this.signUpDate as signUpDate"
+         class="tw-flex tw-flex-col tw-flex-grow">
+
+      <label class="sp-access-form-label">Sign up date</label>
+      <input type="date" formControlName="signUpDate" class="sp-access-form-control"/>
+
+      <ng-container *ngIf="signUpDate.touched">
+        <small class="errors-container" *ngIf="this.signUpDate.errors as validationErrors">
+          <span *ngFor="let error of validationErrors | keyvalue" class="invalid">
+            {{error.value.message | transloco }}
+          </span>
+        </small>
+      </ng-container>
+
+    </div>
+
+  </div>
+
+  <div class="tw-mt-8 tw-w-full tw-flex tw-flex-col tw-flex-wrap min-md:tw-flex-row tw-gap-y-8 tw-gap-x-8">
+
+    <div *ngIf="this.source as source"
+         class="tw-flex tw-flex-col tw-flex-grow">
+
+      <label class="sp-access-form-label">Source</label>
+      <input type="text" formControlName="source" class="sp-access-form-control"/>
+
+      <ng-container *ngIf="source.touched">
+        <small class="errors-container" *ngIf="this.source.errors as validationErrors">
+          <span *ngFor="let error of validationErrors | keyvalue" class="invalid">
+            {{error.value.message | transloco }}
+          </span>
+        </small>
+      </ng-container>
+
+    </div>
+
+    <div *ngIf="this.email as email"
+         class="tw-flex tw-flex-col tw-flex-grow">
+
+      <label class="sp-access-form-label">Source</label>
+      <input type="text" formControlName="email" class="sp-access-form-control"/>
+
+      <ng-container *ngIf="email.touched">
+        <small class="errors-container" *ngIf="this.email.errors as validationErrors">
+          <span *ngFor="let error of validationErrors | keyvalue" class="invalid">
+            {{error.value.message | transloco }}
+          </span>
+        </small>
+      </ng-container>
+
+    </div>
+
+  </div>
+
+  <div class="tw-mt-8 tw-w-full tw-flex tw-flex-col tw-flex-wrap min-md:tw-flex-row tw-gap-y-8 tw-gap-x-8">
+
+    <div *ngIf="this.owner as owner"
+         class="tw-flex tw-flex-col tw-flex-grow">
+
+      <label class="sp-access-form-label">Owner</label>
+      <input type="text" formControlName="owner" class="sp-access-form-control"/>
+
+      <ng-container *ngIf="owner.touched">
+        <small class="errors-container" *ngIf="this.owner.errors as validationErrors">
+          <span *ngFor="let error of validationErrors | keyvalue" class="invalid">
+            {{error.value.message | transloco }}
+          </span>
+        </small>
+      </ng-container>
+
+    </div>
+
+    <div *ngIf="this.contactNumber as contactNumber"
+         class="tw-flex tw-flex-col tw-flex-grow">
+
+      <label class="sp-access-form-label">Contact number</label>
+      <input type="text" formControlName="contactNumber" class="sp-access-form-control"/>
+
+      <ng-container *ngIf="contactNumber.touched">
+        <small class="errors-container" *ngIf="this.contactNumber.errors as validationErrors">
+          <span *ngFor="let error of validationErrors | keyvalue" class="invalid">
+            {{error.value.message | transloco }}
+          </span>
+        </small>
+      </ng-container>
+
+    </div>
+
+  </div>
+
+</form>
+

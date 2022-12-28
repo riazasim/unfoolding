@@ -1,0 +1,16 @@
+<div class="tw-max-w-sm tw-px-4 tw-py-4 min-sm:tw-px-16 min-sm:tw-py-8">
+  <div class="tw-whitespace-pre-line  tw-max-w-xs tw-mb-8">
+    <p class="tw-font-bold tw-text-muted tw-text-xl tw-text-center tw-mb-4">
+      {{config.text}}
+    </p>
+    <p *ngIf="config.subText"
+       class="tw-font-bold tw-max-w-xs tw-text-center tw-text-sm">
+      {{config.subText}}
+    </p>
+  </div>
+
+  <div class="tw-flex tw-justify-around tw-flex-wrap-reverse tw-gap-4">
+    <button tabIndex="-1" (click)="cancel()" class="btn btn-outline-primary tw-min-w-[130px]">{{config.cancelBtnText}}</button>
+    <button tabIndex="-1" (click)="confirm()" class="btn btn-primary tw-min-w-[130px]">{{config.acceptBtnText}}</button>
+  </div>
+</div>

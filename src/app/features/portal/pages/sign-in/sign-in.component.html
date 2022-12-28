@@ -1,0 +1,22 @@
+<div class="tw-flex tw-flex-col">
+  <h1 class="heading-2 tw-text-center tw-mb-12">Sign in</h1>
+
+  <!-- <dea-portal-sign-in-form (formSubmitted)="this.handleFormData($event)" [id]="this.signInFormId" class="tw-mb-1"></dea-portal-sign-in-form> -->
+
+  <form (submit)="handleFormData()" [formGroup]="formGroup" class="tw-flex tw-flex-col tw-gap-y-5">
+    <div iconic-input-wrapper leftIcon="user">
+      <input type="text" formControlName="email" inputRef placeholder="Phone or Email">
+    </div>
+    <div iconic-password-wrapper leftIcon="lock">
+      <input type="password" formControlName="password" inputRef placeholder="Password">
+    </div>
+  
+  <a class="tw-self-end tw-font-medium tw-mb-6" routerLink="forgot-password">Forgot Password</a>
+
+  <button matRipple type="submit" class="btn btn-primary tw-mb-6">Sign in</button>
+  </form>
+  <span class="tw-font-medium tw-text-center">Don`t have an account?
+    <a routerLink="./register">Create one</a>
+  </span>
+
+</div>

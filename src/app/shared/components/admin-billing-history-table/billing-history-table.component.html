@@ -1,0 +1,83 @@
+<div class="tw-w-full tw-shadow-xl">
+  <ng-scrollbar track="horizontal" [autoHeightDisabled]="false">
+    <table class="material-table no-wrap tw-overflow-hidden" matSort
+           [class.loading]="loading" aria-label="Usage Table"
+           cdk-table [dataSource]="dataSource">
+
+      <ng-container cdkColumnDef="license">
+        <th cdk-header-cell *cdkHeaderCellDef scope="col"
+            mat-sort-header="license">License S/N
+        </th>
+        <td cdk-cell *cdkCellDef="let row">{{row.licenceSerialNumber | titlecase}}</td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="refId">
+        <th cdk-header-cell *cdkHeaderCellDef scope="col"
+            mat-sort-header="refId">REF ID
+        </th>
+        <td cdk-cell *cdkCellDef="let row">
+          <a target="_blank" [download]="row.refId" [href]="'history-entry/'+row.refId">
+            <fa-icon icon="download"></fa-icon>
+            {{row.refId}}
+          </a>
+        </td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="date">
+        <th cdk-header-cell *cdkHeaderCellDef scope="col"
+            mat-sort-header="date">Date
+        </th>
+        <td cdk-cell *cdkCellDef="let row">{{row.date | date}}</td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="amount">
+        <th cdk-header-cell *cdkHeaderCellDef scope="col"
+            mat-sort-header="amount">Amount
+        </th>
+        <td cdk-cell *cdkCellDef="let row">{{row.amount | currency: 'EUR'}}</td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="balance">
+        <th cdk-header-cell *cdkHeaderCellDef scope="col"
+            mat-sort-header="balance">Balance
+        </th>
+        <td cdk-cell *cdkCellDef="let row">{{row.balance | currency: 'EUR'}}</td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="status">
+        <th cdk-header-cell *cdkHeaderCellDef scope="col"
+            mat-sort-header="status">
+        </th>
+        <td cdk-cell *cdkCellDef="let row">
+          <ng-container [ngSwitch]="row.status.toLowerCase()">
+            <span *ngSwitchCase="'paid'" class="tw-text-primary tw-font-bold">Paid</span>
+            <button *ngSwitchCase="'unpaid'"
+                    (click)="payBtnClickAction && payBtnClickAction(row)"
+                    class="tw-text-primary tw-font-bold">Pay
+            </button>
+          </ng-container>
+        </td>
+      </ng-container>
+
+      <!-- Header and Row Declarations -->
+      <tr cdk-header-row *cdkHeaderRowDef="displayedColumns"></tr>
+      <tr cdk-row *cdkRowDef="let row; columns: displayedColumns"></tr>
+      <tr *cdkNoDataRow>
+        <td [colSpan]="displayedColumns.length">
+          <span *ngIf="loading">
+            Se încarcă datele
+          </span>
+          <span
+            *ngIf="dataSource.data.length === 0 && !loading">Nu există înregistrări</span>
+          <span
+            *ngIf="dataSource.data.length > 0  && !loading">Nicio înregistrare nu corespunde criteriilor de căutare</span>
+        </td>
+      </tr>
+    </table>
+  </ng-scrollbar>
+
+  <mat-paginator [class.!tw-hidden]="dataSource.data.length === 0" class="paginator tw-rounded-b-[10px]"
+                 hidePageSize
+                 aria-label="Select page" pageSize="10">
+  </mat-paginator>
+</div>

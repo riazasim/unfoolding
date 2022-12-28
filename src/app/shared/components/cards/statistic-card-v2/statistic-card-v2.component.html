@@ -1,0 +1,13 @@
+<div card class="tw-min-h-[95px] tw-min-w-[250px] tw-p-0" [shadow]="shadow">
+  <div content class="tw-flex tw-items-center tw-absolute tw-inset-0">
+    <div *ngIf="icon" class="tw-flex-grow tw-max-w-[132px] tw-h-full tw-flex tw-rounded-full">
+      <div class="circle tw-m-auto tw-ml-5 tw-flex" [ngStyle]="{'background': colorStyle}">
+        <fa-icon [icon]="icon" class="tw-text-white tw-m-auto"></fa-icon>
+      </div>
+    </div>
+    <div class="tw-flex tw-flex-col tw-flex-grow tw-items-end tw-p-5">
+      <span class="tw-font-bold tw-text-3xl" [ngStyle]="{'color': textColor}">{{numericValue}}</span>
+      <span class="tw-font-bold tw-text-lg">{{label}}</span>
+    </div>
+  </div>
+</div>

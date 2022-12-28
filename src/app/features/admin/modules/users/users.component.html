@@ -1,0 +1,54 @@
+<ng-container *ngIf="this.subUsers$ | async as usersList;">
+
+  <div *ngIf="usersList.length > 0; else emptyListPrompt"
+       class="tw-flex-grow">
+
+    <material-panel-table
+      [buttonLabel]="'Add User'"
+      (buttonClicked)="this.addUser()"
+      (searchedTerm)="usersTable.filter = $event">
+
+      <dea-users-table [data]="this.usersList"
+                             [loading]="false"
+                             [deleteUserAction]="this.deleteSubUser"
+                             [goToUserAction]="this.goToUser"
+                             table
+                             #usersTable>
+      </dea-users-table>
+
+    </material-panel-table>
+
+  </div>
+
+</ng-container>
+
+<ng-template #emptyListPrompt>
+  <div class="tw-flex tw-flex-grow">
+    <dea-users-empty-user-list-prompt class="tw-mx-auto min-md:tw-mt-24"
+                                      [addUserBtnAction]="this.addUser"></dea-users-empty-user-list-prompt>
+  </div>
+</ng-template>
+
+<offcanvas [show]="this.showOffCanvas">
+  <div content class="tw-h-full tw-flex tw-flex-col tw-p-4">
+    <button class="tw-self-end tw-cursor-pointer" (click)="this.closeCanvas()">
+      <fa-icon icon="times" size="lg"></fa-icon>
+    </button>
+
+    <ng-container [ngSwitch]="this.offCanvasComponent">
+      <div *ngSwitchCase="'newUser'" class="tw-w-full tw-max-w-md tw-mx-auto">
+        <dea-users-add-user-form [seed]="this.currentWorkingSubUser | async"
+                                 (formSubmitted)="this.handleFormData($event)"
+                                 [downloadTemplateBtnClickAction]="this.downloadTemplate"
+                                 [importUsersBtnClickAction]="this.importUsers">
+        </dea-users-add-user-form>
+      </div>
+      <div *ngSwitchCase="'import'" class="tw-mt-8 tw-max-w-sm tw-mx-auto">
+        <dea-users-import-users-prompt></dea-users-import-users-prompt>
+      </div>
+      <div *ngSwitchCase="'invitations'" class="tw-mt-8 tw-max-w-sm tw-mx-auto">
+        <dea-users-send-invitations-prompt></dea-users-send-invitations-prompt>
+      </div>
+    </ng-container>
+  </div>
+</offcanvas>

@@ -1,0 +1,20 @@
+@import "assets/resources/base-styles-index";
+@import "swiper/swiper.min.css";
+@import "swiper/modules/navigation/navigation.min.css";
+@import "swiper/modules/pagination/pagination.min.css";
+
+:root {
+    --app-border-radius: 10px;
+    --control-height: 53px;
+    --body-bg: #F4F6F8;
+  }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.input-container input {
+    border: none;
+    width: 100%;
+    &:focus {
+      box-shadow: unset;
+    }
+  }

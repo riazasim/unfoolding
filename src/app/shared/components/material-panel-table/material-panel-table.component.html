@@ -1,0 +1,20 @@
+<div class="layout-wrapper">
+  <panel [showHeader]="this.showHeader">
+    <div menu class="tw-flex tw-mb-4 min-md:tw-mb-8 tw-flex-col min-md:tw-flex-row tw-gap-y-4 tw-gap-x-8 tw-items-center">
+
+      <p *ngIf="this.tableTitle"
+         class="tw-font-bold tw-text-2xl min-md:tw-text-xl max-md:tw-text-center min-md:tw-mr-auto">{{this.tableTitle}}</p>
+
+      <searchbar *ngIf="this.showSearchbar" class="tw-w-full tw-max-w-xs">
+        <fa-icon [icon]="this.searchIcon" class="tw-text-black"></fa-icon>
+        <input type="search" input placeholder="Caută" #searchbar>
+      </searchbar>
+
+      <button class="btn btn-primary tw-min-w-[4rem] min-md:tw-ml-auto max-md:tw-self-center" matRipple
+              *ngIf="this.showButton" (click)="this.buttonClicked.emit()">{{this.buttonLabel}}</button>
+    </div>
+    <div content>
+      <ng-content select="[table]"></ng-content>
+    </div>
+  </panel>
+</div>

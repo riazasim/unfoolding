@@ -1,0 +1,43 @@
+<div class="tw-relative tw-h-full">
+  <button *ngIf="withDelete"
+          (click)="this.deleteClicked.emit()"
+          class="tw-text-primary tw-absolute tw-right-0">
+    <fa-icon icon="trash-alt"></fa-icon>
+  </button>
+
+  <dl *ngIf="this.billingProfile" class="tw-grid tw-grid-cols-1 min-sm:tw-grid-cols-2
+    tw-auto-rows tw-w-full tw-h-full tw-content-between tw-gap-4">
+    <div>
+      <dt>Payment account ID</dt>
+      <dd>{{this.billingProfile.paymentAccountId}}</dd>
+    </div>
+    <div>
+      <dt>Name</dt>
+      <dd>{{this.billingProfile.name}}</dd>
+    </div>
+    <div *ngIf="this.billingProfile.paymentAccountNickname">
+      <dt>Payment account nickname</dt>
+      <dd>{{this.billingProfile.paymentAccountNickname}}</dd>
+    </div>
+    <div>
+      <dt>Address</dt>
+      <dd>{{this.billingProfile.address}}</dd>
+    </div>
+    <div>
+      <dt>Account type</dt>
+      <dd>{{this.billingProfile.accountType}}</dd>
+    </div>
+    <div>
+      <dt>VAT number</dt>
+      <dd>{{this.billingProfile.vatNum}}</dd>
+    </div>
+    <div>
+      <dt>Country</dt>
+      <dd>{{this.billingProfile.country}}</dd>
+    </div>
+    <div>
+      <dt>Registration number</dt>
+      <dd>{{this.billingProfile.registrationNum}}</dd>
+    </div>
+  </dl>
+</div>

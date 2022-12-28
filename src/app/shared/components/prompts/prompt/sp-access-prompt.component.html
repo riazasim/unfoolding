@@ -1,0 +1,12 @@
+<div class="tw-w-full tw-flex tw-flex-col tw-gap-y-8">
+  <header *ngIf="this.imageSrc">
+    <img *ngIf="this.imageSrc" [src]="this.imageSrc" alt="prompt-image" />
+  </header>
+  <main>
+    <h1 *ngIf="this.heading" class="heading-5 !tw-font-bold">{{this.heading}}</h1>
+    <p *ngIf="this.textContent" class="paragraph-2 !tw-text-muted tw-whitespace-pre-line">{{this.textContent}}</p>
+  </main>
+  <footer>
+    <ng-content select="[options]"></ng-content>
+  </footer>
+</div>

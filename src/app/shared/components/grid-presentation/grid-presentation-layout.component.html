@@ -1,0 +1,34 @@
+<div class="tw-grid tw-h-full" [ngStyle]="{
+    'grid-template-columns': columnTemplate,
+    'grid-auto-rows': rowHeight,
+    'row-gap':rowGap,
+    'column-gap':columnGap
+  }" [attr.style]="customGridStyle">
+  <ng-container *ngIf="addBtnPosition === 'first'">
+    <ng-container *ngIf="showAddNewBtnOnZeroElements || gridDataSource.data.length > 0"
+                  [ngTemplateOutlet]="addNew">
+    </ng-container>
+  </ng-container>
+
+  <ng-container *ngIf="gridDataSource.data.length > 0; else emptyContent">
+    <ng-container *ngFor="let item of gridDataSource.filteredData" [ngTemplateOutletContext]="{data: item}"
+                  [ngTemplateOutlet]="gridItemTemplate">
+    </ng-container>
+  </ng-container>
+
+
+  <ng-container *ngIf="addBtnPosition === 'last'">
+    <ng-container *ngIf="showAddNewBtnOnZeroElements || gridDataSource.data.length > 0"
+                  [ngTemplateOutlet]="addNew">
+    </ng-container>
+  </ng-container>
+</div>
+
+
+<ng-template #emptyContent>
+  <ng-content select="[emptyContent]"></ng-content>
+</ng-template>
+
+<ng-template #addNew>
+  <ng-content select="[addNew]"></ng-content>
+</ng-template>

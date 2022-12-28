@@ -1,0 +1,52 @@
+@mixin button-variant($name, $color, $bgColor, $activeBgColor, $activeColor) {
+  &.btn-#{$name} {
+    color: #{$color};
+    background-color: #{$bgColor};
+
+    &:disabled {
+      background-color: var(--muted-light-color);
+      cursor: not-allowed;
+      box-shadow: unset;
+
+      &:focus,
+      &:hover,
+      &:active {
+        background-color: var(--muted-light-color);
+      }
+    }
+
+    &:focus,
+    &:hover,
+    &:active {
+      color: #{$activeColor};
+      background-color: #{$activeBgColor};
+    }
+  }
+}
+
+@mixin button-outline-variant($name, $color, $activeBgColor, $activeColor) {
+  &.btn-outline-#{$name} {
+    color: #{$color};
+    background-color: white;
+    border: 1px solid #{$color};
+
+    &:disabled {
+      background-color: var(--muted-light-color);
+      cursor: not-allowed;
+      box-shadow: unset;
+
+      &:focus,
+      &:hover,
+      &:active {
+        background-color: var(--muted-light-color);
+      }
+    }
+
+    &:focus,
+    &:hover,
+    &:active {
+      color: #{$activeColor};
+      background-color: #{$activeBgColor};
+    }
+  }
+}

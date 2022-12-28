@@ -1,0 +1,7 @@
+<sp-access-prompt [textContent]="this.textContent" [heading]="this.heading" [imageSrc]="this.imgSrc">
+  <div options *ngIf="this.addBillingProfileBtnClickAction" class="tw-text-center">
+    <button matRipple class="btn btn-primary" (click)="this.addBillingProfileBtnClickAction()">
+      Add billing profile
+    </button>
+  </div>
+</sp-access-prompt>

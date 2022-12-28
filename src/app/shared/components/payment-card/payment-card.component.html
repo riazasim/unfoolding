@@ -1,0 +1,29 @@
+<div *ngIf="creditCard"
+     class="tw-flex tw-flex-col tw-gap-y-6">
+
+  <div class="tw-flex tw-gap-x-4 min-sm:tw-gap-x-10">
+    <img [src]="creditCard.provider | cardIcon" class="tw-w-32 tw-h-20" alt="card provider"/>
+    <div class="tw-flex tw-flex-col tw-justify-evenly">
+
+      <div class="tw-flex tw-gap-x-2">
+        <span>{{creditCard.provider | titlecase}}</span>
+        <span>****</span>
+        <span>{{creditCard.shortNum}}</span>
+      </div>
+
+      <div>
+        Expires {{creditCard.expirationDate | date :'MM/yy'}}
+      </div>
+
+    </div>
+  </div>
+
+  <hr class="tw-text-muted-light tw-mx-6"/>
+
+  <div class="tw-flex tw-justify-between tw-text-black">
+    <span>{{creditCard.type | titlecase}}</span>
+    <button *ngIf="withDelete && deleteAction" (click)="deleteAction(creditCard)">
+      <fa-icon icon="trash-alt" size="lg"></fa-icon>
+    </button>
+  </div>
+</div>

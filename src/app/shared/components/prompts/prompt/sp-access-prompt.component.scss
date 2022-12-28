@@ -1,0 +1,26 @@
+:host {
+  --prompt-main-margin: 1rem 0 0 0;
+}
+
+header {
+  text-align: var(--prompt-header-text-align, center);
+
+  > img {
+    max-height: 285px;
+    display: inline;
+  }
+}
+
+main {
+  text-align: var(--prompt-main-text-align, center);
+  margin: var(--prompt-main-margin);
+
+  > p {
+    margin-top: 1rem;
+  }
+}
+
+footer {
+  margin-top: 2rem;
+}
+

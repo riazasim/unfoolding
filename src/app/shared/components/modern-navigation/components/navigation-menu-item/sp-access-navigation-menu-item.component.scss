@@ -1,0 +1,78 @@
+:host {
+  width: 100%;
+  cursor: pointer;
+  max-height: 100%;
+}
+
+.layout-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  min-width: 50px;
+  position: relative;
+
+  > fa-icon {
+    color: var(--primary-color);
+    font-size: 0.7rem;
+    @apply min-md:tw-text-base;
+  }
+
+  > .menu-item-label {
+    display: none;
+    font-size: 0.9rem;
+    margin-top: 0.4rem;
+    @apply min-md:tw-block;
+  }
+
+  > .dropright-menu {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: 0;
+    min-width: 100px;
+    background-color: var(--primary-color);
+    z-index: 1;
+    ul {
+      --dropright-menu-item-color: white;
+
+      li {
+        &:hover {
+          background-color: var(--primary-light-color);
+        }
+
+        > a {
+          padding-left: 1rem;
+          padding-bottom: 0.5rem;
+          padding-top: 0.5rem;
+          font-size: 0.9rem;
+          display: inline-block;
+          color: var(--dropright-menu-item-color);
+        }
+      }
+    }
+  }
+
+  &.active,
+  &:focus,
+  &:hover {
+    background-color: var(--primary-color);
+
+    fa-icon {
+      color: white;
+    }
+
+    .menu-item-label {
+      color: white;
+    }
+  }
+
+  &:focus,
+  &:hover {
+    > .dropright-menu {
+      display: block;
+    }
+  }
+}

@@ -1,0 +1,83 @@
+<mat-stepper class="no-header-mat-stepper tw-w-full">
+  <mat-step>
+    <ng-template matStepContent>
+      <div class="tw-flex tw-flex-col">
+        <h1 class="heading-2 tw-mb-12 tw-text-center">Sign up</h1>
+        <!-- <dea-portal-sign-up-form [id]="this.registerFormId" class="tw-mb-5"
+                                 (formSubmitted)="this.handleFormData($event)"></dea-portal-sign-up-form> -->
+
+        <form [formGroup]="formGroup"
+              (submit)="handleFormData()"
+              class="tw-flex tw-flex-col tw-gap-y-5">
+          <div iconic-input-wrapper leftIcon="user">
+            <input type="text" inputRef formControlName="firstName" placeholder="First Name">
+          </div>
+          <div iconic-input-wrapper leftIcon="user">
+            <input type="text" inputRef formControlName="lastName" placeholder="Last Name">
+          </div>
+          <div iconic-input-wrapper leftIcon="phone">
+            <input type="tel" inputRef formControlName="phone" placeholder="Phone">
+          </div>
+          <div iconic-input-wrapper leftIcon="envelope">
+            <input type="email" inputRef formControlName="email" placeholder="Email">
+          </div>
+        
+
+        <button matRipple
+                type="submit"
+                class="btn btn-primary tw-mb-6">
+          Continue
+        </button>
+        </form>
+        <span class="tw-self-center tw-font-medium">
+            Already have an account?
+            <a routerLink="sign-in">Sign in</a>
+          </span>
+      </div>
+    </ng-template>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepContent>
+      <div class="tw-flex tw-flex-col">
+        <div class="tw-mb-8 tw-text-justify">
+          <h1 class="heading-2 tw-mb-16 tw-text-center">Privacy</h1>
+          <p class="paragraph-1 tw-mb-6">
+            Unfolding SRL and GeekBear SRL (companies based in Romania), formed a partnership to develop and deliver this Data
+            Entry Automation (DEA) solution.
+          </p>
+          <p class="paragraph-1 tw-mb-6">
+            The usage based billing requires tracking data regarding the customer’s authorized users (their email) and the
+            number of actions they perform through our solution.
+          </p>
+          <p class="paragraph-1 tw-mb-6">
+            We do not have access to the content that is automated through our DEA solution since this is processed on your
+            computer.
+          </p>
+          <p class="paragraph-1 tw-mb-6">
+            For additional information regarding this topic please read our <a target="_blank" href="#">privacy policy</a>.
+          </p>
+        </div>
+        
+        <button matRipple type="submit"
+                (click)="this.sendRegistrationRequest()"
+                class="btn btn-primary  tw-self-center tw-w-full">
+          Continue
+        </button>
+      </div>
+    </ng-template>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepContent>
+      <h1 class="heading-4 tw-mb-8 tw-text-center">Registration email sent</h1>
+      <p class="paragraph-2 tw-mb-12">
+        An email has been sent to your address.
+        Please follow the instructions inside to complete your registration
+      </p>
+      <p class="paragraph-2 tw-mb-12 tw-text-center !tw-font-bold tw-border-t tw-pt-4">
+        You can close this window
+      </p>
+    </ng-template>
+  </mat-step>
+
+</mat-stepper>

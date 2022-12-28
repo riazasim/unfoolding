@@ -1,0 +1,44 @@
+<form
+  [formGroup]="this.formGroup" class="sp-access-bootstrap-form tw-flex tw-flex-col"
+  (ngSubmit)="this.submit()">
+
+  <div class="tw-mt-8 tw-w-full tw-flex tw-flex-col tw-flex-wrap min-md:tw-flex-row tw-gap-y-8 tw-gap-x-8">
+    <div class="tw-flex tw-flex-col tw-flex-grow">
+      <label class="sp-access-form-label">Payment account nickname</label>
+      <input type="text" class="sp-access-form-control"/>
+    </div>
+    <div class="tw-flex tw-flex-col tw-flex-grow">
+      <label class="sp-access-form-label">Account type</label>
+      <input type="text" class="sp-access-form-control"/>
+    </div>
+  </div>
+
+  <div class="tw-mt-8 tw-w-full tw-flex tw-flex-col tw-flex-wrap min-md:tw-flex-row tw-gap-y-8 tw-gap-x-8">
+    <div class="tw-flex tw-flex-col tw-flex-grow">
+      <label class="sp-access-form-label">Country</label>
+      <input type="text" class="sp-access-form-control"/>
+    </div>
+    <div class="tw-flex tw-flex-col tw-flex-grow">
+      <label class="sp-access-form-label">Name</label>
+      <input type="text" class="sp-access-form-control"/>
+    </div>
+  </div>
+
+  <div class="tw-flex tw-flex-col tw-mt-8 tw-w-full">
+    <label class="sp-access-form-label">Address</label>
+    <input type="text" class="tw-w-full sp-access-form-control"/>
+  </div>
+
+  <div class="tw-mt-8 tw-w-full tw-flex tw-flex-col tw-flex-wrap min-md:tw-flex-row tw-gap-y-8 tw-gap-x-8">
+    <div class="tw-flex tw-flex-col tw-flex-grow tw-min-w-[calc(50%-1rem)]">
+      <label class="sp-access-form-label">VAT Number</label>
+      <input type="number" class="sp-access-form-control" min="0" max="100"/>
+    </div>
+    <div class="tw-flex tw-flex-col tw-flex-grow">
+      <label class="sp-access-form-label">Registration Number</label>
+      <input type="text" class="sp-access-form-control"/>
+    </div>
+  </div>
+
+</form>
+
