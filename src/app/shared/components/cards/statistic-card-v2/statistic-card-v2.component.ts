@@ -21,7 +21,7 @@ export class StatisticCardV2Component extends ShadowDirective {
   public icon: Nullable<IconProp> = null;
 
   @Input()
-  public colorStyle = 'var(--primary-color)';
+  public colorStyle = '#85a5c8';
 
   @Input()
   public textColor = '#000'
