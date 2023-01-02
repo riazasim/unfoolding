@@ -1,9 +1,9 @@
 <div class="tw-flex-grow tw-flex tw-flex-col tw-gap-8">
   <div class="tw-flex tw-flex-wrap tw-gap-8">
     <div statistic-card-v2 icon="users" class="tw-flex-grow" label="Users" [numericValue]="this.count"></div>
-    <div statistic-card-v2 icon="users" class="tw-flex-grow"  label="Available usage"
+    <div statistic-card-v2 icon="chart-pie" class="tw-flex-grow"  label="Available usage"
          [numericValue]="this.usage"></div>
-    <div statistic-card-v2 icon="users" class="tw-flex-grow" label="Next billing date"
+    <div statistic-card-v2 icon="calendar" class="tw-flex-grow" label="Next billing date"
          [numericValue]="this.nextBillingDate"></div>
   </div>
   
@@ -11,7 +11,7 @@
   <div card class="tw-h-max-content tw-flex tw-flex-col tw-overflow-hidden">
     <header class="tw-text-center heading-5">Daily Usage</header>
     <div class="tw-flex-grow tw-h-[400px] min-md:tw-h-[330px]">
-      <!-- <ngx-charts-line-chart
+      <ngx-charts-line-chart
         [legend]="legend"
         [legendPosition]="this.legendPosition"
         [showXAxisLabel]="showXAxisLabel"
@@ -22,7 +22,7 @@
         [yAxisLabel]="yAxisLabel"
         [results]="this.lineChartData"
         [trimYAxisTicks]="true"
-      ></ngx-charts-line-chart> -->
+      ></ngx-charts-line-chart>
     </div>
     <div class="tw-text-right min-md:tw-pr-6 tw-mt-4">
       <button>Last 30 days</button>
@@ -32,13 +32,13 @@
   <div class="tw-flex tw-flex-wrap tw-gap-8">
     <!-- sp-access-card -->
     <div card class="tw-w-full tw-flex tw-flex-col user-dist-by-source tw-p-4">
-      <h3 class="heading-5 tw-text-center tw-mb-10">User distribution by source</h3>
+      <h3 class="heading-5 tw-text-center tw-mb-10">User distribution by app</h3>
       <div class="tw-flex-grow tw-mr-12">
-        <!-- <ngx-charts-pie-chart [legend]="legend"
+        <ngx-charts-pie-chart [legend]="legend"
                               [doughnut]="true"
                               [explodeSlices]="true"
                               [legendPosition]="this.legendPosition"
-                              [results]="this.pieChardData"></ngx-charts-pie-chart> -->
+                              [results]="this.pieChardData"></ngx-charts-pie-chart>
       </div>
       <div class="tw-text-right min-md:tw-pr-6 tw-mt-4">
         <button>Last 30 days</button>

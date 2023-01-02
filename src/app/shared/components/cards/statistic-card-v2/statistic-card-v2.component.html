@@ -2,10 +2,10 @@
   <div content class="tw-flex tw-items-center tw-absolute tw-inset-0">
     <div *ngIf="icon" class="tw-flex-grow tw-max-w-[132px] tw-h-full tw-flex" [ngStyle]="{'background': colorStyle}">
       <div class="circle tw-m-auto tw-flex" >
-        <fa-icon size="2x" [icon]="icon" class="tw-text-white tw-m-auto"></fa-icon>
+        <fa-icon size="3x" [icon]="icon" class="tw-text-white tw-m-auto"></fa-icon>
       </div>
     </div>
-    <div class="tw-flex tw-flex-col tw-flex-grow tw-items-end tw-p-5">
+    <div class="tw-flex tw-flex-col tw-flex-grow tw-items-center tw-p-5">
       <span class="tw-font-bold tw-text-3xl" [ngStyle]="{'color': textColor}">{{numericValue}}</span>
       <span class="tw-font-bold tw-text-lg">{{label}}</span>
     </div>

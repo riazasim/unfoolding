@@ -15,7 +15,8 @@
   position: relative;
 
   > fa-icon {
-    color: var(--primary-color);
+    color: #85a5c8;
+    // color: var(--primary-color);
     font-size: 0.7rem;
     @apply min-md:tw-text-base;
   }

@@ -46,7 +46,7 @@ export class DashboardComponent implements OnInit {
 
   public count = 0;
   public usage = 0;
-  public nextBillingDate = '02-01-2023';
+  public nextBillingDate = '02-Feb';
 
   private static createNameFromDateString(date: string): string {
     const dateObj = new Date(date);

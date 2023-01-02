@@ -23,7 +23,9 @@ import {
   faTimes,
   faTrashAlt,
   faUser,
-  faUsers
+  faUsers,
+  faChartPie,
+  faCalendar,
 } from '@fortawesome/pro-regular-svg-icons';
 
 import { faTh } from '@fortawesome/pro-solid-svg-icons';
@@ -33,7 +35,7 @@ const solidIcons: IconDefinition[] = [
 ];
 
 const regularIcons: IconDefinition[] = [
-  faUser, faTachometerFast, faCog,
+  faUser, faTachometerFast, faCog,faChartPie,faCalendar,
   faPhone, faBuilding, faSignOut,
   faEnvelope, faUsers, faTimes,
   faLock, faTicket, faTrashAlt,
