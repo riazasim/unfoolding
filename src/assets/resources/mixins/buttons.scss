@@ -1,7 +1,8 @@
 @mixin button-variant($name, $color, $bgColor, $activeBgColor, $activeColor) {
   &.btn-#{$name} {
     color: #{$color};
-    background-color: #{$bgColor};
+    background-color: #85a5c8;
+    // background-color: #{$bgColor};
 
     &:disabled {
       background-color: var(--muted-light-color);

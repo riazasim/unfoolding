@@ -12,14 +12,14 @@
 
       <ng-container cdkColumnDef="email">
         <th cdk-header-cell *cdkHeaderCellDef scope="col"
-            mat-sort-header="email">Email
+            mat-sort-header="email">User email
         </th>
         <td cdk-cell *cdkCellDef="let row">{{row.email}}</td>
       </ng-container>
 
       <ng-container cdkColumnDef="source">
         <th cdk-header-cell *cdkHeaderCellDef mat-sort-header="source"
-            scope="col">Source
+            scope="col">Action
         </th>
         <td cdk-cell *cdkCellDef="let row">{{ row.source }}</td>
       </ng-container>

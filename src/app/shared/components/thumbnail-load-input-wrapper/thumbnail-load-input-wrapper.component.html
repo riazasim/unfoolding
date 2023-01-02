@@ -1,15 +1,12 @@
 <div [ngStyle]="customSize"
-     class="tw-h-36 tw-w-36 tw-rounded-full tw-relative tw-bg-white tw-shadow-xl tw-flex tw-overflow-hidden">
-  <img *ngIf="thumbnail" [src]="thumbnail" class="tw-w-full tw-h-full tw-object-fill" alt=""/>
-  <!-- <fa-icon *ngIf="defaultIcon && !thumbnail"
-           class="tw-m-auto tw-text-primary" size="4x"
-           [icon]="defaultIcon"></fa-icon> -->
+  class="tw-h-36 tw-w-36 tw-rounded-full tw-relative tw-bg-white tw-shadow-xl tw-flex tw-overflow-hidden">
+  <img *ngIf="thumbnail" [src]="thumbnail" class="tw-w-full tw-h-full tw-object-fill" alt="" />
+  <fa-icon *ngIf="defaultIcon && !thumbnail" class="tw-m-auto tw-text-primary" size="4x" [icon]="defaultIcon"></fa-icon>
 
-  <label #fileInputLabel
-         class="tw-flex tw-absolute tw-bottom-0
+  <label #fileInputLabel class="tw-flex tw-absolute tw-bottom-0
   tw-bg-glass-sm hover:tw-bg-glass-xl
   tw-left-0 tw-right-0 tw-h-12 tw-m-auto tw-cursor-pointer">
-    <!-- <fa-icon icon="camera-alt" class="tw-text-black tw-m-auto"></fa-icon> -->
+    <fa-icon icon="camera-alt" class="tw-text-black tw-m-auto"></fa-icon>
     <ng-content select="input[type=file]"></ng-content>
   </label>
 

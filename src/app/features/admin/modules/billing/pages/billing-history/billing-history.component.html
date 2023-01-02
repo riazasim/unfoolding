@@ -3,10 +3,10 @@
     class="tw-flex min-lg:tw-justify-between max-lg:tw-items-center max-lg:tw-gap-y-4 tw-flex-wrap max-lg:tw-flex-col">
     <div class="tw-flex-grow tw-flex tw-gap-4 max-lg:tw-flex-col">
       <h2 class="heading-5 tw-text-center !tw-font-bold">Billing History</h2>
-      <searchbar [minWidth]="500">
+      <!-- <searchbar [minWidth]="500">
         <fa-icon icon="search"></fa-icon>
         <input input type="search" (input)="historyTable.filter = $any($event.target).value"/>
-      </searchbar>
+      </searchbar> -->
     </div>
     <div class="tw-flex tw-gap-4 tw-flex-wrap tw-justify-center tw-min-h-[42px]">
       <button matRipple [routerLink]="billingProfilesRoute" class="btn btn-primary tw-min-w-[175px]">Billing
