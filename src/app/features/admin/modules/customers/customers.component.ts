@@ -7,7 +7,7 @@ import { filter, finalize, Observable, partition, switchMap, take, tap } from 'r
 import { DeaCustomerModel } from 'src/app/models/dea-customer.model';
 import { DeaEditCustomerOutputModel } from 'src/app/models/dea-edit-customer-form.model';
 import { FormDataHandler } from 'src/app/models/form-handlers';
-import { DeaCustomersApiService } from 'src/app/services/dea-customers-api.service';
+// import { DeaCustomersApiService } from 'src/app/services/dea-customers-api.service';
 import { LoaderOrchestratorService } from 'src/app/services/loader-orchestrator.service';
 import { handleErrorsBySnackbar } from 'src/app/services/snackbar-handlers.functions';
 import { ConfirmModalComponent } from 'src/app/shared/components/confirm/confirm-modal.component';
@@ -48,7 +48,7 @@ export class CustomersComponent implements OnInit, OnDestroy, FormDataHandler<De
       .pipe(
         filter((x: boolean) => x),
         tap(() => this.loaderOrchestratorService.setLoaderVisibility(true)),
-        switchMap(() => this.customersApiService.deleteOne(id)),
+        // switchMap(() => this.customersApiService.deleteOne(id)),
         finalize(() => this.loaderOrchestratorService.setLoaderVisibility(false))
       )
       .subscribe({
@@ -62,27 +62,27 @@ export class CustomersComponent implements OnInit, OnDestroy, FormDataHandler<De
   };
 
   constructor(private readonly dialogService: MatDialog,
-              private readonly loaderOrchestratorService: LoaderOrchestratorService,
-              private readonly customersApiService: DeaCustomersApiService,
-              private readonly snackbarService: MatSnackBar,
-              private readonly changeDetector: ChangeDetectorRef,
-              private readonly store: Store) {
+    private readonly loaderOrchestratorService: LoaderOrchestratorService,
+    // private readonly customersApiService: DeaCustomersApiService,
+    private readonly snackbarService: MatSnackBar,
+    private readonly changeDetector: ChangeDetectorRef,
+    private readonly store: Store) {
     this.customers$ = this.store.select(selectAllCustomers);
     this.selectedCustomer$ = this.store.select(selectCurrentlySelectedCustomer);
   }
 
   ngOnInit(): void {
     this.loaderOrchestratorService.setLoaderVisibility(true);
-    this.customersApiService.requestList()
-      .pipe(
-        finalize(() => {
-          this.loaderOrchestratorService.setLoaderVisibility(false);
-        })
-      )
-      .subscribe({
-        next: (customers: any) => this.store.dispatch(addCustomersAction({ customers })),
-        error: (err: HttpErrorResponse) => handleErrorsBySnackbar(err, this.snackbarService, err.error['detail'])
-      });
+    // this.customersApiService.requestList()
+    //   .pipe(
+    //     finalize(() => {
+    //       this.loaderOrchestratorService.setLoaderVisibility(false);
+    //     })
+    //   )
+    //   .subscribe({
+    //     next: (customers: any) => this.store.dispatch(addCustomersAction({ customers })),
+    //     error: (err: HttpErrorResponse) => handleErrorsBySnackbar(err, this.snackbarService, err.error['detail'])
+    //   });
   }
 
   ngOnDestroy(): void {
@@ -106,40 +106,40 @@ export class CustomersComponent implements OnInit, OnDestroy, FormDataHandler<De
     ) as unknown as [Observable<null>, Observable<DeaCustomerModel>];
 
 
-    newCustomer$
-      .pipe(
-        switchMap(() => {
-          return this.customersApiService.addOne(formData)
-            .pipe(
-              finalize(finalizer)
-            );
-        })
-      )
-      .subscribe({
-        next: (customer: DeaCustomerModel) => this.store.dispatch(addCustomerAction({ customer })),
-        error: (err: HttpErrorResponse) => handleErrorsBySnackbar(err, this.snackbarService, err.error['detail'])
-      });
+    // newCustomer$
+    //   .pipe(
+    //     switchMap(() => {
+    //       return this.customersApiService.addOne(formData)
+    //         .pipe(
+    //           finalize(finalizer)
+    //         );
+    //     })
+    //   )
+    //   .subscribe({
+    //     next: (customer: DeaCustomerModel) => this.store.dispatch(addCustomerAction({ customer })),
+    //     error: (err: HttpErrorResponse) => handleErrorsBySnackbar(err, this.snackbarService, err.error['detail'])
+    //   });
 
-    updateCustomer$
-      .pipe(
-        switchMap((x: DeaCustomerModel) => {
-          return this.customersApiService.updateOne(formData, x.id)
-            .pipe(
-              finalize(finalizer)
-            );
-        })
-      )
-      .subscribe({
-        error: (err: HttpErrorResponse) => handleErrorsBySnackbar(err, this.snackbarService, err.error['detail']),
-        next: (customer: DeaCustomerModel) => {
-          this.store.dispatch(updateCustomerAction({
-            update: {
-              id: customer.id,
-              changes: customer
-            }
-          }));
-        }
-      });
+    // updateCustomer$
+    //   .pipe(
+    //     switchMap((x: DeaCustomerModel) => {
+    //       return this.customersApiService.updateOne(formData, x.id)
+    //         .pipe(
+    //           finalize(finalizer)
+    //         );
+    //     })
+    //   )
+    //   .subscribe({
+    //     error: (err: HttpErrorResponse) => handleErrorsBySnackbar(err, this.snackbarService, err.error['detail']),
+    //     next: (customer: DeaCustomerModel) => {
+    //       this.store.dispatch(updateCustomerAction({
+    //         update: {
+    //           id: customer.id,
+    //           changes: customer
+    //         }
+    //       }));
+    //     }
+    //   });
 
   }
 

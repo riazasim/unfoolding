@@ -1,22 +1,19 @@
 <div class="layout-wrapper">
   <a [routerLink]="this.logoRedirect" class="logo">
-    <img [src]="this.logoSrc" alt="logo" *ngIf="this.logoSrc" />
+    <!-- <img [src]="this.logoSrc" alt="logo" *ngIf="this.logoSrc" /> -->
+    <img [src]="this.coverImgSrc" alt="logo"/>
   </a>
 
   <div class="upper-menu-items">
     <ng-container *ngFor="let menuItemConfig of this.upperMenuConfig; let i = index">
-      <sp-access-navigation-menu-item *ngIf="!this.useRoles || (menuItemConfig.requiredRoles | isUserAnyInRole)"
-                                      class="menu-item" [config]="menuItemConfig" [tabIndex]="0">
+      <sp-access-navigation-menu-item class="menu-item" [config]="menuItemConfig" [tabIndex]="0">
       </sp-access-navigation-menu-item>
     </ng-container>
 
   </div>
   <div class="lower-menu-items">
     <ng-container *ngFor="let menuItemConfig of this.lowerMenuConfig; let i = index">
-      <sp-access-navigation-menu-item class="menu-item"
-                                      *ngIf="!this.useRoles || (menuItemConfig.requiredRoles | isUserAnyInRole)"
-                                      [config]="menuItemConfig"
-                                      [tabIndex]="0">
+      <sp-access-navigation-menu-item class="menu-item" [config]="menuItemConfig" [tabIndex]="0">
       </sp-access-navigation-menu-item>
     </ng-container>
 

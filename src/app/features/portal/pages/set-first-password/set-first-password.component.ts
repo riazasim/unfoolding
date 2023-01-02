@@ -5,7 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatStepper } from '@angular/material/stepper';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DeaUserFirstPasswordModel } from 'src/app/models/password.models';
-// import { DeaPasswordService } from 'src/app/services/dea-password.service';
+import { DeaPasswordService } from 'src/app/services/dea-password.service';
 import { handleErrorsBySnackbar } from 'src/app/services/snackbar-handlers.functions';
 import { createRequiredControl } from 'src/app/shared/validators/generic-controls';
 import { appendValidators, createCompareValidator, createPasswordValidator } from 'src/app/shared/validators/generic-validators';
@@ -25,7 +25,7 @@ export class SetFirstPasswordComponent implements OnInit {
 
   constructor(private readonly snackbarService: MatSnackBar,
               private readonly router: Router,
-              // private readonly passwordService: DeaPasswordService,
+              private readonly passwordService: DeaPasswordService,
               private readonly activatedRoute: ActivatedRoute,
               private readonly fb: FormBuilder) {
   }
@@ -61,11 +61,11 @@ export class SetFirstPasswordComponent implements OnInit {
 
 
   public handleFormData() {
-    // this.passwordService
-    //   .setFirstPassword({ password: this.formGroup.value.password })
-    //   .subscribe({
-    //     complete: () => this.formWizard.next(),
-    //     error: (err: HttpErrorResponse) => handleErrorsBySnackbar(err, this.snackbarService, err.error['detail'])
-    //   });
+    this.passwordService
+      .setFirstPassword({ password: this.formGroup.value.password })
+      .subscribe({
+        complete: () => this.formWizard.next(),
+        error: (err: HttpErrorResponse) => handleErrorsBySnackbar(err, this.snackbarService, err.error['detail'])
+      });
   }
 }

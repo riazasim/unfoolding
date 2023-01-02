@@ -5,7 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatStepper } from '@angular/material/stepper';
 import { Nullable } from 'src/app/models/nullable.type';
 import { DeaRegistrationModel } from 'src/app/models/registration.models';
-// import { DeaRegistrationService } from 'src/app/services/dea-registration.service';
+import { DeaRegistrationService } from 'src/app/services/dea-registration.service';
 import { handleErrorsBySnackbar } from 'src/app/services/snackbar-handlers.functions';
 import { createEmailControl, createLetterOnlyFormControl, createRequiredControl } from 'src/app/shared/validators/generic-controls';
 import { appendValidators, createDigitOnlyValidator } from 'src/app/shared/validators/generic-validators';
@@ -23,7 +23,7 @@ export class SignUpComponent implements OnInit {
   private registrationData: Nullable<DeaRegistrationModel> = null;
 
   constructor(private readonly snackbarService: MatSnackBar,
-              // private readonly registrationService: DeaRegistrationService,
+              private readonly registrationService: DeaRegistrationService,
               private readonly fb: FormBuilder) {
   }
 
@@ -49,12 +49,12 @@ export class SignUpComponent implements OnInit {
     if (!this.registrationData) {
       throw new Error('Empty Registration Data');
     }
-    // this.registrationService
-    //   .register(this.registrationData)
-    //   .subscribe({
-    //     error: (err: HttpErrorResponse) => handleErrorsBySnackbar(err, this.snackbarService, err.error['detail']),
-    //     complete: () => this.registrationWizard.next()
-    //   });
+    this.registrationService
+      .register(this.registrationData)
+      .subscribe({
+        error: (err: HttpErrorResponse) => handleErrorsBySnackbar(err, this.snackbarService, err.error['detail']),
+        complete: () => this.registrationWizard.next()
+      });
   }
 
   public get email(): Nullable<string> {

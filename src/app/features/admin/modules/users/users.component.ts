@@ -6,7 +6,7 @@ import { filter, finalize, fromEvent, map, Observable, partition, switchMap, tak
 import { Nullable } from 'src/app/models/nullable.type';
 import { DeaAddSubUserFormModel } from 'src/app/shared/components/user-form/add-user-prompt-form/add-user-prompt-form.model';
 import { addSubUserAction, addSubUsersAction, clearSubUsersAction, deleteSubUserAction, deselectSubUserAction, selectSubUserAction, updateSubUserAction } from 'src/app/shared/user-store/actions';
-import { DeaSubUserApiService } from 'src/app/services/dea-sub-user-api.service';
+// import { DeaSubUserApiService } from 'src/app/services/dea-sub-user-api.service';
 import { selectAllSubUsers, selectCurrentlySelectedSubUser } from 'src/app/shared/user-store/selectors';
 import { createCSVOnlyInput } from 'src/app/shared/utils/creators.functions';
 import { FormDataHandler } from 'src/app/models/form-handlers';
@@ -57,7 +57,7 @@ export class UsersComponent implements OnInit, OnDestroy, FormDataHandler<DeaAdd
         filter((fl: FileList | null): fl is FileList => fl !== null),
         map((fl: FileList) => fl.item(0)),
         filter((file: File | null): file is File => file !== null),
-        switchMap((file: File) => this.subUsersService.uploadExcelFile(file))
+        // switchMap((file: File) => this.subUsersService.uploadExcelFile(file))
       )
       .subscribe({
         complete: () => {
@@ -74,18 +74,19 @@ export class UsersComponent implements OnInit, OnDestroy, FormDataHandler<DeaAdd
   };
   public readonly deleteSubUser = (id: string | number) => {
     this.loaderOrchestrator.setLoaderVisibility(true);
-    this.subUsersService
-      .deleteOne(id)
-      .pipe(
-        finalize(() => this.loaderOrchestrator.setLoaderVisibility(false))
-      )
-      .subscribe({
-        error: (err: HttpErrorResponse) => handleErrorsBySnackbar(err, this.snackbarService, err.error['detail']),
-        complete: () => this.store.dispatch(deleteSubUserAction({ id: Number(id) }))
-      });
+    // this.subUsersService
+    //   .deleteOne(id)
+    //   .pipe(
+    //     finalize(() => this.loaderOrchestrator.setLoaderVisibility(false))
+    //   )
+    //   .subscribe({
+    //     error: (err: HttpErrorResponse) => handleErrorsBySnackbar(err, this.snackbarService, err.error['detail']),
+    //     complete: () => this.store.dispatch(deleteSubUserAction({ id: Number(id) }))
+    //   });
   };
 
-  constructor(private readonly subUsersService: DeaSubUserApiService,
+  constructor(
+    // private readonly subUsersService: DeaSubUserApiService,
               private readonly assetsProvider: AssetsProviderService<DeaAssets>,
               private readonly snackbarService: MatSnackBar,
               private readonly loaderOrchestrator: LoaderOrchestratorService,
@@ -101,15 +102,15 @@ export class UsersComponent implements OnInit, OnDestroy, FormDataHandler<DeaAdd
 
   ngOnInit(): void {
     this.loaderOrchestrator.setLoaderVisibility(true);
-    this.subUsersService
-      .requestList()
-      .pipe(
-        finalize(() => this.loaderOrchestrator.setLoaderVisibility(false))
-      )
-      .subscribe({
-        next: users => this.store.dispatch(addSubUsersAction({ users })),
-        error: (err: HttpErrorResponse) => handleErrorsBySnackbar(err, this.snackbarService, err.error['detail'])
-      });
+    // this.subUsersService
+    //   .requestList()
+    //   .pipe(
+    //     finalize(() => this.loaderOrchestrator.setLoaderVisibility(false))
+    //   )
+    //   .subscribe({
+    //     next: users => this.store.dispatch(addSubUsersAction({ users })),
+    //     error: (err: HttpErrorResponse) => handleErrorsBySnackbar(err, this.snackbarService, err.error['detail'])
+    //   });
   }
 
 
@@ -137,40 +138,40 @@ export class UsersComponent implements OnInit, OnDestroy, FormDataHandler<DeaAdd
     ) as unknown as [Observable<null>, Observable<DeaSubUserModel>];
 
 
-    newUser$
-      .pipe(
-        switchMap(() => {
-          return this.subUsersService.addOne(formData as any)
-            .pipe(
-              finalize(finalizer)
-            );
-        })
-      )
-      .subscribe({
-        next: (user: DeaSubUserModel) => this.store.dispatch(addSubUserAction({ user })),
-        error: (err: HttpErrorResponse) => handleErrorsBySnackbar(err, this.snackbarService, err.error['detail'])
-      });
+    // newUser$
+    //   .pipe(
+    //     switchMap(() => {
+    //       return this.subUsersService.addOne(formData as any)
+    //         .pipe(
+    //           finalize(finalizer)
+    //         );
+    //     })
+    //   )
+    //   .subscribe({
+    //     next: (user: DeaSubUserModel) => this.store.dispatch(addSubUserAction({ user })),
+    //     error: (err: HttpErrorResponse) => handleErrorsBySnackbar(err, this.snackbarService, err.error['detail'])
+    //   });
 
-    updateUser$
-      .pipe(
-        switchMap((x: DeaSubUserModel) => {
-          return this.subUsersService.updateOne(formData as any, x.id)
-            .pipe(
-              finalize(finalizer)
-            );
-        })
-      )
-      .subscribe({
-        error: (err: HttpErrorResponse) => handleErrorsBySnackbar(err, this.snackbarService, err.error['detail']),
-        next: (user: DeaSubUserModel) => {
-          this.store.dispatch(updateSubUserAction({
-            update: {
-              id: user.id,
-              changes: user
-            }
-          }));
-        }
-      });
+    // updateUser$
+    //   .pipe(
+    //     switchMap((x: DeaSubUserModel) => {
+    //       return this.subUsersService.updateOne(formData as any, x.id)
+    //         .pipe(
+    //           finalize(finalizer)
+    //         );
+    //     })
+    //   )
+    //   .subscribe({
+    //     error: (err: HttpErrorResponse) => handleErrorsBySnackbar(err, this.snackbarService, err.error['detail']),
+    //     next: (user: DeaSubUserModel) => {
+    //       this.store.dispatch(updateSubUserAction({
+    //         update: {
+    //           id: user.id,
+    //           changes: user
+    //         }
+    //       }));
+    //     }
+    //   });
 
   }
 

@@ -5,10 +5,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-// import { SpAccessAdminLayoutModule } from 'src/app/shared/components/admin-layout/sp-access-admin-layout.component';
+import { SpAccessAdminLayoutModule } from 'src/app/shared/components/admin-layout/sp-access-admin-layout.component';
 import { CurrentLocationModule } from 'src/app/shared/components/current-location/current-location.module';
 import { SpAccessLoaderModule } from 'src/app/shared/components/loader/loader.component';
-// import { SpAccessModernHeaderModule } from 'src/app/shared/components/modern-header/sp-access-modern-header.component';
+import { SpAccessModernHeaderModule } from 'src/app/shared/components/modern-header/sp-access-modern-header.component';
 import { SpAccessModernNavigationMenuModule } from 'src/app/shared/components/modern-navigation/sp-access-modern-navigation-menu.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { deaCurrentLocationMapFactory } from 'src/app/shared/utils/dea-current-location-map.factory';
@@ -25,10 +25,10 @@ import { AdminComponent } from './admin.component';
   imports: [
     CommonModule,
     AdminRoutingModule,
-    // SpAccessAdminLayoutModule,
-    // SpAccessModernHeaderModule,
+    SpAccessAdminLayoutModule,
+    SpAccessModernHeaderModule,
     SpAccessLoaderModule,
-    SpAccessModernNavigationMenuModule.noRoles(),
+    SpAccessModernNavigationMenuModule,
     CurrentLocationModule.withMap({ locationsMap: deaCurrentLocationMapFactory(environment.navigation) }),
     FontAwesomeModule,
     MatBadgeModule,

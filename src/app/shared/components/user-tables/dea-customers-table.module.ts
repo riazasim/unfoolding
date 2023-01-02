@@ -14,7 +14,6 @@ import { DeaCustomersTableComponent } from './dea-customers-table.component';
   ],
   imports: [
     CommonModule,
-    CommonModule,
     CdkTableModule,
     MatPaginatorModule,
     MatSortModule,

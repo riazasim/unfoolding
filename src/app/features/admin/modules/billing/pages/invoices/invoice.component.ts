@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { DeaInvoiceModel } from 'src/app/models/dea-invoice.model';
-import { DeaInvoicesApiService } from 'src/app/services/dea-invoices-api.service';
+// import { DeaInvoicesApiService } from 'src/app/services/dea-invoices-api.service';
 import { handleErrorsBySnackbar } from 'src/app/services/snackbar-handlers.functions';
 import { addInvoicesAction, deselectInvoiceAction } from 'src/app/shared/billing-store/invoices/actions';
 import { selectAllInvoices } from 'src/app/shared/billing-store/invoices/selectors';
@@ -27,16 +27,17 @@ export class InvoiceComponent implements OnInit {
 
   constructor(private readonly store: Store,
               private readonly snackbarService: MatSnackBar,
-              private readonly invoicesService: DeaInvoicesApiService) {
+              // private readonly invoicesService: DeaInvoicesApiService
+              ) {
     this.invoices$ = this.store.select(selectAllInvoices);
   }
 
   ngOnInit(): void {
-    this.invoicesService.requestList()
-      .subscribe({
-        next: (invoices: any) => this.store.dispatch(addInvoicesAction({ invoices })),
-        error: (err: HttpErrorResponse) => handleErrorsBySnackbar(err, this.snackbarService, err.error['detail'])
-      });
+    // this.invoicesService.requestList()
+    //   .subscribe({
+    //     next: (invoices: any) => this.store.dispatch(addInvoicesAction({ invoices })),
+    //     error: (err: HttpErrorResponse) => handleErrorsBySnackbar(err, this.snackbarService, err.error['detail'])
+    //   });
   }
 
   public addNewInvoice(): void {
