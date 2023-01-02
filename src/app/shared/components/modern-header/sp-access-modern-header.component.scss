@@ -18,7 +18,7 @@
 .current-location-container {
   display: none;
 
-  @apply min-md:tw-flex tw-justify-center
+  @apply min-md:tw-flex
   tw-items-center tw-mx-auto tw-flex-grow;
 
   > .current-location {
