@@ -18,7 +18,7 @@ function generateMultipleHistoryEntries(count: number): BillingHistoryEntryModel
 function generateEntry(): BillingHistoryEntryModel {
 
   return {
-    balance: faker.datatype.number({min: -5000, max: 5000}),
+    balance: faker.random.arrayElement(['Company A', 'Company B']),
     licenceSerialNumber: faker.random.arrayElement(['invoice', 'payment']),
     amount: faker.datatype.number({min: -5000, max: 5000}),
     date: faker.date.between(new Date(0), new Date()).getTime(),

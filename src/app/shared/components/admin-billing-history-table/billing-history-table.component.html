@@ -5,7 +5,7 @@
       <ng-container cdkColumnDef="balance">
         <th cdk-header-cell *cdkHeaderCellDef scope="col" mat-sort-header="balance">Billing profile
         </th>
-        <td cdk-cell *cdkCellDef="let row">{{row.balance | currency: 'EUR'}}</td>
+        <td cdk-cell *cdkCellDef="let row">{{row.balance  | titlecase}}</td>
       </ng-container>
       <ng-container cdkColumnDef="license">
         <th cdk-header-cell *cdkHeaderCellDef scope="col" mat-sort-header="license">Doucment

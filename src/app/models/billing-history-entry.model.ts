@@ -5,6 +5,6 @@ export interface BillingHistoryEntryModel {
   refId: string;
   date: number;
   amount: number;
-  balance: number;
+  balance: string;
   status: 'paid' | 'unpaid';
 }
