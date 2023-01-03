@@ -14,6 +14,6 @@ export class BillingHistoryTableComponent extends SimpleTable<BillingHistoryEntr
   public payBtnClickAction: Nullable<(historicEntry: BillingHistoryEntryModel) => void> = null;
 
   protected initializeDisplayedColumns(): string[] {
-    return ['license', 'refId', 'date', 'amount', 'balance', 'status'];
+    return ['balance','license', 'refId', 'date', 'amount',  'status'];
   }
 }
