@@ -15,7 +15,7 @@ export class SpAccessModernNavigationMenuComponent {
     assetsProvider: AssetsProviderService<DeaAssets>
     // @Inject(USE_ROLES) public readonly useRoles: boolean
   ) {
-    this.coverImgSrc = assetsProvider.asset('portal', 'logo.png');
+    this.coverImgSrc = assetsProvider.asset('portal', 'logo.svg');
   }
 
   @Input()

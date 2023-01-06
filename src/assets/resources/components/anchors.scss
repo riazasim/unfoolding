@@ -1,6 +1,7 @@
 a {
   &[href] {
-    @apply tw-text-primary;
+    // @apply tw-text-primary;
+    color: black;
     &.download {
       color: inherit;
     }
@@ -9,6 +10,11 @@ a {
     @apply tw-text-primary-light;
   }
   &:visited {
-    @apply tw-text-primary-dark;
+    // @apply tw-text-primary-dark;
+    color: black;
+  }
+  &:active {
+    // @apply tw-text-primary-dark;
+    color: red($color: #000000);
   }
 }

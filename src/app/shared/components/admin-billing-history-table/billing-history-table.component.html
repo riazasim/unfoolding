@@ -56,7 +56,7 @@
       <tr *cdkNoDataRow>
         <td [colSpan]="displayedColumns.length">
           <span *ngIf="loading">
-            Se încarcă datele
+            <!-- Se încarcă datele -->
           </span>
           <span *ngIf="dataSource.data.length === 0 && !loading">Nu există înregistrări</span>
           <span *ngIf="dataSource.data.length > 0  && !loading">Nicio înregistrare nu corespunde criteriilor de

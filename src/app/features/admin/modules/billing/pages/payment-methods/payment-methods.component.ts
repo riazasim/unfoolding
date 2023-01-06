@@ -37,7 +37,7 @@ export class PaymentMethodsComponent {
 
 
   constructor(
-    private readonly dialogService: MatDialog
+    private readonly dialogService: MatDialog,
   ) {
     this.cards$ = of(multipleCreditCardGenerator(faker.datatype.number({ min: 0, max: 20 })));
   }

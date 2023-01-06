@@ -3,6 +3,7 @@
     color: #{$color};
     background-color: #85a5c8;
     // background-color: #{$bgColor};
+    border-radius: 40px;
 
     &:disabled {
       background-color: var(--muted-light-color);
@@ -27,10 +28,10 @@
 
 @mixin button-outline-variant($name, $color, $activeBgColor, $activeColor) {
   &.btn-outline-#{$name} {
-    color: #{$color};
-    background-color: white;
+    color: white;
+    background-color: #{$color};
     border: 1px solid #{$color};
-
+    border-radius: 40px;
     &:disabled {
       background-color: var(--muted-light-color);
       cursor: not-allowed;

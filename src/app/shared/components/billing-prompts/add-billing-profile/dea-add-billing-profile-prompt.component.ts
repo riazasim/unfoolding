@@ -18,7 +18,7 @@ export class DeaAddBillingProfilePromptComponent {
   public addBillingProfileBtnClickAction: Nullable<() => void> = null;
 
   constructor(assetsProvider: AssetsProviderService<DeaAssets>) {
-    this.imgSrc = assetsProvider.asset('admin', 'add-billing-profile-prompt-img.svg');
+    this.imgSrc = assetsProvider.asset('portal', 'add-billing-profile-prompt-img.svg');
   }
 
 }

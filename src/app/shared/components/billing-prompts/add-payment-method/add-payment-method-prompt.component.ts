@@ -18,7 +18,7 @@ export class DeaAddPaymentMethodPromptComponent {
   public addPaymentBtnClickAction: Nullable<() => void> = null;
 
   constructor(assetsProvider: AssetsProviderService<DeaAssets>) {
-    this.imgSrc = assetsProvider.asset('admin','add-payment-method-prompt-img.svg');
+    this.imgSrc = assetsProvider.asset('portal','user.png');
   }
 
 }

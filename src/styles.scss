@@ -18,3 +18,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
       box-shadow: unset;
     }
   }
+.tabs{
+  background: transparent;
+  border-bottom: 1px solid black;
+  border-radius: 0px;
+  padding: 4px;
+  margin: 0px 22px 0px 0px;
+  color: black;
+  &:active {
+    color: #85A5C8;
+    border-bottom: 1px solid #85A5C8;
+  }
+}

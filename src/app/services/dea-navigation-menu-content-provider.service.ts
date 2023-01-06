@@ -23,14 +23,14 @@ export class DeaNavigationMenuContentProviderService implements ObservableConten
       iconModifierClass: '',
       requiredRoles: []
     },
-    {
-      label: 'Customers',
-      icon: 'users',
-      destination: 'customer',
-      activeOnSegment: 'customer',
-      iconModifierClass: '',
-      requiredRoles: [],
-    },
+    // {
+    //   label: 'Customers',
+    //   icon: 'users',
+    //   destination: 'customer',
+    //   activeOnSegment: 'customer',
+    //   iconModifierClass: '',
+    //   requiredRoles: [],
+    // },
     {
       label: 'Usage',
       icon: 'chart-pie',
@@ -43,35 +43,36 @@ export class DeaNavigationMenuContentProviderService implements ObservableConten
       label: 'Billing',
       icon: 'dollar-sign',
       activeOnSegment: 'billing',
+      destination: 'billing/profiles',
       iconModifierClass: '',
       requiredRoles: [],
-      droprightMenuConfig: [
-        {
-          label: 'History',
-          destination: `billing/history`,
-          requiredRoles: []
-        },
-        {
-          label: 'Profiles',
-          destination: `billing/profiles`,
-          requiredRoles: []
-        },
-        {
-          label: 'Payment Methods',
-          destination: `billing/payment-methods`,
-          requiredRoles: []
-        },
-        {
-          label: 'Products',
-          destination: `billing/products`,
-          requiredRoles: []
-        },
-        {
-          label: 'Invoices',
-          destination: `billing/invoices`,
-          requiredRoles: []
-        }
-      ]
+      // droprightMenuConfig: [
+      //   {
+      //     label: 'History',
+      //     destination: `billing/history`,
+      //     requiredRoles: []
+      //   },
+      //   {
+      //     label: 'Profiles',
+      //     destination: `billing/profiles`,
+      //     requiredRoles: []
+      //   },
+      //   {
+      //     label: 'Payment Methods',
+      //     destination: `billing/payment-methods`,
+      //     requiredRoles: []
+      //   },
+      //   {
+      //     label: 'Products',
+      //     destination: `billing/products`,
+      //     requiredRoles: []
+      //   },
+      //   {
+      //     label: 'Invoices',
+      //     destination: `billing/invoices`,
+      //     requiredRoles: []
+      //   }
+      // ]
     },
   ];
 

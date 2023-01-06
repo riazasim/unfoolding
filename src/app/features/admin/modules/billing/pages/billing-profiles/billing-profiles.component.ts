@@ -6,7 +6,9 @@ import { filter, tap } from 'rxjs/operators';
 import { BillingProfileModel } from 'src/app/models/billing-profile.model';
 import { ConfirmModalComponent } from 'src/app/shared/components/confirm/confirm-modal.component';
 import { MultipleEntityDataGenerator } from 'src/app/shared/utils/generators';
-
+import { LegendPosition } from '@swimlane/ngx-charts';
+import { LoaderOrchestratorService } from 'src/app/services/loader-orchestrator.service';
+import { BreakpointObserver } from '@angular/cdk/layout';
 
 function createBillingProfile(): BillingProfileModel {
   return {
@@ -32,17 +34,24 @@ export class BillingProfilesComponent {
   public readonly billingHistoryRoute = `../history`;
   public readonly paymentMethodsRoute = `../paymentMethods`;
 
-
+  public legend = true;
+  public legendPosition: LegendPosition = LegendPosition.Right;
   public showOffcanvas = false;
   public billingProfiles$: Observable<BillingProfileModel[]>;
-
+  public pieChardData: { name: string, value: number }[] = [];
   private actualBillingProfiles: BillingProfileModel[] = [];
 
   public addBillingProfile = () => this.showOffcanvas = true;
 
   constructor(private readonly dialogService: MatDialog,
-              private readonly changeDetector: ChangeDetectorRef) {
+              private readonly changeDetector: ChangeDetectorRef,
+              private readonly loaderOrchestrator: LoaderOrchestratorService,
+              private readonly bpo: BreakpointObserver,) {
     this.billingProfiles$ = of(createBillingProfiles(5)).pipe(tap(x => this.actualBillingProfiles = x));
+    bpo.observe('(min-width:768px)')
+    .subscribe({
+      next: (bpState) => this.legend = bpState.matches
+    });
   }
 
   public deleteBillingProfile(data: BillingProfileModel) {

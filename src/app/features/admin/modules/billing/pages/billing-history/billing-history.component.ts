@@ -35,7 +35,7 @@ function generateEntry(): BillingHistoryEntryModel {
 export class BillingHistoryComponent {
 
   public readonly billingProfilesRoute = `../profiles`;
-  public readonly paymentMethodsRoute = `../paymentMethods`;
+  public readonly paymentMethodsRoute = `../payment-methods`;
 
   public paymentHistoryEntries$: Observable<BillingHistoryEntryModel[]>;
 

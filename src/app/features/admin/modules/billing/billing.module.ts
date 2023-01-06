@@ -24,8 +24,8 @@ import { PaymentMethodsComponent } from './pages/payment-methods/payment-methods
 import { ProductsComponent } from './pages/products/products.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { SpAccessPromptsModule } from 'src/app/shared/components/prompts/sp-access-prompts.module';
-
-
+import { MatTabsModule } from '@angular/material/tabs';
+import { LineChartModule, PieChartModule } from '@swimlane/ngx-charts';
 @NgModule({
   declarations: [
     BillingProfilesComponent,
@@ -53,7 +53,11 @@ import { SpAccessPromptsModule } from 'src/app/shared/components/prompts/sp-acce
     PaymentCardModule,
     FontAwesomeModule,
     SharedModule,
-    SpAccessPromptsModule
+    SpAccessPromptsModule,
+    MatTabsModule,
+    LineChartModule,
+    PieChartModule
+    
   ]
 })
 export class BillingModule {}

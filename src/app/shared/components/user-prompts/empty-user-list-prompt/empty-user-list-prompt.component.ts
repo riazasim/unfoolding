@@ -18,7 +18,7 @@ export class DeaEmptyUserListPromptComponent {
   public readonly promptParagraph = 'You can enroll users using the options below.\n Users will have access to the license basket.';
 
   constructor(assetsProvider: AssetsProviderService<DeaAssets>) {
-    this.promptImageSrc = assetsProvider.asset('portal', 'images.png');
+    this.promptImageSrc = assetsProvider.asset('portal', 'user.png');
   }
 
 }
