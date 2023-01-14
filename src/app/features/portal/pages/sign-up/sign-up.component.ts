@@ -49,12 +49,16 @@ export class SignUpComponent implements OnInit {
     if (!this.registrationData) {
       throw new Error('Empty Registration Data');
     }
-    this.registrationService
-      .register(this.registrationData)
-      .subscribe({
-        error: (err: HttpErrorResponse) => handleErrorsBySnackbar(err, this.snackbarService, err.error['detail']),
-        complete: () => this.registrationWizard.next()
-      });
+    this.registrationService.signUp(this.registrationData) .subscribe({
+      error: (err: HttpErrorResponse) => handleErrorsBySnackbar(err, this.snackbarService, err.error['detail']),
+      complete: () => this.registrationWizard.next()
+    });
+    // this.registrationService
+    //   .register(this.registrationData)
+    //   .subscribe({
+    //     error: (err: HttpErrorResponse) => handleErrorsBySnackbar(err, this.snackbarService, err.error['detail']),
+    //     complete: () => this.registrationWizard.next()
+    //   });
   }
 
   public get email(): Nullable<string> {

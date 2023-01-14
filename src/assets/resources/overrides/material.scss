@@ -15,10 +15,13 @@
 snack-bar-container {
   max-height: 40px;
 }
-
-mat-stepper, [matStepper] {
+.mat-horizontal-stepper-header-container {
+  display: none !important;
+}
+mat-stepper,
+[matStepper] {
   &.no-header-mat-stepper {
-    > .mat-horizontal-stepper-header-container {
+    >.mat-horizontal-stepper-header-container {
       display: none;
     }
   }

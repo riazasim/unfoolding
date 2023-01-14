@@ -35,12 +35,16 @@ export class ForgottenPasswordComponent implements OnInit {
   }
 
   public handleFormData(): void {
-    this.passwordService
-      .requestResetPasswordToken({ email: this.formGroup.value.email })
-      .subscribe({
-        error: (err: HttpErrorResponse) => handleErrorsBySnackbar(err, this.snackbarService, err.error['detail']),
-        complete: () => this.formWizard.next()
-      });
+    this.passwordService.forGot({ email: this.formGroup.value.email }).subscribe({
+      error: (err: HttpErrorResponse) => handleErrorsBySnackbar(err, this.snackbarService, err.error['detail']),
+      complete: () => this.formWizard.next()
+    });
+  //   this.passwordService
+  //     .requestResetPasswordToken({ email: this.formGroup.value.email })
+  //     .subscribe({
+  //       error: (err: HttpErrorResponse) => handleErrorsBySnackbar(err, this.snackbarService, err.error['detail']),
+  //       complete: () => this.formWizard.next()
+  //     });
   }
 }
 

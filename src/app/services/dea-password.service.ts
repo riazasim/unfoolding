@@ -24,10 +24,12 @@ export class DeaPasswordService {
    * to send an email
    * @param payload
    */
-  public requestResetPasswordToken(payload: DeaUserForgotPasswordModel): Observable<void> {
-    return this.apiClient.postJSONWrappedData('security', 'forgot-password', payload);
+  // public requestResetPasswordToken(payload: DeaUserForgotPasswordModel): Observable<void> {
+  //   return this.apiClient.postJSONWrappedData('security', 'forgot-password', payload);
+  // }
+  forGot(data: any): Observable<any> {
+    return this.apiClient.forGot(data)
   }
-
   /**
    * I know it return something, but the returned
    * payload is of no consequence, so we ignore it.
@@ -35,10 +37,13 @@ export class DeaPasswordService {
    * request to the server and use the token in the url for identification
    * @param payload
    */
-  public resetPassword(payload: DeaUserResetPasswordModel): Observable<void> {
-    const url = `reset-password${location.search}`;
-    return this.apiClient.postJSONWrappedData('security', url, payload);
+  resetPassword(data: any): Observable<any> {
+    return this.apiClient.forGot(data)
   }
+  // public resetPassword(payload: DeaUserResetPasswordModel): Observable<void> {
+  //   const url = `reset-password${location.search}`;
+  //   return this.apiClient.postJSONWrappedData('security', url, payload);
+  // }
 
   /**
    * I know it return something, but the returned
@@ -48,9 +53,12 @@ export class DeaPasswordService {
    * the token in the url for identification
    * @param payload
    */
-  public setFirstPassword(payload: DeaUserFirstPasswordModel): Observable<void> {
-    const url = `verify-user-email?${location.search}`;
-    return this.apiClient.postJSONWrappedData('security', url, payload);
+  setFirstPassword(data: any): Observable<any> {
+    return this.apiClient.forGot(data)
   }
+  // public setFirstPassword(payload: DeaUserFirstPasswordModel): Observable<void> {
+  //   const url = `verify-user-email?${location.search}`;
+  //   return this.apiClient.postJSONWrappedData('security', url, payload);
+  // }
 
 }
