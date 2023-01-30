@@ -36,5 +36,8 @@ export class BillingProfileComponent {
   @Output()
   public readonly deleteClicked = new EventEmitter<void>();
 
+  @Output()
+  public readonly editClicked = new EventEmitter<void>();
+
 }
 

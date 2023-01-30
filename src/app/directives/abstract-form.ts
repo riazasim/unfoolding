@@ -53,7 +53,7 @@ export abstract class AbstractForm<I, F = I, O = I> implements OnInit {
   }
 
   @Output()
-  private readonly formSubmitted = new EventEmitter<O>();
+  readonly formSubmitted = new EventEmitter<O>();
 
   protected _formGroup!: IFormGroup<F>;
 
@@ -69,6 +69,7 @@ export abstract class AbstractForm<I, F = I, O = I> implements OnInit {
   }
 
   public submit(): void {
+    alert()
     this._formGroup.markAllAsTouched();
     this._formGroup.markAsDirty();
     if (this._formGroup.valid) {
@@ -76,7 +77,12 @@ export abstract class AbstractForm<I, F = I, O = I> implements OnInit {
       if (formValue !== null) {
         const output = this.convertFormToOutputValue(formValue);
         this.formSubmitted.emit(output);
+
       }
+    }
+    else{
+      console.log(this._formGroup);
+      
     }
   }
 

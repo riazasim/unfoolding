@@ -8,6 +8,12 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { SpAccessLoaderModule } from './shared/components/loader/loader.component';
+import { DeaLoginService } from './services/dea-login.service';
+import { DeaRegistrationService } from './services/dea-registration.service';
+import { GenericApiService } from './services/generic-api.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HeaderInterceptor } from './services/dea-http-interceptor';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,7 +26,17 @@ import { SpAccessLoaderModule } from './shared/components/loader/loader.componen
     SharedModule,
     SpAccessLoaderModule
   ],
-  providers: [],
+  providers: [
+    DeaLoginService,
+    DeaRegistrationService,
+    GenericApiService,
+    CookieService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HeaderInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

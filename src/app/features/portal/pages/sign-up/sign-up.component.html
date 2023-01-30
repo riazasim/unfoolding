@@ -8,7 +8,7 @@
 
         <form [formGroup]="formGroup"
               (submit)="handleFormData()"
-              class="tw-flex tw-flex-col tw-gap-y-5">
+              class="tw-flex tw-flex-col tw-gap-y-4">
           <div iconic-input-wrapper leftIcon="user">
             <input type="text" inputRef formControlName="firstName" placeholder="First Name">
           </div>
@@ -16,7 +16,7 @@
             <input type="text" inputRef formControlName="lastName" placeholder="Last Name">
           </div>
           <div iconic-input-wrapper leftIcon="phone">
-            <input type="tel" inputRef formControlName="phone" placeholder="Phone">
+            <input type="tel" inputRef formControlName="contactNumber" placeholder="Phone">
           </div>
           <div iconic-input-wrapper leftIcon="envelope">
             <input type="email" inputRef formControlName="email" placeholder="Email">
@@ -25,13 +25,13 @@
 
         <button matRipple
                 type="submit"
-                class="btn btn-primary tw-mb-6">
-          Continue
+                class="btn btn-primary tw-mb-6" [disabled]="formGroup.invalid">
+                Sign up
         </button>
         </form>
-        <span class="tw-self-center tw-font-medium">
+        <span class="tw-self-center tw-font-medium account">
             Already have an account?
-            <a routerLink="sign-in">Sign in</a>
+            <a routerLink="/sign-in">Sign in</a>
           </span>
       </div>
     </ng-template>
@@ -62,6 +62,7 @@
                 (click)="this.sendRegistrationRequest()"
                 class="btn btn-primary  tw-self-center tw-w-full">
           Continue
+          <mat-spinner *ngIf="loader" class="uploader-status" [diameter]="20"></mat-spinner>
         </button>
       </div>
     </ng-template>

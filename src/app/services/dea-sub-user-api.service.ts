@@ -31,7 +31,7 @@ export class DeaSubUserApiService {
 
   public addOne(data: Omit<DeaSubUserModel, 'id'>): Observable<DeaSubUserModel> {
     return this.apiClient
-      .postJSONWrappedData<Omit<DeaSubUserModel, 'id'>, ResponseItemWrapper<DeaSubUserModel>>('default', 'sub-users', data)
+      .postJSONWrappedData<Omit<DeaSubUserModel, 'id'>, ResponseItemWrapper<DeaSubUserModel>>('api', 'sub-users', data)
       .pipe(
         pluckItemWrapperData<DeaSubUserModel, ResponseItemWrapper<DeaSubUserModel>>()
       );

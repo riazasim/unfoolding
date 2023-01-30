@@ -1,13 +1,9 @@
 import { CommonModule } from '@angular/common';
-import {  NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatRippleModule } from '@angular/material/core';
 import { MatStepperModule } from '@angular/material/stepper';
 import { AssetsProviderService } from 'src/app/services/assets-provider/assets-provider.service';
-import { DeaLoginService } from 'src/app/services/dea-login.service';
-import { DeaPasswordService } from 'src/app/services/dea-password.service';
-import { DeaRegistrationService } from 'src/app/services/dea-registration.service';
-import { GenericApiService } from 'src/app/services/generic-api.service';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ForgottenPasswordComponent } from './pages/forgotten-password/forgotten-password.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
@@ -18,6 +14,8 @@ import { SpAccessPortalLayoutModule } from './pages/sp-access-portal-layout/sp-a
 
 import { PortalRoutingModule } from './portal-routing.module';
 import { PortalComponent } from './portal.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -27,7 +25,8 @@ import { PortalComponent } from './portal.component';
     SignUpComponent,
     SetFirstPasswordComponent,
     ForgottenPasswordComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+  
   ],
   imports: [
     CommonModule,
@@ -37,15 +36,10 @@ import { PortalComponent } from './portal.component';
     SpAccessPortalLayoutModule,
     MatRippleModule,
     MatStepperModule,
-    SharedModule
+    SharedModule,
+    MatProgressSpinnerModule,
+    MatIconModule
   ],
-  providers: [
-    DeaLoginService,
-    GenericApiService,
-    DeaRegistrationService,
-    DeaPasswordService,
-    
-    
-  ]
+  providers: []
 })
 export class PortalModule {}

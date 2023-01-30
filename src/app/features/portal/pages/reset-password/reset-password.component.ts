@@ -35,9 +35,11 @@ export class ResetPasswordComponent implements OnInit {
    * So if the token is not present on the URL, redirect to login
    */
   ngOnInit(): void {
-    if (this.token === null) {
-      this.router.navigate(['sign-in']).then();
-    }
+    // if (this.token === null) {
+    //   this.router.navigate(['sign-in']).then();
+    // }
+    this.initForm()
+
   }
 
   initForm(): void {
@@ -57,9 +59,11 @@ export class ResetPasswordComponent implements OnInit {
     });
   }
 
-  public handleFormData(formData: DeaUserResetPasswordModel): void {
+  public handleFormData(formData: any): void {
+    console.log(this.formGroup);
+    
     this.passwordService
-      .resetPassword({ password: formData.password })
+      .resetPassword({ password: this.formGroup.get('password')?.value })
       .subscribe({
         error: (err: HttpErrorResponse) => handleErrorsBySnackbar(err, this.snackbarService, err.error['detail']),
         complete: () => this.wizard.next()

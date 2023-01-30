@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component, ViewChild, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewChild, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatStepper } from '@angular/material/stepper';
@@ -13,18 +13,20 @@ import { appendValidators, createDigitOnlyValidator } from 'src/app/shared/valid
 @Component({
   selector: 'dea-sign-up',
   templateUrl: './sign-up.component.html',
-  styles: [],
+  styleUrls: ['./sign-up.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SignUpComponent implements OnInit {
   formGroup: FormGroup;
+  loader: boolean = false;
   @ViewChild(MatStepper)
   private readonly registrationWizard!: MatStepper;
   private registrationData: Nullable<DeaRegistrationModel> = null;
 
   constructor(private readonly snackbarService: MatSnackBar,
-              private readonly registrationService: DeaRegistrationService,
-              private readonly fb: FormBuilder) {
+    private readonly registrationService: DeaRegistrationService,
+    private readonly fb: FormBuilder,
+    private cd: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
@@ -35,7 +37,7 @@ export class SignUpComponent implements OnInit {
     this.formGroup = this.fb.group({
       firstName: createLetterOnlyFormControl(),
       lastName: createLetterOnlyFormControl(),
-      phone: appendValidators(createRequiredControl(), [...createDigitOnlyValidator()]),
+      contactNumber: appendValidators(createRequiredControl(), [...createDigitOnlyValidator()]),
       email: createEmailControl()
     });
   }
@@ -46,19 +48,27 @@ export class SignUpComponent implements OnInit {
   }
 
   public sendRegistrationRequest(): void {
+    this.loader = true;
     if (!this.registrationData) {
+      this.loader = false;
+      this.cd.detectChanges();
       throw new Error('Empty Registration Data');
     }
-    this.registrationService.signUp(this.registrationData) .subscribe({
-      error: (err: HttpErrorResponse) => handleErrorsBySnackbar(err, this.snackbarService, err.error['detail']),
-      complete: () => this.registrationWizard.next()
-    });
-    // this.registrationService
-    //   .register(this.registrationData)
-    //   .subscribe({
-    //     error: (err: HttpErrorResponse) => handleErrorsBySnackbar(err, this.snackbarService, err.error['detail']),
-    //     complete: () => this.registrationWizard.next()
-    //   });
+
+    this.registrationService
+      .register(this.registrationData)
+      .subscribe({
+        error: (err: HttpErrorResponse) => {
+          this.loader = false;
+          this.cd.detectChanges();
+          handleErrorsBySnackbar(err, this.snackbarService, err.error['detail'])
+        },
+        complete: () => {
+          this.loader = false;
+          this.cd.detectChanges();
+          this.registrationWizard.next()
+        }
+      });
   }
 
   public get email(): Nullable<string> {

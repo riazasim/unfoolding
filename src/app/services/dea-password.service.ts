@@ -6,6 +6,7 @@ import type {
   DeaUserForgotPasswordModel,
   DeaUserResetPasswordModel
 } from '../models/password.models';
+import { BearerTokenService } from './bearer-token/bearer-token.service';
 import { GenericApiService } from './generic-api.service';
 
 
@@ -14,7 +15,7 @@ import { GenericApiService } from './generic-api.service';
 })
 export class DeaPasswordService {
 
-  constructor(private readonly apiClient: GenericApiService<DeaApiNamespaces>) {
+  constructor(private readonly apiClient: GenericApiService<DeaApiNamespaces>, private bearerTokenService: BearerTokenService) {
   }
 
   /**
@@ -24,12 +25,10 @@ export class DeaPasswordService {
    * to send an email
    * @param payload
    */
-  // public requestResetPasswordToken(payload: DeaUserForgotPasswordModel): Observable<void> {
-  //   return this.apiClient.postJSONWrappedData('security', 'forgot-password', payload);
-  // }
-  forGot(data: any): Observable<any> {
-    return this.apiClient.forGot(data)
+  public requestResetPasswordToken(payload: DeaUserForgotPasswordModel): Observable<void> {
+    return this.apiClient.postJSONWrappedData('api', 'forgot-password', payload);
   }
+
   /**
    * I know it return something, but the returned
    * payload is of no consequence, so we ignore it.
@@ -37,13 +36,11 @@ export class DeaPasswordService {
    * request to the server and use the token in the url for identification
    * @param payload
    */
-  resetPassword(data: any): Observable<any> {
-    return this.apiClient.forGot(data)
+  public resetPassword(payload: DeaUserResetPasswordModel): Observable<void> {
+    // const url = `reset-password${location.search}`;
+    const url = `reset-password?token=${this.bearerTokenService.authToken}`;
+    return this.apiClient.postJSONWrappedData('api', url, payload);
   }
-  // public resetPassword(payload: DeaUserResetPasswordModel): Observable<void> {
-  //   const url = `reset-password${location.search}`;
-  //   return this.apiClient.postJSONWrappedData('security', url, payload);
-  // }
 
   /**
    * I know it return something, but the returned
@@ -53,12 +50,9 @@ export class DeaPasswordService {
    * the token in the url for identification
    * @param payload
    */
-  setFirstPassword(data: any): Observable<any> {
-    return this.apiClient.forGot(data)
+  public setFirstPassword(payload: DeaUserFirstPasswordModel): Observable<void> {
+    const url = `verify-user-email?${location.search}`;
+    return this.apiClient.postJSONWrappedData('security', url, payload);
   }
-  // public setFirstPassword(payload: DeaUserFirstPasswordModel): Observable<void> {
-  //   const url = `verify-user-email?${location.search}`;
-  //   return this.apiClient.postJSONWrappedData('security', url, payload);
-  // }
 
 }

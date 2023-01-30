@@ -1,24 +1,34 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Inject, Injectable, Optional } from '@angular/core';
+import { Inject, Injectable, InjectionToken, Injector, Optional } from '@angular/core';
+import { prefix } from '@fortawesome/pro-regular-svg-icons';
+import { url } from '@rxweb/reactive-form-validators';
+import { namespaces } from 'd3-selection';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { DeaApiNamespaces } from '../models/api.type';
 import { ResponseArrayWrapper, ResponseItemWrapper } from '../models/response-wrappers.types';
 import { GenericApiModule } from '../shared/generic-api.module';
-import { convertJsonToFormData, handleHttpError, pluckArrayWrapperData, pluckItemWrapperData, wrapJsonForRequest, wrapJsonListForRequest } from '../shared/utils/api.functions';
-// import { API_NAMESPACE, API_ROOT } from './injection-tokens';
+import { convertJsonToFormData, 
+        handleHttpError, 
+        pluckArrayWrapperData, 
+        pluckItemWrapperData, 
+        wrapJsonForRequest, 
+        wrapJsonListForRequest } from '../shared/utils/api.functions';
+import { BearerTokenService } from './bearer-token/bearer-token.service';
+import { API_NAMESPACE, API_ROOT } from './injection-tokens';
 import { SuccessResponse } from './status-responses.types';
 
 @Injectable({
   providedIn: GenericApiModule
 })
 export class GenericApiService<NS> {
-  apiRoot:string;
+  apiNamespaces: any = new DeaApiNamespaces();
   constructor(
     protected readonly httpClient: HttpClient,
-    // @Inject(API_NAMESPACE) protected readonly apiNamespaces: NS,
-    // @Inject(API_ROOT) @Optional() protected  apiRoot: string
-    ) {
-    this.apiRoot = 'https://app4orce.com/unfolding.test/public';
+    private bearerTokenService: BearerTokenService,
+    @Inject(API_ROOT) @Optional() protected readonly apiRoot: string) {
+    this.apiRoot = apiRoot ?? 'http://54.88.87.1:8080/';
+  
   }
 
   /**
@@ -28,9 +38,10 @@ export class GenericApiService<NS> {
    * @param reverse
    * @private
    */
-  // public buildUrl(namespaceSegment: keyof NS, segment: string, reverse: boolean = false): string {
-  //   return reverse ? this.reverseUrl(namespaceSegment, segment) : this.url(namespaceSegment, segment);
-  // } 
+  public buildUrl(namespaceSegment: keyof NS, segment: string, reverse: boolean = false): string {
+    return reverse ? this.reverseUrl(namespaceSegment, segment) : this.url(namespaceSegment, segment);
+  }
+
   /**
    * Concatenates the root, the namespace segment and the rest of the URL
    * @param namespaceSegment
@@ -38,7 +49,8 @@ export class GenericApiService<NS> {
    * @protected
    */
   private url(namespaceSegment: keyof NS, segment: string): string {
-    return `https://app4orce.com/unfolding.test/public`;
+
+    return `${this.apiRoot}${this.apiNamespaces[namespaceSegment]}/${segment}`;
   }
 
   /**
@@ -47,9 +59,9 @@ export class GenericApiService<NS> {
    * @param segment
    * @protected
    */
-  // private reverseUrl(namespaceSegment: keyof NS, segment: string): string {
-  //   return `${this.apiNamespaces[namespaceSegment]}${this.apiRoot}/${segment}`;
-  // }
+  private reverseUrl(namespaceSegment: keyof NS, segment: string): string {
+    return `${this.apiNamespaces[namespaceSegment]}${this.apiRoot}/${segment}`;
+  }
 
   /**
    * A request for a single value. Will pluck automatically from the wrapper.
@@ -59,14 +71,14 @@ export class GenericApiService<NS> {
    * @param reverse
    * @protected
    */
-  // public getOne<T>(namespaceSegment: keyof NS, segment: string, reverse: boolean = false): Observable<T> {
-  //   const url = this.buildUrl(namespaceSegment, segment, reverse);
-  //   return this.httpClient.get<ResponseItemWrapper<T>>(url)
-  //     .pipe(
-  //       pluckItemWrapperData<T, ResponseItemWrapper<T>>(),
-  //       catchError(err => throwError(() => handleHttpError(err)))
-  //     );
-  // }
+  public getOne<T>(namespaceSegment: keyof NS, segment: string, reverse: boolean = false): Observable<T> {
+    const url = this.buildUrl(namespaceSegment, segment, reverse);
+    return this.httpClient.get<ResponseItemWrapper<T>>(url)
+      .pipe(
+        pluckItemWrapperData<T, ResponseItemWrapper<T>>(),
+        catchError(err => throwError(() => handleHttpError(err)))
+      );
+  }
 
   /**
    * A request for an array of values. Will pluck automatically from the wrapper.
@@ -76,14 +88,14 @@ export class GenericApiService<NS> {
    * @param reverse
    * @protected
    */
-  // public getArray<T>(namespaceSegment: keyof NS, segment: string, reverse: boolean = false): Observable<T[]> {
-  //   const url = this.buildUrl(namespaceSegment, segment, reverse);
-  //   return this.httpClient.get<ResponseArrayWrapper<T>>(url)
-  //     .pipe(
-  //       pluckArrayWrapperData<T, ResponseArrayWrapper<T>>(),
-  //       catchError(err => throwError(() => handleHttpError(err)))
-  //     );
-  // }
+  public getArray<T>(namespaceSegment: keyof NS, segment: string, reverse: boolean = false): Observable<T[]> {
+    const url = this.buildUrl(namespaceSegment, segment, reverse);
+    return this.httpClient.get<ResponseArrayWrapper<T>>(url)
+      .pipe(
+        pluckArrayWrapperData<T, ResponseArrayWrapper<T>>(),
+        catchError(err => throwError(() => handleHttpError(err)))
+      );
+  }
 
   /**
    * A get request that will return exactly the given T type. No plucking is done
@@ -93,12 +105,12 @@ export class GenericApiService<NS> {
    * @param reverse
    * @protected
    */
-  // public get<T>(namespaceSegment: keyof NS, segment: string, reverse: boolean = false): Observable<T> {
-  //   const url = this.buildUrl(namespaceSegment, segment, reverse);
-  //   return this.httpClient.get<T>(url).pipe(
-  //     catchError(err => throwError(() => handleHttpError(err)))
-  //   );
-  // }
+  public get<T>(namespaceSegment: keyof NS, segment: string, reverse: boolean = false): Observable<T> {
+    const url = this.buildUrl(namespaceSegment, segment, reverse);
+    return this.httpClient.get<T>(url).pipe(
+      catchError(err => throwError(() => handleHttpError(err)))
+    );
+  }
 
   /**
    * Posts JSON data, but will wrap the body into a special object.
@@ -109,40 +121,11 @@ export class GenericApiService<NS> {
    * @param reverse
    * @protected
    */
-  signIn(data: any): Observable<any> {
-    const reqHeader = new HttpHeaders();
-   reqHeader.append('Content-Type', 'application/json')
-    reqHeader.append('Access-Control-Allow-Origin', '*');
-    return this.httpClient.post<SuccessResponse>(`https://app4orce.com/unfolding.test/public/api/sign-in`, data,{headers: reqHeader})
-  }
-  signUp(data: any): Observable<any> {
-    const reqHeader = new HttpHeaders();
-   reqHeader.append('Content-Type', 'application/json')
-    reqHeader.append('Access-Control-Allow-Origin', '*');
-    return this.httpClient.post<SuccessResponse>(`https://app4orce.com/unfolding.test/public/api/sign-up`, data,{headers: reqHeader})
-  }
-  forGot(data: any): Observable<any> {
-    const reqHeader = new HttpHeaders();
-   reqHeader.append('Content-Type', 'application/json')
-    reqHeader.append('Access-Control-Allow-Origin', '*');
-    return this.httpClient.post<SuccessResponse>(`https://app4orce.com/unfolding.test/public/api/forgot-password`, data,{headers: reqHeader})
-  }
-  resetPassword(data: any): Observable<any> {
-    const reqHeader = new HttpHeaders();
-   reqHeader.append('Content-Type', 'application/json')
-    reqHeader.append('Access-Control-Allow-Origin', '*');
-    return this.httpClient.post<SuccessResponse>(`https://app4orce.com/unfolding.test/public/api/reset-password`, data,{headers: reqHeader})
-  }
-  setFirstPassword(data: any): Observable<any> {
-    const reqHeader = new HttpHeaders();
-   reqHeader.append('Content-Type', 'application/json')
-    reqHeader.append('Access-Control-Allow-Origin', '*');
-    return this.httpClient.post<SuccessResponse>(`https://app4orce.com/unfolding.test/public/api/set-password`, data,{headers: reqHeader})
-  }
+  // public postJSONWrappedData<B, R = SuccessResponse>(namespaceSegment: keyof NS, segment: string, body: B, reverse: boolean = false): Observable<R> {
   public postJSONWrappedData<B, R = SuccessResponse>(namespaceSegment: keyof NS, segment: string, body: B, reverse: boolean = false): Observable<R> {
-    // const url = this.buildUrl(namespaceSegment, segment, reverse);
-    const url = '';
+    const url = this.buildUrl(namespaceSegment, segment, reverse);
     const data = wrapJsonForRequest(body);
+  
     return this.httpClient.post<R>(url, data)
       .pipe(
         catchError(err => throwError(() => handleHttpError(err)))
@@ -159,14 +142,14 @@ export class GenericApiService<NS> {
    * @param type
    * @param reverse
    */
-  // public postJSONListWrappedData<B extends ReadonlyArray<unknown>, R = SuccessResponse>(namespaceSegment: keyof NS, segment: string, body: B, type: string, reverse: boolean = false): Observable<R> {
-  //   const url = this.buildUrl(namespaceSegment, segment, reverse);
-  //   const payload = wrapJsonListForRequest(type, body);
-  //   return this.httpClient.post<R>(url, payload)
-  //     .pipe(
-  //       catchError(err => throwError(() => handleHttpError(err)))
-  //     );
-  // }
+  public postJSONListWrappedData<B extends ReadonlyArray<unknown>, R = SuccessResponse>(namespaceSegment: keyof NS, segment: string, body: B, type: string, reverse: boolean = false): Observable<R> {
+    const url = this.buildUrl(namespaceSegment, segment, reverse);
+    const payload = wrapJsonListForRequest(type, body);
+    return this.httpClient.post<R>(url, payload)
+      .pipe(
+        catchError(err => throwError(() => handleHttpError(err)))
+      );
+  }
 
   /**
    * Transforms a JSON into FormData. It uses the data[attributes] prefix.
@@ -178,14 +161,14 @@ export class GenericApiService<NS> {
    * @param reverse
    * @public
    */
-  // public postFormData<R = SuccessResponse>(namespaceSegment: keyof NS, segment: string, body: unknown, prefix: string = 'data[attributes]', reverse: boolean = false): Observable<R> {
-  //   const url = this.buildUrl(namespaceSegment, segment, reverse);
-  //   const formData: FormData = convertJsonToFormData(body, prefix);
-  //   return this.httpClient.post<R>(url, formData)
-  //     .pipe(
-  //       catchError(err => throwError(() => handleHttpError(err)))
-  //     );
-  // }
+  public postFormData<R = SuccessResponse>(namespaceSegment: keyof NS, segment: string, body: unknown, prefix: string = 'data[attributes]', reverse: boolean = false): Observable<R> {
+    const url = this.buildUrl(namespaceSegment, segment, reverse);
+    const formData: FormData = convertJsonToFormData(body, prefix);
+    return this.httpClient.post<R>(url, formData)
+      .pipe(
+        catchError(err => throwError(() => handleHttpError(err)))
+      );
+  }
 
   /**
    * Will post anything directly, without wrapping or converting, and returns exactly the given type.
@@ -196,13 +179,13 @@ export class GenericApiService<NS> {
    * @param reverse
    * @public
    */
-  // public post<R = SuccessResponse>(namespaceSegment: keyof NS, segment: string, body: unknown, reverse: boolean = false): Observable<R> {
-  //   const url = this.buildUrl(namespaceSegment, segment, reverse);
-  //   return this.httpClient.post<R>(url, body)
-  //     .pipe(
-  //       catchError(err => throwError(() => handleHttpError(err)))
-  //     );
-  // }
+  public post<R = SuccessResponse>(namespaceSegment: keyof NS, segment: string, body: unknown, reverse: boolean = false): Observable<R> {
+    const url = this.buildUrl(namespaceSegment, segment, reverse);
+    return this.httpClient.post<R>(url, body)
+      .pipe(
+        catchError(err => throwError(() => handleHttpError(err)))
+      );
+  }
 
   /**
    * Puts anything directly, without wrapping or converting and returns exactly the given type
@@ -212,12 +195,12 @@ export class GenericApiService<NS> {
    * @param body
    * @param reverse
    */
-  // public put<R = SuccessResponse>(namespaceSegment: keyof NS, segment: string, body: unknown, reverse: boolean = false): Observable<R> {
-  //   const url = this.buildUrl(namespaceSegment, segment, reverse);
-  //   return this.httpClient.put<R>(url, body).pipe(
-  //     catchError(err => throwError(() => handleHttpError(err)))
-  //   );
-  // }
+  public put<R = SuccessResponse>(namespaceSegment: keyof NS, segment: string, body: unknown, reverse: boolean = false): Observable<R> {
+    const url = this.buildUrl(namespaceSegment, segment, reverse);
+    return this.httpClient.put<R>(url, body).pipe(
+      catchError(err => throwError(() => handleHttpError(err)))
+    );
+  }
 
   /**
    * Puts form data, by converting the given JSON and returns exactly the given type
@@ -227,13 +210,13 @@ export class GenericApiService<NS> {
    * @param body
    * @param reverse
    */
-  // public putFormData<R = SuccessResponse>(namespaceSegment: keyof NS, segment: string, body: unknown, reverse: boolean = false): Observable<R> {
-  //   const url = this.buildUrl(namespaceSegment, segment, reverse);
-  //   const payload: FormData = convertJsonToFormData(body, 'data[attributes]');
-  //   return this.httpClient.put<R>(url, payload).pipe(
-  //     catchError(err => throwError(() => handleHttpError(err)))
-  //   );
-  // }
+  public putFormData<R = SuccessResponse>(namespaceSegment: keyof NS, segment: string, body: unknown, reverse: boolean = false): Observable<R> {
+    const url = this.buildUrl(namespaceSegment, segment, reverse);
+    const payload: FormData = convertJsonToFormData(body, 'data[attributes]');
+    return this.httpClient.put<R>(url, payload).pipe(
+      catchError(err => throwError(() => handleHttpError(err)))
+    );
+  }
 
   /**
    * Puts the given object, but first it wraps it into the SpAccessWrapper
@@ -243,13 +226,13 @@ export class GenericApiService<NS> {
    * @param body
    * @param reverse
    */
-  // public putJSONWrappedData<R = SuccessResponse>(namespaceSegment: keyof NS, segment: string, body: unknown, reverse: boolean = false): Observable<R> {
-  //   const url = this.buildUrl(namespaceSegment, segment, reverse);
-  //   const payload = wrapJsonForRequest(body);
-  //   return this.httpClient.put<R>(url, payload).pipe(
-  //     catchError(err => throwError(() => handleHttpError(err)))
-  //   );
-  // }
+  public putJSONWrappedData<R = SuccessResponse>(namespaceSegment: keyof NS, segment: string, body: unknown, reverse: boolean = false): Observable<R> {
+    const url = this.buildUrl(namespaceSegment, segment, reverse);
+    const payload = wrapJsonForRequest(body);
+    return this.httpClient.put<R>(url, payload).pipe(
+      catchError(err => throwError(() => handleHttpError(err)))
+    );
+  }
 
   /**
    * Puts the given object, but first it wraps it into the SpAccessWrapper
@@ -260,14 +243,14 @@ export class GenericApiService<NS> {
    * @param type
    * @param reverse
    */
-  // public putJSONListWrappedData<B extends ReadonlyArray<unknown>, R = SuccessResponse>
-  // (namespaceSegment: keyof NS, segment: string, body: B, type: string, reverse: boolean = false): Observable<R> {
-  //   const url = this.buildUrl(namespaceSegment, segment, reverse);
-  //   const payload = wrapJsonListForRequest(type, body);
-  //   return this.httpClient.put<R>(url, payload).pipe(
-  //     catchError(err => throwError(() => handleHttpError(err)))
-  //   );
-  // }
+  public putJSONListWrappedData<B extends ReadonlyArray<unknown>, R = SuccessResponse>
+    (namespaceSegment: keyof NS, segment: string, body: B, type: string, reverse: boolean = false): Observable<R> {
+    const url = this.buildUrl(namespaceSegment, segment, reverse);
+    const payload = wrapJsonListForRequest(type, body);
+    return this.httpClient.put<R>(url, payload).pipe(
+      catchError(err => throwError(() => handleHttpError(err)))
+    );
+  }
 
   /**
    * Deletes the specified resource and returns the given type.
@@ -276,21 +259,21 @@ export class GenericApiService<NS> {
    * @param segment
    * @param reverse
    */
-  // public delete<R = SuccessResponse>(namespaceSegment: keyof NS, segment: string, reverse: boolean = false): Observable<R> {
-  //   const url = this.buildUrl(namespaceSegment, segment, reverse);
-  //   return this.httpClient.delete<R>(url).pipe(
-  //     catchError(err => throwError(() => handleHttpError(err)))
-  //   );
-  // }
+  public delete<R = SuccessResponse>(namespaceSegment: keyof NS, segment: string, reverse: boolean = false): Observable<R> {
+    const url = this.buildUrl(namespaceSegment, segment, reverse);
+    return this.httpClient.delete<R>(url).pipe(
+      catchError(err => throwError(() => handleHttpError(err)))
+    );
+  }
 
   public get root(): string {
     return this.apiRoot;
   }
 
-  // public get namespaces(): NS {
-  //   return {
-  //     ...this.apiNamespaces
-  //   };
-  // }
+  public get namespaces(): NS {
+    return {
+      ...this.apiNamespaces
+    };
+  }
 
 }

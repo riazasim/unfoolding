@@ -15,17 +15,17 @@
   }
 
   &.valid {
-    > .input-container {
+    >.input-container {
       border-color: var(--valid-color);
     }
   }
 
   &.invalid {
-    > .input-container {
+    >.input-container {
       border-color: var(--invalid-color);
     }
 
-    > .errors-container {
+    >.errors-container {
       width: 100%;
 
       .invalid {
@@ -35,7 +35,8 @@
     }
   }
 
-  > .input-container {
+  >.input-container {
+    border-radius: 1000px !important;
     background-color: white;
     position: relative;
     display: flex;
@@ -51,7 +52,7 @@
       border-color: var(--primary-color);
     }
 
-    > input[spaccessinputref],
+    >input[spaccessinputref],
     select[spaccessinputref] {
       all: unset;
       background-color: transparent;
@@ -76,12 +77,12 @@
     select[spaccessinputref] {
       z-index: 2;
 
-      > option {
+      >option {
         color: black;
       }
     }
 
-    > .icon {
+    >.icon {
 
       &.valid {
         color: var(--valid-color);
@@ -130,7 +131,8 @@ thumbnail-load-input-wrapper {
     }
   }
 
-  input, select {
+  input,
+  select {
     &.sp-access-form-control {
       background-color: #FFFFFF;
       border: 1px solid #DFDFDF;
@@ -144,7 +146,8 @@ thumbnail-load-input-wrapper {
       &[type=number] {
         -moz-appearance: textfield;
 
-        &::-webkit-outer-spin-button, &::-webkit-inner-spin-button {
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
           -webkit-appearance: none;
           margin: 0;
         }

@@ -14,12 +14,10 @@ export class DeaRegistrationService {
   constructor(private readonly apiClient: GenericApiService<DeaApiNamespaces>) {
   }
 
-  // public register(payload: DeaRegistrationModel): Observable<DeaRegistrationResponseModel> {
-  //   return this.apiClient.postJSONWrappedData<DeaRegistrationModel, ResponseItemWrapper<DeaRegistrationResponseModel>>
-  //   ('security', 'register', payload)
-  //     .pipe(pluckItemWrapperData());
-  // }
-  signUp(data: any): Observable<any> {
-    return this.apiClient.signUp(data)
+  public register(payload: DeaRegistrationModel): Observable<DeaRegistrationResponseModel> {
+    return this.apiClient.postJSONWrappedData<DeaRegistrationModel, ResponseItemWrapper<DeaRegistrationResponseModel>>
+    ('api', 'sign-up', payload)
+      .pipe(pluckItemWrapperData());
   }
+
 }

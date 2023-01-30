@@ -3,6 +3,7 @@ import { AbstractControl } from '@angular/forms';
 import { IFormGroup } from '@rxweb/types';
 import { WireForm } from 'src/app/directives/wire-form copy';
 import { Nullable } from 'src/app/models/nullable.type';
+import { DeaSubUserApiService } from 'src/app/services/dea-sub-user-api.service';
 import { createDeaAddSubUserFormGroup } from './add-user-prompt-form.group';
 import { DeaAddSubUserFormModel } from './add-user-prompt-form.model';
 
@@ -18,9 +19,24 @@ export class DeaAddUserFormComponent extends WireForm<DeaAddSubUserFormModel> {
 
   @Input()
   public downloadTemplateBtnClickAction: Nullable<() => void> = null;
+  constructor(private deaSubUserApiService: DeaSubUserApiService){
+    super();
+  }
 
   protected override buildFormGroup(): IFormGroup<DeaAddSubUserFormModel> {
     return createDeaAddSubUserFormGroup();
+  }
+
+  public override ngOnInit(): void {
+    this.formSubmitted.subscribe((payload: any)=>{
+      this.deaSubUserApiService.addOne(payload).subscribe({
+        next:(resp: any)=>{
+          console.log(resp);
+          
+        }
+      })
+
+    })
   }
 
   public get firstName(): AbstractControl | null {
@@ -46,5 +62,6 @@ export class DeaAddUserFormComponent extends WireForm<DeaAddSubUserFormModel> {
   public get phoneNumber(): AbstractControl | null {
     return this._formGroup.get('phoneNumber');
   }
+  
 
 }

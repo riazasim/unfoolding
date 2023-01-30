@@ -11,7 +11,7 @@ export function createDeaAddSubUserFormGroup(): IFormGroup<DeaAddSubUserFormMode
     middleName: createRequiredControl<string>(),
     lastName: createRequiredControl<string>(),
     email: createEmailControl(),
-    phoneNumber: appendValidators(createRequiredControl<string>(), [phoneNumberValidator('ro')]),
+    phoneNumber: appendValidators(createRequiredControl<string>(), []),
     position: createRequiredControl<string>()
   }) as IFormGroup<DeaAddSubUserFormModel>;
 }

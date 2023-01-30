@@ -2,7 +2,7 @@ import { MatSnackBar, MatSnackBarConfig, MatSnackBarRef } from '@angular/materia
 
 export function handleErrorsBySnackbar<ErrType>(
   err: ErrType, snackbarService: MatSnackBar, message: string,
-  action?: string, config?: MatSnackBarConfig, onAction?: () => void): MatSnackBarRef<unknown> {
+  action?: string, config: MatSnackBarConfig = {duration: 1500}, onAction?: () => void): MatSnackBarRef<unknown> {
   console.log(err);
   const snackbar = snackbarService.open(message, action, {
     panelClass: 'mat-danger-snackbar',

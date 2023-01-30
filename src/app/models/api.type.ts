@@ -3,11 +3,14 @@ export interface DeaApiModel {
   namespaces: DeaApiNamespaces;
 }
 
-export interface DeaApiNamespaces {
-  user: string;
-  security: string;
-  dashboard: string;
-  subUser: string;
-  subUserUsages: string;
-  default: string;
+export class DeaApiNamespaces {
+  user: string = "user";
+  security: string = "security";
+  dashboard: string = "dashboard";
+  subUser: string = "subUser";
+  subUserUsages: string = "subUserUsages";
+  default: string = "";
+  api: string = "api";
+  apiAdmin: string = "api/admin";
+  apiAuth: string = "api";
 }
