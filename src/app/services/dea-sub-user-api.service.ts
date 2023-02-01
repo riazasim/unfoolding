@@ -29,9 +29,10 @@ export class DeaSubUserApiService {
     return this.apiClient.delete('default', `sub-users/${id}`);
   }
 
-  public addOne(data: Omit<DeaSubUserModel, 'id'>): Observable<DeaSubUserModel> {
+  public addOne(data: Omit<DeaSubUserModel, 'id'>, id: string | number): Observable<DeaSubUserModel> {
+   debugger;
     return this.apiClient
-      .postJSONWrappedData<Omit<DeaSubUserModel, 'id'>, ResponseItemWrapper<DeaSubUserModel>>('api', 'sub-users', data)
+      .postJSONWrappedData<Omit<DeaSubUserModel, 'id'>, ResponseItemWrapper<DeaSubUserModel>>('api', `sub-users/${id}`, data)
       .pipe(
         pluckItemWrapperData<DeaSubUserModel, ResponseItemWrapper<DeaSubUserModel>>()
       );

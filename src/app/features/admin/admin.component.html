@@ -4,6 +4,7 @@
                            optionsTitle="Menu"
                            [currentLocation]="this.currentLocation$ | async | uppercase">
     <ul menu class="header-menu-list">
+      <li>{{this.userInfo[0].attributes.firstName +" "+this.userInfo[0].attributes.lastName}}</li>
       <li class="header-menu-list-item">
         <fa-icon icon="bell" size="lg"
                  class="menu-icon" tabindex="0"

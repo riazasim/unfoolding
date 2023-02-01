@@ -9,6 +9,16 @@ export class RolesService<T extends string = string> {
 
   private readonly rolesSubject = new BehaviorSubject<T[]>([]);
 
+  private readonly userInfoSubject = new BehaviorSubject<T[]>([])
+
+  public setuserInfoSubject(roles: T[]): void {
+    this.userInfoSubject.next(roles);
+  }
+
+  public getuserInfoSubject(): T[] {
+   return this.userInfoSubject.value;
+  }
+
   public setUserRoles(roles: T[]): void {
     this.rolesSubject.next(roles);
   }
@@ -16,7 +26,6 @@ export class RolesService<T extends string = string> {
   public addUserRoles(roles: T[]): void {
     this.rolesSubject.next([...roles]);
   }
-
   public addUserRole(role: T): void {
     const oldRole = this.rolesSubject.value;
     this.rolesSubject.next([...oldRole, role]);

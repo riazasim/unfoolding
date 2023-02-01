@@ -8,5 +8,6 @@ export interface DeaLoginModel {
 export interface DeaLoginResponseModel {
   user: string;
   role: DeaUserRole;
+  user_info:any;
   token: string;
 }

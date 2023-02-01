@@ -13,7 +13,7 @@ export class SpAccessModernNavigationMenuComponent {
   public readonly coverImgSrc: string;
   constructor(
     assetsProvider: AssetsProviderService<DeaAssets>
-    // @Inject(USE_ROLES) public readonly useRoles: boolean
+    //@Inject(USE_ROLES) public readonly useRoles: boolean
   ) {
     this.coverImgSrc = assetsProvider.asset('portal', 'logo.svg');
   }

@@ -4,6 +4,7 @@ import { IFormGroup } from '@rxweb/types';
 import { WireForm } from 'src/app/directives/wire-form copy';
 import { Nullable } from 'src/app/models/nullable.type';
 import { DeaSubUserApiService } from 'src/app/services/dea-sub-user-api.service';
+import { RolesService } from 'src/app/services/roles.service';
 import { createDeaAddSubUserFormGroup } from './add-user-prompt-form.group';
 import { DeaAddSubUserFormModel } from './add-user-prompt-form.model';
 
@@ -19,7 +20,10 @@ export class DeaAddUserFormComponent extends WireForm<DeaAddSubUserFormModel> {
 
   @Input()
   public downloadTemplateBtnClickAction: Nullable<() => void> = null;
-  constructor(private deaSubUserApiService: DeaSubUserApiService){
+  userInfo: any;
+  constructor(private deaSubUserApiService: DeaSubUserApiService,
+    private rolesService: RolesService
+  ) {
     super();
   }
 
@@ -28,11 +32,16 @@ export class DeaAddUserFormComponent extends WireForm<DeaAddSubUserFormModel> {
   }
 
   public override ngOnInit(): void {
-    this.formSubmitted.subscribe((payload: any)=>{
-      this.deaSubUserApiService.addOne(payload).subscribe({
-        next:(resp: any)=>{
+    this.userInfo = this.rolesService.getuserInfoSubject();
+    
+    this.formSubmitted.subscribe((payload: any) => {
+      debugger;
+      // payload.id = this.userInfo[0].attributes.id;
+
+      this.deaSubUserApiService.addOne(payload, this.userInfo[0].attributes.id).subscribe({
+        next: (resp: any) => {
           console.log(resp);
-          
+
         }
       })
 
@@ -62,6 +71,6 @@ export class DeaAddUserFormComponent extends WireForm<DeaAddSubUserFormModel> {
   public get phoneNumber(): AbstractControl | null {
     return this._formGroup.get('phoneNumber');
   }
-  
+
 
 }

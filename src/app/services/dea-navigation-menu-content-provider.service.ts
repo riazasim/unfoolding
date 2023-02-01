@@ -6,6 +6,32 @@ import { NavigationMenuConfig } from '../models/navigation-menu.model';
 @Injectable()
 export class DeaNavigationMenuContentProviderService implements ObservableContentProvider<NavigationMenuConfig[]> {
 
+  private readonly menuItemsCustome: NavigationMenuConfig[] = [
+    {
+      label: 'Dashboard',
+      icon: 'tachometer-fast',
+      destination: 'dashboard',
+      activeOnSegment: 'dashboard',
+      iconModifierClass: '',
+      requiredRoles: []
+    },
+    {
+      label: 'Customers',
+      icon: 'users',
+      destination: 'customer',
+      activeOnSegment: 'customer',
+      iconModifierClass: '',
+      requiredRoles: [],
+    },
+    {
+      label: 'Usage',
+      icon: 'chart-pie',
+      destination: 'usage',
+      activeOnSegment: 'usage',
+      iconModifierClass: '',
+      requiredRoles: []
+    }
+  ]
   private readonly menuItemsConfig: NavigationMenuConfig[] = [
     {
       label: 'Dashboard',
@@ -23,22 +49,6 @@ export class DeaNavigationMenuContentProviderService implements ObservableConten
       iconModifierClass: '',
       requiredRoles: []
     },
-    // {
-    //   label: 'Customers',
-    //   icon: 'users',
-    //   destination: 'customer',
-    //   activeOnSegment: 'customer',
-    //   iconModifierClass: '',
-    //   requiredRoles: [],
-    // },
-    {
-      label: 'Usage',
-      icon: 'chart-pie',
-      destination: 'usage',
-      activeOnSegment: 'usage',
-      iconModifierClass: '',
-      requiredRoles: []
-    },
     {
       label: 'Billing',
       icon: 'dollar-sign',
@@ -46,6 +56,8 @@ export class DeaNavigationMenuContentProviderService implements ObservableConten
       destination: 'billing/profiles',
       iconModifierClass: '',
       requiredRoles: [],
+    }
+    
       // droprightMenuConfig: [
       //   {
       //     label: 'History',
@@ -73,12 +85,19 @@ export class DeaNavigationMenuContentProviderService implements ObservableConten
       //     requiredRoles: []
       //   }
       // ]
-    },
+    // },
   ];
 
   constructor() {}
 
   getContent(): Observable<NavigationMenuConfig[]> {
-    return of(this.menuItemsConfig);
+    let role = localStorage.getItem("role");
+    if(role == 'admin'){
+      return of(this.menuItemsCustome);
+    }else{
+      return of(this.menuItemsConfig);
+    }
+    
+    
   }
 }

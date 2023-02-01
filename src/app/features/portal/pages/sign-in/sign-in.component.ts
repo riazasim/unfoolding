@@ -71,13 +71,24 @@ export class SignInComponent implements OnInit {
           this.bearerTokenService.authToken = response.token;
           this.bearerTokenService.authCookie = response.token;
           this.rolesService.setUserRoles([response.role]);
+          // this.rolesService.setUserRoles([response.data.user_info.attributes.firstName]);
+          // console.log(response.user_info.attributes.firstName + " " + response.user_info.attributes.lastName);
+          this.rolesService.setuserInfoSubject([response.user_info]);
+          debugger
+          localStorage.setItem("role",response.role)
           this.loader = false;
           this.cd.detectChanges();
         },
         complete: () => {          
           this.loader = false;
           this.cd.detectChanges();
-          this.router.navigate(['admin/billing/profiles'])
+          let role = localStorage.getItem("role");
+          if(role == 'admin'){
+          this.router.navigate(['admin/dashboard'])
+          }
+          else{
+            this.router.navigate(['admin/billing/profiles'])
+          }
         },
         error: (err: HttpErrorResponse) => {
           this.loader = false;

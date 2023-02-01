@@ -1,4 +1,4 @@
-<div class="tw-flex tw-flex-col" >
+<div class="tw-flex tw-flex-col">
   <h1 class="heading-2 tw-text-center tw-mb-12">Sign in</h1>
 
   <!-- <dea-portal-sign-in-form (formSubmitted)="this.handleFormData($event)" [id]="this.signInFormId" class="tw-mb-1"></dea-portal-sign-in-form> -->
@@ -8,10 +8,19 @@
     <div iconic-input-wrapper leftIcon="user">
       <input type="text" formControlName="email" inputRef placeholder="Phone or Email">
     </div>
-    <div iconic-password-wrapper leftIcon="lock">
-      <input type="password" formControlName="password" inputRef placeholder="Password">
+    <!-- <label class="font-medium block mb-1 mt-6 text-gray-700" for="password">
+      Password
+    </label> -->
+    <!-- <div iconic-password-wrapper leftIcon="lock">
+      <input type="password" formControlName="password" inputRef placeholder="Password"> -->
+    <div iconic-input-wrapper leftIcon="user">
+
+      <input [type]="showPassword ? 'text' : 'password'" formControlName="password" inputRef placeholder="Password">
+      <mat-icon matSuffix style="cursor: pointer;" (click)="toggleShowPassword()">
+        {{!showPassword?'visibility':'visibility_off'}}</mat-icon>
     </div>
-      <!-- <div leftIcon="lock">
+    <!-- </div> -->
+    <!-- <div leftIcon="lock">
       <input [type]="showPassword ? 'text' : 'password'" formControlName="password" inputRef placeholder="Password">
       <mat-icon matSuffix style="cursor: pointer;" (click)="toggleShowPassword()">
         {{!showPassword?'visibility':'visibility_off'}}</mat-icon>
@@ -22,10 +31,10 @@
     <button matRipple type="submit" class="btn btn-primary tw-mb-6 signin" [disabled]="formGroup.invalid">Sign in
       <mat-spinner *ngIf="loader" class="uploader-status" [diameter]="20"></mat-spinner>
     </button>
-  </form>
-  <span class="tw-font-medium tw-text-center account">Don`t have an account?
-    <a routerLink="/portal/sign-up" class="createfoam">Create one</a>
-  </span>
+    </form>
+    <span class="tw-font-medium tw-text-center account">Don`t have an account?
+      <a routerLink="/portal/sign-up" class="createfoam">Create one</a>
+    </span>
 
 </div>
 
