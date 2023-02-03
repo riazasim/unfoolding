@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { BillingProfileModel } from 'src/app/models/billing-profile.model';
 import { Nullable } from 'src/app/models/navigation-menu.model';
 
@@ -26,7 +27,9 @@ import { Nullable } from 'src/app/models/navigation-menu.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BillingProfileComponent {
+constructor( private readonly router: Router,){
 
+}
   @Input()
   public withDelete = true;
 
@@ -38,6 +41,8 @@ export class BillingProfileComponent {
 
   @Output()
   public readonly editClicked = new EventEmitter<void>();
-
+  routrdashboard(){
+    this.router.navigate(['admin/dashboard'])
+  }
 }
 

@@ -33,9 +33,8 @@ export class DeaAddUserFormComponent extends WireForm<DeaAddSubUserFormModel> {
 
   public override ngOnInit(): void {
     this.userInfo = this.rolesService.getuserInfoSubject();
-    
+
     this.formSubmitted.subscribe((payload: any) => {
-      debugger;
       // payload.id = this.userInfo[0].attributes.id;
 
       this.deaSubUserApiService.addOne(payload, this.userInfo[0].attributes.id).subscribe({

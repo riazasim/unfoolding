@@ -21,7 +21,7 @@ export class DeaImportUsersPromptComponent {
   public readonly promptParagraph = `User import completed successfully!\nIn your user list you can find all your users and their status (active or pending).`;
 
   constructor(assetsProvider: AssetsProviderService<DeaAssets>) {
-    this.promptImgSrc = assetsProvider.asset('admin', 'import-users-prompt-img.svg');
+    this.promptImgSrc = assetsProvider.asset('portal', 'Screenshot.png');
   }
 
 }

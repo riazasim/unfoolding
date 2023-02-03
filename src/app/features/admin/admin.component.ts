@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { DeaAssets } from 'src/app/models/assets.type';
 import { NavigationMenuConfig } from 'src/app/models/navigation-menu.model';
@@ -31,25 +32,34 @@ export class AdminComponent {
   public readonly navigationMenuItems$: Observable<NavigationMenuConfig[]>;
   public readonly currentLocation$: Observable<string>;
   public readonly userInfo :  any
-
+  user:any;
   public notificationsCount = 5;
+  fullName :any 
 
   constructor(
     // private readonly logoutService: LogoutService,
+    private readonly router: Router,
     private rolesService :RolesService,
     assetsProvider: AssetsProviderService<DeaAssets>,
     currentLocationService: CurrentLocationService,
     navigationMenuSettingsProvider: DeaNavigationMenuContentProviderService) {
     this.userInfo = rolesService.getuserInfoSubject();
-    // localStorage.setItem("role",this.userInfo[0].role);
-    console.log(this.userInfo);
+    this.user = localStorage.getItem("user-role");
+    console.log(this.user);
+    this.user = JSON.parse(this.user);
+    this.fullName = this.user[0].attributes.firstName +" "+this.user[0].attributes.lastName
     this.logoImgSrc = assetsProvider.asset('shared', 'logo.png');
     this.navigationMenuItems$ = navigationMenuSettingsProvider.getContent();
     this.currentLocation$ = currentLocationService.getLocation$();
     
   }
-
+  routetobilling(){
+    localStorage.setItem("profile", "NO")
+    this.router.navigate(['admin/billing/profiles'])
+  }
   public logout(): void {
     // this.logoutService.logout().subscribe();
+    localStorage.clear();
+    this.router.navigate(['/'])
   }
 }

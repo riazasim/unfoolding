@@ -35,17 +35,17 @@
       <!-- Header and Row Declarations -->
       <tr cdk-header-row *cdkHeaderRowDef="this.displayedColumns"></tr>
       <tr cdk-row *cdkRowDef="let row; columns: this.displayedColumns"></tr>
-      <tr *cdkNoDataRow>
+      <!-- <tr *cdkNoDataRow>
         <td [colSpan]="this.displayedColumns.length">
           <span *ngIf="this.loading">
-            <!-- Se încarcă datele -->
+            Se încarcă datele
           </span>
           <span
             *ngIf="this.dataSource.data.length === 0 && !this.loading">Nu există înregistrări</span>
           <span
             *ngIf="this.dataSource.data.length > 0  && !this.loading">Nicio înregistrare nu corespunde criteriilor de căutare</span>
         </td>
-      </tr>
+      </tr> -->
     </table>
   </ng-scrollbar>
 

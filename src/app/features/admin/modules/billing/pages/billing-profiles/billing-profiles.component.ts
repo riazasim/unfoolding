@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/
 import { MatDialog } from '@angular/material/dialog';
 import * as faker from 'faker';
 import { Observable, of } from 'rxjs';
-import { filter, finalize, tap } from 'rxjs/operators';
+import { filter, finalize, isEmpty, tap } from 'rxjs/operators';
 import { BillingProfileModel } from 'src/app/models/billing-profile.model';
 import { ConfirmModalComponent } from 'src/app/shared/components/confirm/confirm-modal.component';
 import { MultipleEntityDataGenerator } from 'src/app/shared/utils/generators';
@@ -13,6 +13,7 @@ import { DeabillingApiService } from 'src/app/services/dealing-billing-service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { handleErrorsBySnackbar } from 'src/app/services/snackbar-handlers.functions';
 import { deleteSubUserAction } from 'src/app/shared/user-store/actions';
+import { Router } from '@angular/router';
 
 function createBillingProfile(): BillingProfileModel {
   return {
@@ -44,7 +45,7 @@ export class BillingProfilesComponent {
   public billingProfiles$: Observable<BillingProfileModel[]>;
   public pieChardData: { name: string, value: number }[] = [];
   private actualBillingProfiles: BillingProfileModel[] = [];
-
+  private  BillingProfileMode :[]
   public addBillingProfile = () => {
     this.deabillingApiService.billingDataObs.next(null)
     this.showOffcanvas = true;
@@ -54,9 +55,26 @@ export class BillingProfilesComponent {
               private readonly changeDetector: ChangeDetectorRef,
               private deabillingApiService: DeabillingApiService,
               private readonly loaderOrchestrator: LoaderOrchestratorService,
+              private readonly router: Router,
               // private snackbarService: SnackbarS,
               private readonly bpo: BreakpointObserver,) {
     this.billingProfiles$ = this.deabillingApiService.requestList();
+    
+   // let final_val = this.billingProfiles$.pipe(isEmpty(),);  
+   if(localStorage.getItem("profile") == "NO"){
+    
+      this.router.navigate(['admin/billing/profiles'])
+    }else{
+      if(this.billingProfiles$.valueOf.length >= 0){
+        this.router.navigate(['admin/dashboard'])
+      }else{
+     
+  
+      
+    }
+    
+  }
+    
     bpo.observe('(min-width:768px)')
     .subscribe({
       next: (bpState) => this.legend = bpState.matches

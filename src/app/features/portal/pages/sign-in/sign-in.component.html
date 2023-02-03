@@ -13,18 +13,19 @@
     </label> -->
     <!-- <div iconic-password-wrapper leftIcon="lock">
       <input type="password" formControlName="password" inputRef placeholder="Password"> -->
-    <div iconic-input-wrapper leftIcon="user">
+    <!-- <div iconic-input-wrapper leftIcon="lock"> -->
 
-      <input [type]="showPassword ? 'text' : 'password'" formControlName="password" inputRef placeholder="Password">
-      <mat-icon matSuffix style="cursor: pointer;" (click)="toggleShowPassword()">
-        {{!showPassword?'visibility':'visibility_off'}}</mat-icon>
-    </div>
-    <!-- </div> -->
-    <!-- <div leftIcon="lock">
-      <input [type]="showPassword ? 'text' : 'password'" formControlName="password" inputRef placeholder="Password">
-      <mat-icon matSuffix style="cursor: pointer;" (click)="toggleShowPassword()">
+      <!-- <input [type]="showPassword ? 'text' : 'password'" formControlName="password" inputRef placeholder="Password"> -->
+      <!-- <mat-icon matSuffix style="cursor: pointer;" (click)="toggleShowPassword()">
         {{!showPassword?'visibility':'visibility_off'}}</mat-icon>
     </div> -->
+    <!-- </div> -->
+    <div class="mb-3">
+      <input class="input" [type]="showPassword ? 'text' : 'password'" formControlName="password" inputRef placeholder="Password">
+      <mat-icon matSuffix style="cursor: pointer; margin-left: -40px;
+      padding-top: 4px;" (click)="toggleShowPassword()">
+        {{!showPassword?'visibility':'visibility_off'}}</mat-icon>
+    </div>
 
     <a class="tw-self-end tw-font-medium tw-mb-6 forgat" routerLink="/portal/forgot-password">Forgot Password</a>
 

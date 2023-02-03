@@ -50,6 +50,14 @@ export class DeaNavigationMenuContentProviderService implements ObservableConten
       requiredRoles: []
     },
     {
+      label: 'Usage',
+      icon: 'chart-pie',
+      destination: 'usage',
+      activeOnSegment: 'usage',
+      iconModifierClass: '',
+      requiredRoles: []
+    },
+    {
       label: 'Billing',
       icon: 'dollar-sign',
       activeOnSegment: 'billing',

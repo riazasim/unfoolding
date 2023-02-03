@@ -1,0 +1,3 @@
+::ng-deep table.sp-access-material-table > thead .mat-sort-header-container {
+    justify-content: flex-start !important;
+}
