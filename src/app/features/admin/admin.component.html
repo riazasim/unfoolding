@@ -2,8 +2,10 @@
 
   <sp-access-modern-header header
                            optionsTitle="Menu"
-                           [currentLocation]="this.currentLocation$ | async | uppercase">
-    <ul menu class="header-menu-list">
+                           [currentLocation]="this.currentLocation$ | async | uppercase"
+                           *ngIf="router.url !='/admin/onboarding'"
+                           >
+    <ul menu class="header-menu-list"> 
       <li (click)="routetobilling()">{{this.fullName}}</li>
       <li class="header-menu-list-item">
         <fa-icon icon="bell" size="lg"
@@ -32,7 +34,8 @@
 
   <sp-access-modern-navigation-menu aside
                                     [upperMenuConfig]="this.navigationMenuItems$ | async"
-                                    [logoSrc]="this.logoImgSrc">
+                                    [logoSrc]="this.logoImgSrc"
+                                    *ngIf="router.url !='/admin/onboarding'">
   </sp-access-modern-navigation-menu>
 
   <div main class="tw-p-4 min-md:tw-px-10 min-md:tw-py-8 tw-min-h-full tw-flex tw-flex-col">

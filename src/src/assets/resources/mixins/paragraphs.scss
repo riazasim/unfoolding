@@ -1,7 +1,0 @@
-@mixin define-paragraph($level, $weight, $font-size ,$color) {
-  .paragraph-#{$level} {
-    font-weight: #{$weight};
-    font-size: #{$font-size};
-    color: #{$color};
-  }
-}

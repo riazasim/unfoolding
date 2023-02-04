@@ -1,9 +1,0 @@
-<material-panel-table [buttonLabel]="'Export'"
-                                (buttonClicked)="this.exportUsages()"
-                                (searchedTerm)="usageTable.filter = $event">
-  <dea-usage-table table
-                   #usageTable
-                   [data]="this.data$ | async"
-                   [loading]="this.loading">
-  </dea-usage-table>
-</material-panel-table>

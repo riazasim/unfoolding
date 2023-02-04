@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatStepperModule } from '@angular/material/stepper';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -16,11 +18,13 @@ import { environment } from '../../../environments/environment';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
+import { OnboardingComponent } from './modules/onboarding/onboarding.component';
 
 
 @NgModule({
   declarations: [
-    AdminComponent
+    AdminComponent,
+    OnboardingComponent
   ],
   imports: [
     CommonModule,
@@ -39,7 +43,9 @@ import { AdminComponent } from './admin.component';
       logOnly: environment.production, // Restrict extension to log-only mode
       autoPause: true, // Pauses recording actions and state changes when the extension window is not open
     }),
-    SharedModule
+    SharedModule,
+    MatStepperModule,MatProgressSpinnerModule
+    
   ]
 })
 export class AdminModule {}

@@ -22,12 +22,7 @@ export class SignInComponent implements OnInit {
   formGroup: FormGroup;
   loader: boolean = false;
   lo: any;
-  coverImgSrc1: string;
-  coverImgSrc2: string;
-  coverImgSrc3: string;
-  coverImgSrc4: string;
-  coverImgSrc5: string;
-  coverImgSrc6: string;
+
   showPassword: boolean = false;
   constructor(private readonly snackbarService: MatSnackBar,
     private readonly router: Router,
@@ -35,14 +30,8 @@ export class SignInComponent implements OnInit {
     private readonly loginService: DeaLoginService,
     private readonly bearerTokenService: BearerTokenService,
     private readonly fb: FormBuilder,
-    assetsProvider: AssetsProviderService<DeaAssets>,
+ 
     private cd: ChangeDetectorRef) {
-    this.coverImgSrc1 = assetsProvider.asset('portal', '1.1 - Onboarding - Welcome.png');
-    this.coverImgSrc2 = assetsProvider.asset('portal', '1.2 - Onboarding - Dashboard.png');
-    this.coverImgSrc3 = assetsProvider.asset('portal', '1.3 - Onboarding - Scheduling.png');
-    this.coverImgSrc4 = assetsProvider.asset('portal', '1.4 - Onboarding - Status Tracker.png');
-    this.coverImgSrc5 = assetsProvider.asset('portal', '1.5 - Onboarding - Partner access.png');
-    this.coverImgSrc6 = assetsProvider.asset('portal', '1.6 - Onboarding - Success.png');
   }
   ngOnInit(): void {
     this.initForm();
@@ -67,6 +56,7 @@ export class SignInComponent implements OnInit {
     this.loginService
       .login(this.formGroup.value)
       .subscribe({
+        
         next: (response: DeaLoginResponseModel) => {
           this.bearerTokenService.authToken = response.token;
           this.bearerTokenService.authCookie = response.token;
@@ -80,13 +70,14 @@ export class SignInComponent implements OnInit {
         complete: () => {
           this.loader = false;
           this.cd.detectChanges();
-          let role = localStorage.getItem("role");
-          if (role == 'admin') {
-            this.router.navigate(['admin/dashboard'])
-          }
-          else {
-            this.router.navigate(['admin/billing/profiles'])
-          }
+          this.router.navigate(['admin/onboarding'])
+          // let role = localStorage.getItem("role");
+          // if (role == 'admin') {
+          //   this.router.navigate(['admin/dashboard'])
+          // }
+          // else {
+          //   this.router.navigate(['admin/billing/profiles'])
+          // }
         },
         error: (err: HttpErrorResponse) => {
           this.loader = false;

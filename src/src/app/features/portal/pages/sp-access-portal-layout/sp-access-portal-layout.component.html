@@ -1,8 +1,0 @@
-<div class="layout-wrapper">
-  <aside [ngStyle]="{'max-width':this.decorationMaxWidth, 'min-width': this.decorationMinWidth}">
-    <ng-content select="[decoration]"></ng-content>
-  </aside>
-  <main [ngStyle]="{'max-width':this.contentMaxWidth}">
-    <ng-content select="[content]"></ng-content>
-  </main>
-</div>

@@ -38,7 +38,7 @@ export class AdminComponent {
 
   constructor(
     // private readonly logoutService: LogoutService,
-    private readonly router: Router,
+    public readonly router: Router,
     private rolesService :RolesService,
     assetsProvider: AssetsProviderService<DeaAssets>,
     currentLocationService: CurrentLocationService,
@@ -51,7 +51,7 @@ export class AdminComponent {
     this.logoImgSrc = assetsProvider.asset('shared', 'logo.png');
     this.navigationMenuItems$ = navigationMenuSettingsProvider.getContent();
     this.currentLocation$ = currentLocationService.getLocation$();
-    
+    console.log("Url",router.url)
   }
   routetobilling(){
     localStorage.setItem("profile", "NO")

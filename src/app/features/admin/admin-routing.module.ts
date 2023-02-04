@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { AdminComponent } from './admin.component';
+import { OnboardingComponent } from './modules/onboarding/onboarding.component';
 
 const adminLevelNavigation = environment.navigation.admin;
 
@@ -10,6 +11,7 @@ const routes: Routes = [
     path: '',
     component: AdminComponent,
     children: [
+      { path: 'onboarding', component: OnboardingComponent },
       {
         path: '',
         pathMatch: 'full',

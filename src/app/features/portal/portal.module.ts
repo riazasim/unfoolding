@@ -17,7 +17,6 @@ import { PortalComponent } from './portal.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
 
-
 @NgModule({
   declarations: [
     PortalComponent,
@@ -38,7 +37,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatStepperModule,
     SharedModule,
     MatProgressSpinnerModule,
-    MatIconModule
+    MatIconModule,
+    
   ],
   providers: []
 })

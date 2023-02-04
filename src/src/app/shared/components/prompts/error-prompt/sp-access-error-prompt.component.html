@@ -1,6 +1,0 @@
-<sp-access-prompt [heading]="this.heading" [textContent]="this.textContent" [imageSrc]="this.imageSrc">
-  <div class="buttons-container" options>
-    <a class="btn btn-accent" [routerLink]="this.homePath">Go back</a>
-    <button class="btn btn-danger" *ngIf="this.retryAction" (click)="this.retryAction()">Retry</button>
-  </div>
-</sp-access-prompt>

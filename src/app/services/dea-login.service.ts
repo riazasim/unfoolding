@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable, Injector } from '@angular/core';
 import type { Observable } from 'rxjs';
 import { DeaApiNamespaces } from '../models/api.type';
@@ -12,8 +13,9 @@ import { GenericApiService } from './generic-api.service';
 export class DeaLoginService {
   apiClient: GenericApiService<DeaApiNamespaces>;
   constructor(
-              // private readonly apiClient: GenericApiService<DeaApiNamespaces>,    
-              private injector: Injector) {
+    private readonly http:HttpClient,
+    // private readonly apiClient: GenericApiService<DeaApiNamespaces>,    
+    private injector: Injector) {
   }
 
   public login(payload: DeaLoginModel): Observable<DeaLoginResponseModel> {
@@ -24,5 +26,8 @@ export class DeaLoginService {
         pluckItemWrapperData()
       );
   }
-
+  public letStart(data: any): Observable<any> {
+    this.apiClient = this.injector.get(GenericApiService<DeaApiNamespaces>)
+    return this.apiClient.post("api",`lets-start`, data)
+  }
 }

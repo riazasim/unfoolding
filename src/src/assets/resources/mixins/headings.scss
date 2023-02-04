@@ -1,6 +1,0 @@
-@mixin define-heading($level, $weight, $font-size) {
-  .heading-#{$level} {
-    font-weight: #{$weight};
-    font-size: #{$font-size};
-  }
-}
