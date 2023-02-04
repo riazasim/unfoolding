@@ -1,0 +1,1 @@
+export type LaresAssetsType = 'admin' | 'onboarding' | 'portal' | 'shared';

@@ -1,0 +1,44 @@
+<div sp-access-admin-layout version="latest">
+
+  <sp-access-modern-header header
+                           optionsTitle="Menu"
+                           [currentLocation]="this.currentLocation$ | async | uppercase"
+                           *ngIf="router.url !='/admin/onboarding'"
+                           >
+    <ul menu class="header-menu-list"> 
+      <li (click)="routetobilling()">{{this.fullName}}</li>
+      <li class="header-menu-list-item">
+        <fa-icon icon="bell" size="lg"
+                 class="menu-icon" tabindex="0"
+                 role="button">
+        </fa-icon>
+        <div *ngIf="notificationsCount !== null && notificationsCount > 0"
+             [matBadge]="notificationsCount" matBadgeColor="warn"
+             class="tw-h-full tw-top-0 min-md:tw-top-[-10px] tw-right-[5px]">
+        </div>
+        <span class="menu-label">Notificări</span>
+      </li>
+      <li class="header-menu-list-item">
+        <fa-icon icon="user" size="lg"
+                 class="menu-icon" tabindex="0"
+                 role="button">
+        </fa-icon>
+        <span class="menu-label">Account</span>
+      </li>
+      <li class="header-menu-list-item" (click)="this.logout()">
+        <fa-icon icon="sign-out" size="lg" class="menu-icon" tabindex="0" role="button"></fa-icon>
+        <span class="menu-label">Logout</span>
+      </li>
+    </ul>
+  </sp-access-modern-header>
+
+  <sp-access-modern-navigation-menu aside
+                                    [upperMenuConfig]="this.navigationMenuItems$ | async"
+                                    [logoSrc]="this.logoImgSrc"
+                                    *ngIf="router.url !='/admin/onboarding'">
+  </sp-access-modern-navigation-menu>
+
+  <div main class="tw-p-4 min-md:tw-px-10 min-md:tw-py-8 tw-min-h-full tw-flex tw-flex-col">
+    <router-outlet class="tw-hidden"></router-outlet>
+  </div>
+</div>

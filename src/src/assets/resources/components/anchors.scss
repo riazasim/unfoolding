@@ -1,0 +1,20 @@
+a {
+  &[href] {
+    // @apply tw-text-primary;
+    color: black;
+    &.download {
+      color: inherit;
+    }
+  }
+  &:hover {
+    @apply tw-text-primary-light;
+  }
+  &:visited {
+    // @apply tw-text-primary-dark;
+    color: black;
+  }
+  &:active {
+    // @apply tw-text-primary-dark;
+    color: red($color: #000000);
+  }
+}

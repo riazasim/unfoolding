@@ -1,0 +1,108 @@
+<div class="tw-w-full">
+  <ng-scrollbar track="horizontal" [autoHeightDisabled]="false">
+    <table class="sp-access-material-table no-wrap tw-overflow-hidden" matSort
+           [class.loading]="this.loading" aria-label="Usage Table"
+           cdk-table [dataSource]="this.dataSource">
+
+      <ng-container cdkColumnDef="owner">
+        <th cdk-header-cell *cdkHeaderCellDef scope="col"
+            mat-sort-header="owner">Owner
+        </th>
+        <td cdk-cell *cdkCellDef="let row">{{row.owner}}</td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="customerName">
+        <th cdk-header-cell *cdkHeaderCellDef scope="col"
+            mat-sort-header="customerName">Customer name
+        </th>
+        <td cdk-cell *cdkCellDef="let row">{{row.fullName}}</td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="taxId">
+        <th cdk-header-cell *cdkHeaderCellDef scope="col"
+            mat-sort-header="taxId">Tax ID
+        </th>
+        <td cdk-cell *cdkCellDef="let row">
+          {{row.taxId}}
+        </td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="country">
+        <th cdk-header-cell *cdkHeaderCellDef scope="col"
+            mat-sort-header="country">Country
+        </th>
+        <td cdk-cell *cdkCellDef="let row">{{row.country}}</td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="licenseId">
+        <th cdk-header-cell *cdkHeaderCellDef scope="col"
+            mat-sort-header="licenseId">License ID
+        </th>
+        <td cdk-cell *cdkCellDef="let row">{{row.licenseId}}</td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="customerEmail">
+        <th cdk-header-cell *cdkHeaderCellDef scope="col"
+            mat-sort-header="customerEmail">Customer email
+        </th>
+        <td cdk-cell *cdkCellDef="let row">{{row.email}}</td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="signUpDate">
+        <th cdk-header-cell *cdkHeaderCellDef scope="col"
+            mat-sort-header="signUpDate">Sign up date
+        </th>
+        <td cdk-cell *cdkCellDef="let row">{{row.signUpDate | date:"dd.MM.yyyy"}}</td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="source">
+        <th cdk-header-cell *cdkHeaderCellDef scope="col"
+            mat-sort-header="source">Source
+        </th>
+        <td cdk-cell *cdkCellDef="let row">{{row.source}}</td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="actions">
+        <th cdk-header-cell *cdkHeaderCellDef scope="col"
+            mat-sort-header="actions">Source
+        </th>
+
+        <td cdk-cell *cdkCellDef="let row">
+          <div class="tw-flex tw-justify-center tw-gap-4">
+            <button *ngIf="this.editAction"
+                    class="tw-text-primary hover:tw-text-primary-light"
+                    (click)="this.editAction(row.id)">
+              <fa-icon icon="edit" size="lg"></fa-icon>
+            </button>
+            <button *ngIf="this.deleteAction"
+                    class="tw-text-primary hover:tw-text-primary-light"
+                    (click)="this.deleteAction(row.id)">
+              <fa-icon icon="trash-alt" size="lg"></fa-icon>
+            </button>
+          </div>
+        </td>
+
+      </ng-container>
+
+      <!-- Header and Row Declarations -->
+      <tr cdk-header-row *cdkHeaderRowDef="this.displayedColumns"></tr>
+      <tr cdk-row *cdkRowDef="let row; columns: this.displayedColumns"></tr>
+      <tr *cdkNoDataRow>
+        <td [colSpan]="this.displayedColumns.length">
+          <span *ngIf="this.loading">
+            <!-- Se încarcă datele -->
+          </span>
+          <span
+            *ngIf="this.dataSource.data.length === 0 && !this.loading">Nu există înregistrări</span>
+          <span
+            *ngIf="this.dataSource.data.length > 0  && !this.loading">Nicio înregistrare nu corespunde criteriilor de căutare</span>
+        </td>
+      </tr>
+    </table>
+  </ng-scrollbar>
+
+  <mat-paginator [class.!tw-hidden]="this.dataSource.data.length === 0" class="paginator tw-rounded-b-[10px]"
+                 hidePageSize
+                 aria-label="Select page" pageSize="10">
+  </mat-paginator>
+</div>

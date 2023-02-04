@@ -1,0 +1,40 @@
+@import "assets/resources/base-styles-index";
+@import "swiper/swiper.min.css";
+@import "swiper/modules/navigation/navigation.min.css";
+@import "swiper/modules/pagination/pagination.min.css";
+@import "~bootstrap/dist/css/bootstrap.css";
+
+:root {
+    --app-border-radius: 10px;
+    --control-height: 53px;
+    --body-bg: #F4F6F8;
+  }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.input-container input {
+    border: none;
+    width: 100%;
+    text-align: center !important;
+    &:focus {
+      box-shadow: unset;
+    }
+  }
+.tabs{
+  background: transparent;
+  border-bottom: 1px solid black;
+  border-radius: 0px;
+  padding: 4px;
+  margin: 0px 22px 0px 0px;
+  color: black;
+  &:active {
+    color: #85A5C8;
+    border-bottom: 1px solid #85A5C8;
+  }
+  
+ 
+}
+
+.text-justify{
+  text-align: justify !important;
+}

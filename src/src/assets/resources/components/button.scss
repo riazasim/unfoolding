@@ -1,0 +1,106 @@
+@import '../mixins/buttons.scss';
+
+.btn {
+  vertical-align: bottom;
+  border: 0;
+  @apply tw-shadow-sm;
+  font-weight: 500;
+  padding: 0.625rem 1.5rem 0.5rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  border-radius: var(--btn-border-radius);
+  white-space: nowrap;
+  &:focus,
+  &:active,
+  &:hover {
+    @apply tw-shadow-lg;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:disabled {
+      background-color: var(--muted-color);
+  }
+
+  @include button-variant(
+    primary,
+    white,
+    var(--primary-color),
+    var(--primary-dark-color),
+    white
+  );
+  @include button-variant(
+    secondary,
+    white,
+    var(--secondary-color),
+    var(--secondary-dark-color),
+    white
+  );
+  @include button-variant(
+    info,
+    white,
+    var(--info-color),
+    var(--info-dark-color),
+    white
+  );
+  @include button-variant(
+    warning,
+    white,
+    var(--warning-color),
+    var(--warning-dark-color),
+    white
+  );
+  @include button-variant(
+    danger,
+    white,
+    var(--danger-color),
+    var(--danger-dark-color),
+    white
+  );
+  @include button-variant(
+    success,
+    white,
+    var(--success-color),
+    var(--success-dark-color),
+    white
+  );
+
+  @include button-outline-variant(
+      primary,
+      var(--primary-color),
+      var(--primary-dark-color),
+      white
+  );
+  @include button-outline-variant(
+      secondary,
+      var(--secondary-color),
+      var(--secondary-dark-color),
+      white
+  );
+  @include button-outline-variant(
+      info,
+      var(--info-color),
+      var(--info-dark-color),
+      white
+  );
+  @include button-outline-variant(
+      warning,
+      var(--warning-color),
+      var(--warning-dark-color),
+      white
+  );
+  @include button-outline-variant(
+      danger,
+      var(--danger-color),
+      var(--danger-dark-color),
+      white
+  );
+  @include button-outline-variant(
+      success,
+      var(--success-color),
+      var(--success-dark-color),
+      white
+  );
+}

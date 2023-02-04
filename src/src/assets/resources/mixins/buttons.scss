@@ -1,0 +1,54 @@
+@mixin button-variant($name, $color, $bgColor, $activeBgColor, $activeColor) {
+  &.btn-#{$name} {
+    color: #{$color};
+    background-color: #85a5c8;
+    // background-color: #{$bgColor};
+    border-radius: 40px;
+
+    &:disabled {
+      background-color: var(--muted-light-color);
+      cursor: not-allowed;
+      box-shadow: unset;
+
+      &:focus,
+      &:hover,
+      &:active {
+        background-color: var(--muted-light-color);
+      }
+    }
+
+    &:focus,
+    &:hover,
+    &:active {
+      color: #{$activeColor};
+      background-color: #{$activeBgColor};
+    }
+  }
+}
+
+@mixin button-outline-variant($name, $color, $activeBgColor, $activeColor) {
+  &.btn-outline-#{$name} {
+    color: white;
+    background-color: #{$color};
+    border: 1px solid #{$color};
+    border-radius: 40px;
+    &:disabled {
+      background-color: var(--muted-light-color);
+      cursor: not-allowed;
+      box-shadow: unset;
+
+      &:focus,
+      &:hover,
+      &:active {
+        background-color: var(--muted-light-color);
+      }
+    }
+
+    &:focus,
+    &:hover,
+    &:active {
+      color: #{$activeColor};
+      background-color: #{$activeBgColor};
+    }
+  }
+}

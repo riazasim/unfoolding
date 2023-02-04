@@ -1,0 +1,37 @@
+:host {
+  display: block;
+  height: 50px;
+  width: 100%;
+  @apply min-md:tw-w-20 min-md:tw-h-full;
+}
+
+.layout-wrapper {
+  width: 100%;
+  height: 100%;
+  background-color: var(--nav-bg, white);
+  box-shadow: var(--nav-shadows, 0px 0px 10px 10px rgba(7, 14, 47, 0.02));
+  display: flex;
+  @apply min-md:tw-flex-col min-md:tw-pb-8 min-md:tw-pt-2;
+}
+
+.logo {
+  display: none;
+  padding: 0 0.5rem 0.5rem 0.5rem;
+  @apply min-md:tw-block;
+}
+
+.upper-menu-items,
+.lower-menu-items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.upper-menu-items {
+  flex-grow: 1;
+  @apply min-md:tw-justify-start min-md:tw-flex-col min-md:tw-mb-4;
+}
+
+.lower-menu-items {
+  @apply min-md:tw-flex-col min-md:tw-justify-end min-md:tw-flex-grow;
+}

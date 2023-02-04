@@ -1,0 +1,17 @@
+@mixin define-custom-mat-snackbar($name,$bg-color,$message-color, $action-color) {
+  .mat-#{$name}-snackbar {
+    background-color: $bg-color;
+
+    .mat-simple-snackbar {
+      > span:first-child {
+        color: $message-color
+      }
+
+      > .mat-simple-snackbar-action {
+        .mat-button-wrapper {
+          color: $action-color;
+        }
+      }
+    }
+  }
+}

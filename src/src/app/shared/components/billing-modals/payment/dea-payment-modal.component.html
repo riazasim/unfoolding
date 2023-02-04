@@ -1,0 +1,44 @@
+<div class="tw-relative tw-max-w-sm">
+  <button
+    (click)="this.cancel()"
+    class="tw-absolute tw-right-2 tw-top-2 min-sm:tw-right-4 min-sm:tw-top-4">
+    <fa-icon icon="times"></fa-icon>
+  </button>
+
+  <header class="tw-border-b tw-border-[#D5D5D5] tw-text-center tw-border-solid tw-px-8 min-sm:tw-px-32 tw-py-6">
+    <h1 class="tw-text-muted tw-font-bold tw-text-2xl tw-whitespace-nowrap">Transaction details</h1>
+  </header>
+
+  <section class="tw-px-4 min-sm:tw-px-16 tw-py-6">
+    <dl class="transaction-details">
+      <dt>
+        Billing profile
+      </dt>
+      <dd>
+        {{this.config.profile}}
+      </dd>
+      <dt>
+        Amount
+      </dt>
+      <dd>
+        {{this.config.amount | currency: 'EUR'}}
+      </dd>
+      <dt>
+        <span class="tw-text-black">Visa **** 1234</span>
+        <br/>
+        <small>Expires 12/21</small>
+      </dt>
+      <dd>
+        <button class="tw-text-primary tw-font-bold">Change</button>
+      </dd>
+    </dl>
+
+    <div class="tw-text-center tw-mt-8">
+      <button (click)="this.confirm()"
+              matRipple class="btn btn-primary tw-min-w-[120px]">
+        Pay
+      </button>
+    </div>
+
+  </section>
+</div>

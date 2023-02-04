@@ -1,0 +1,19 @@
+.loader {
+  @apply tw-flex tw-flex-col tw-justify-center tw-items-center tw-h-full tw-w-full;
+  z-index: 100000000;
+
+  &.fullscreen {
+    @apply tw-absolute tw-inset-0;
+    background: var(--loader-fullscreen-bg, rgba(0, 0, 0, .8));
+  }
+
+}
+
+.body-container {
+  @apply tw-flex tw-items-center tw-justify-center;
+    min-height: calc(100vh - 190px);
+
+    @media screen and (max-width: 576px) {
+        min-height: 100%;
+    }
+}

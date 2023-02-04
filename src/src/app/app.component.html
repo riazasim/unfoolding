@@ -1,0 +1,8 @@
+<router-outlet></router-outlet>
+
+<ng-container *ngIf="this.loaderState | async as state">
+  <app-loader *ngIf="state.visible"
+                    [fullScreen]="true"
+                    [message]="state.message">
+  </app-loader>
+</ng-container>

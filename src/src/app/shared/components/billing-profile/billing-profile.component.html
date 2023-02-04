@@ -1,0 +1,53 @@
+<div class="tw-relative tw-h-full">
+  <!-- <button *ngIf="withDelete" (click)="deleteClicked.emit()" class="tw-text-primary tw-absolute tw-right-0">
+    <fa-icon icon="trash-alt"></fa-icon>
+  </button> -->
+
+  <dl *ngIf="billingProfile" class="tw-grid tw-grid-cols-1 min-sm:tw-grid-cols-2
+    tw-auto-rows tw-content-between tw-gap-4">
+    <div>
+      <dt>Payment account ID</dt>
+      <dd>{{billingProfile.paymentAccountId}}</dd>
+    </div>
+    <div>
+      <dt>Name</dt>
+      <dd>{{billingProfile.name}}</dd>
+    </div>
+    <div *ngIf="billingProfile.paymentAccountNickname">
+      <dt>Payment account nickname</dt>
+      <dd>{{billingProfile.paymentAccountNickname}}</dd>
+    </div>
+    <div>
+      <dt>Address</dt>
+      <dd>{{billingProfile.address}}</dd>
+    </div>
+    <div>
+      <dt>Account type</dt>
+      <dd>{{billingProfile.accountType}}</dd>
+    </div>
+    <div>
+      <dt>VAT number</dt>
+      <dd>{{billingProfile.vatNum}}</dd>
+    </div>
+    <div>
+      <dt>Country</dt>
+      <dd>{{billingProfile.country}}</dd>
+    </div>
+    <div>
+      <dt>Registration number</dt>
+      <dd>{{billingProfile.registrationNum}}</dd>
+    </div>
+  </dl>
+  <div class="tw-grid tw-grid-cols-1 min-sm:tw-grid-cols-4
+  tw-auto-rows tw-content-between tw-gap-4" style="margin-top: 7%;">
+    <button type="button" class="btn btn-warning" style="background: transparent;
+        color: #85a5c8;
+    border: 1px solid; border-radius: 0px;" *ngIf="withDelete" (click)="deleteClicked.emit()">Delete</button>
+    <button type="button" class="btn btn-warning" style="background: transparent;
+        color: #85a5c8;
+    border: 1px solid; border-radius: 0px;" (click)="editClicked.emit()">Edit</button>
+    <a type="button" class="btn btn-warning" style="background: transparent;
+        color: #85a5c8;
+    border: 1px solid; border-radius: 0px;" (click)="routrdashboard()">Switch to</a>
+  </div>
+</div>

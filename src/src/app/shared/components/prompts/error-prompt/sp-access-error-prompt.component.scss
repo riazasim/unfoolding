@@ -1,0 +1,16 @@
+.buttons-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  > button,
+  a {
+    min-width: 10rem;
+    &:not(:first-child) {
+      margin-left: 1rem;
+    }
+  }
+}
+
+sp-access-prompt {
+  --prompt-main-margin: 0 !important;
+}

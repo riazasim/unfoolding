@@ -1,0 +1,39 @@
+<material-panel-table [buttonLabel]="'Add Customer'"
+                                (buttonClicked)="this.addCustomer()"
+                                (searchedTerm)="customersTable.filter = $event">
+  <dea-customers-table table
+                       [deleteAction]="this.deleteCustomer"
+                       [editAction]="this.editCustomer"
+                       [loading]="false"
+                       [data]="this.customers$ | async"
+                       #customersTable>
+  </dea-customers-table>
+</material-panel-table>
+
+<offcanvas [position]="'right'" [show]="this.showOffcanvas">
+  <div content class="tw-h-full tw-flex tw-flex-col tw-p-4">
+    <button class="tw-self-end tw-cursor-pointer" (click)="this.setOffCanvasVisibility(false)">
+      <fa-icon icon="times" size="lg"></fa-icon>
+    </button>
+
+    <h1 class="heading-4 !tw-font-bold tw-self-center tw-mb-20">Edit Customer</h1>
+
+    <div>
+      <dea-customers-edit-form [seed]="this.selectedCustomer$ | async"
+                               [onSeedBehaviour]="'reset'"
+                               (formSubmitted)="this.handleFormData($event)"
+                               [id]="this.editCustomerFormId"></dea-customers-edit-form>
+    </div>
+
+
+    <div class="tw-text-center tw-pb-8">
+      <button matRipple
+              attr.form="{{this.editCustomerFormId}}"
+              type="submit"
+              class="btn btn-primary tw-w-full tw-max-w-xs">Save
+      </button>
+    </div>
+
+
+  </div>
+</offcanvas>

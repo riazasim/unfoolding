@@ -1,0 +1,5 @@
+<sp-access-prompt [textContent]="this.textContent" [heading]="this.heading" [imageSrc]="this.imgSrc">
+  <div options *ngIf="this.addPaymentBtnClickAction" class="tw-text-center">
+    <button matRipple class="btn btn-primary" (click)="this.addPaymentBtnClickAction()">Add Payment Method</button>
+  </div>
+</sp-access-prompt>

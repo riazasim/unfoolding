@@ -1,0 +1,58 @@
+ ::ng-deep .mat-progress-spinner circle,
+ .mat-spinner circle {
+   stroke: white;
+ }
+
+ .uploader-status {
+   display: inline;
+   margin-left: 10px;
+   position: relative;
+   bottom: 2px;
+ }
+
+ ::ng-deep .forgat {
+   font-family: 'Roboto';
+   font-style: normal;
+   font-weight: 700;
+   font-size: 20px;
+   line-height: 23px;
+   color: #85A5C8 !important;
+ }
+
+ ::ng-deep .signin {
+   font-family: 'Roboto';
+   font-style: normal;
+   font-weight: 700;
+   font-size: 18px;
+   text-align: center;
+   color: #FFFFFF !important;
+ }
+
+ ::ng-deep .account {
+   font-family: 'Roboto';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 22px;
+   line-height: 26px;
+   color: #08073A !important;
+ }
+
+ ::ng-deep .createfoam {
+   font-family: 'Roboto';
+   font-style: normal;
+   font-weight: 700;
+   font-size: 22px;
+   line-height: 26px;
+   color: #85A5C8 !important;
+ }
+
+ ::ng-deep .input {
+   min-width: 429px;
+   border-radius: 1000px !important;
+   background-color: white;
+   align-items: center;
+   border: 2px solid #c0c0c0;
+   border-radius: var(--app-border-radius);
+   padding: 5px 4px 6px 19px;
+   min-height: var(--control-height, 50px);
+ }

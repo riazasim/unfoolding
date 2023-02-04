@@ -1,0 +1,68 @@
+<form [formGroup]="formGroup" class="sp-access-bootstrap-form tw-flex tw-flex-col">
+  <div class="tw-mt-8 tw-w-full tw-flex tw-flex-col tw-flex-wrap min-md:tw-flex-row tw-gap-y-8 tw-gap-x-8">
+    <div class="tw-flex tw-flex-col tw-flex-grow">
+      <label class="sp-access-form-label">Payment account nickname</label>
+      <input type="text" formControlName="paymentAccountNickname" class="sp-access-form-control" required />
+      <div *ngIf="formGroup.get('paymentAccountNickname')?.invalid && formGroup.get('paymentAccountNickname')?.touched" class="error-msg">
+        Payment account nickname is required
+      </div>
+    </div>
+    <div class="tw-flex tw-flex-col tw-flex-grow">
+      <label class="sp-access-form-label">Account type</label>
+      <input type="text" formControlName="accountType" class="sp-access-form-control" required />
+      <div *ngIf="formGroup.get('accountType')?.invalid && formGroup.get('accountType')?.touched" class="error-msg">
+        Account type is required
+      </div>
+    </div>
+  </div>
+
+  <div class="tw-mt-8 tw-w-full tw-flex tw-flex-col tw-flex-wrap min-md:tw-flex-row tw-gap-y-8 tw-gap-x-8">
+    <div class="tw-flex tw-flex-col tw-flex-grow">
+      <label class="sp-access-form-label">Country</label>
+      <input type="text" formControlName="country" class="sp-access-form-control" required />
+      <div *ngIf="formGroup.get('country')?.invalid && formGroup.get('country')?.touched" class="error-msg">
+        Country is required
+      </div>
+    </div>
+    <div class="tw-flex tw-flex-col tw-flex-grow">
+      <label class="sp-access-form-label">Name</label>
+      <input type="text" formControlName="name" class="sp-access-form-control" required />
+      <div *ngIf="formGroup.get('name')?.invalid && formGroup.get('name')?.touched" class="error-msg">
+        Name is required
+      </div>
+    </div>
+  </div>
+
+  <div class="tw-flex tw-flex-col tw-mt-8 tw-w-full">
+    <label class="sp-access-form-label">Address</label>
+    <input type="text" formControlName="address" class="tw-w-full sp-access-form-control" required />
+    <div *ngIf="formGroup.get('address')?.invalid && formGroup.get('address')?.touched" class="error-msg">
+        Address is required
+    </div>
+  </div>
+  <div class="tw-mt-8 tw-w-full tw-flex tw-flex-col tw-flex-wrap min-md:tw-flex-row tw-gap-y-8 tw-gap-x-8">
+    <div class="tw-flex tw-flex-col tw-flex-grow tw-min-w-[calc(50%-1rem)]">
+      <label class="sp-access-form-label">VAT Number</label>
+      <input type="text" formControlName="vatNumber" class="sp-access-form-control" min="0" max="100" required pattern="^[0-9]*$" />
+      <div *ngIf="formGroup.get('vatNumber')?.invalid && formGroup.get('vatNumber')?.touched" class="error-msg">
+        VAT Number is required
+      </div>
+      <div *ngIf="formGroup.get('vatNumber')?.hasError('pattern') && formGroup.get('vatNumber')?.touched" class="error-msg">
+        VAT Number should be a number
+      </div>
+    </div>
+    <div class="tw-flex tw-flex-col tw-flex-grow">
+      <label class="sp-access-form-label">Registration Number</label>
+      <input type="text" formControlName="registrationNumber" class="sp-access-form-control" required />
+      <div *ngIf="formGroup.get('registrationNumber')?.invalid && formGroup.get('registrationNumber')?.touched" class="error-msg">
+        Registration Number is required
+      </div>
+    </div>
+  </div>
+  <div class="tw-mt-8 min-sm:tw-mt-12 tw-text-center">
+    <button (click)="submit()" *ngIf="!data" class="btn btn-primary tw-min-w-xs" [disabled]="formGroup.invalid">Save</button>
+    <button (click)="submit()" *ngIf="data" class="btn btn-primary tw-min-w-xs" [disabled]="formGroup.invalid">Update</button>
+  </div>
+</form>
+
+

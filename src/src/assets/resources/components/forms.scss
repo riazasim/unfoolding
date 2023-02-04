@@ -1,0 +1,159 @@
+.iconic-layout-wrapper {
+  --form-control-font-size: 1rem;
+
+  --disabled-bg-color: var(--muted-light-color);
+
+  &.disabled {
+    .input-container {
+      background-color: var(--disabled-bg-color);
+
+      input[spaccessinputref],
+      select[spaccessinputref] {
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  &.valid {
+    >.input-container {
+      border-color: var(--valid-color);
+    }
+  }
+
+  &.invalid {
+    >.input-container {
+      border-color: var(--invalid-color);
+    }
+
+    >.errors-container {
+      width: 100%;
+
+      .invalid {
+        font-size: 90%;
+        color: var(--invalid-color);
+      }
+    }
+  }
+
+  >.input-container {
+    border-radius: 1000px !important;
+    background-color: white;
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    border: 2px solid #c0c0c0;
+    border-radius: var(--app-border-radius);
+
+    padding: 0.5rem;
+    min-height: var(--control-height, 50px);
+
+    &:focus-within {
+      border-color: var(--primary-color);
+    }
+
+    >input[spaccessinputref],
+    select[spaccessinputref] {
+      all: unset;
+      background-color: transparent;
+      flex-grow: 1;
+      font-size: var(--form-control-font-size);
+      width: 100%;
+
+
+      &[type=number] {
+        -moz-appearance: textfield;
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+
+      }
+
+    }
+
+    select[spaccessinputref] {
+      z-index: 2;
+
+      >option {
+        color: black;
+      }
+    }
+
+    >.icon {
+
+      &.valid {
+        color: var(--valid-color);
+      }
+
+      &:first-child {
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+
+      &:not(:first-child):not(:last-child) {
+        margin-right: 3px;
+      }
+
+      &:last-child {
+        margin-right: 1px;
+      }
+    }
+  }
+}
+
+thumbnail-load-input-wrapper {
+  input[type=file] {
+    display: none;
+  }
+}
+
+.sp-access-bootstrap-form {
+
+  .errors-container {
+    width: 100%;
+    margin-top: 0.2rem;
+
+    .invalid {
+      font-size: 90%;
+      color: var(--invalid-color);
+    }
+  }
+
+  label {
+    &.sp-access-form-label {
+      font-weight: 400;
+      color: #696969;
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+    }
+  }
+
+  input,
+  select {
+    &.sp-access-form-control {
+      background-color: #FFFFFF;
+      border: 1px solid #DFDFDF;
+      border-radius: max(10px, var(--app-border-radius));
+      height: 45px;
+
+      &:focus {
+        --tw-ring-color: var(--primary-color);
+      }
+
+      &[type=number] {
+        -moz-appearance: textfield;
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+
+      }
+
+    }
+  }
+}

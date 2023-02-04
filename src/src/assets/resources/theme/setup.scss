@@ -1,0 +1,29 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700&display=swap);
+
+html {
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  font-family: var(--app-font-family);
+  font-size: var(--base-font-size);
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--body-bg);
+}
+
+::selection {
+  color: var(--highlighted-text-color);
+  background-color: var(--highlight-bg-color);
+}
+
+ng-component {
+  display: contents;
+}
+
+router-outlet {
+  display: none;
+}
