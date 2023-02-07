@@ -27,7 +27,7 @@ export class GenericApiService<NS> {
     protected readonly httpClient: HttpClient,
     private bearerTokenService: BearerTokenService,
     @Inject(API_ROOT) @Optional() protected readonly apiRoot: string) {
-    this.apiRoot = apiRoot ?? 'http://18.207.246.75:8080/';
+    this.apiRoot = apiRoot ?? 'http://54.175.0.165:8080/';
   
   }
 
