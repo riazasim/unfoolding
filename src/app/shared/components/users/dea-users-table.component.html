@@ -2,41 +2,41 @@
   <ng-scrollbar track="horizontal" [autoHeightDisabled]="false">
     <table class="sp-access-material-table no-wrap tw-overflow-hidden" matSort
            [class.loading]="this.loading" aria-label="Usage Table"
-           cdk-table [dataSource]="this.dataSource">
+           cdk-table [dataSource]="list">
 
       <ng-container cdkColumnDef="firstName">
         <th cdk-header-cell *cdkHeaderCellDef scope="col"
             mat-sort-header="firstName">First Name
         </th>
-        <td cdk-cell *cdkCellDef="let row">{{row.firstName}}</td>
+        <td cdk-cell *cdkCellDef="let row">{{row.attributes.firstName}}</td>
       </ng-container>
 
       <ng-container cdkColumnDef="lastName">
         <th cdk-header-cell *cdkHeaderCellDef scope="col"
             mat-sort-header="lastName">Last Name
         </th>
-        <td cdk-cell *cdkCellDef="let row">{{row.lastName}}</td>
+        <td cdk-cell *cdkCellDef="let row">{{row.attributes.lastName}}</td>
       </ng-container>
 
       <ng-container cdkColumnDef="position">
         <th cdk-header-cell *cdkHeaderCellDef scope="col"
             mat-sort-header="position">Position
         </th>
-        <td cdk-cell *cdkCellDef="let row">{{row.position}}</td>
+        <td cdk-cell *cdkCellDef="let row">{{row.attributes.position}}</td>
       </ng-container>
 
       <ng-container cdkColumnDef="email">
         <th cdk-header-cell *cdkHeaderCellDef scope="col"
             mat-sort-header="email">Email
         </th>
-        <td cdk-cell *cdkCellDef="let row">{{row.email}}</td>
+        <td cdk-cell *cdkCellDef="let row">{{row.attributes.email}}</td>
       </ng-container>
 
       <ng-container cdkColumnDef="phoneNumber">
         <th cdk-header-cell *cdkHeaderCellDef scope="col"
             mat-sort-header="phoneNumber">Phone Number
         </th>
-        <td cdk-cell *cdkCellDef="let row">{{row.phoneNumber}}</td>
+        <td cdk-cell *cdkCellDef="let row">{{row.attributes.phoneNumber}}</td>
       </ng-container>
 
       <ng-container cdkColumnDef="actions">
@@ -46,12 +46,13 @@
           <div class="tw-flex tw-gap-x-4 tw-text-primary">
             <button class="tw-text-primary hover:tw-text-primary-light"
                     *ngIf="this.goToUserAction"
-                    (click)="this.goToUserAction(row.id)">
+                    (click)="this.goToUserAction(row.attributes.id)"
+                    (click)="passUserDataToUpdate(row.attributes)">
               <fa-icon icon="eye" size="lg"></fa-icon>
             </button>
             <button class="tw-text-primary hover:tw-text-primary-light"
                     *ngIf="this.deleteUserAction"
-                    (click)="this.deleteUserAction(row.id)">
+                    (click)="deleteUser(row.attributes.id)">
               <fa-icon icon="trash-alt" size="lg"></fa-icon>
             </button>
 

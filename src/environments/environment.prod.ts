@@ -1,6 +1,7 @@
 export const environment = {
   production: true,
   assetsRoot: '',
+  API_URL:'http://44.203.195.99:8080/api/admin/',
   config: {
     poolingInterval: 0,
     router: { enableTracing: true }

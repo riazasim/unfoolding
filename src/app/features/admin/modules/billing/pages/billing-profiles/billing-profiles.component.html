@@ -62,8 +62,10 @@
   <div
     class="tw-flex min-sm:tw-justify-between max-sm:tw-items-center max-sm:tw-gap-y-4 tw-flex-wrap max-sm:tw-flex-col">
     <h2 class="heading-5 !tw-font-bold">Billing Profiles</h2>
-    <div *ngIf="billingProfiles$ | async as billingProfiles" class="tw-flex tw-gap-4 tw-flex-wrap tw-justify-center tw-min-h-[42px]">
-      <button *ngIf="billingProfiles.length > 0;" (click)="addBillingProfile()" class="btn btn-primary tw-min-w-[175px]">Add billing profile</button>
+    <div *ngIf="billingProfiles$ | async as billingProfiles"
+      class="tw-flex tw-gap-4 tw-flex-wrap tw-justify-center tw-min-h-[42px]">
+      <button *ngIf="billingProfiles.length > 0;" (click)="addBillingProfile()"
+        class="btn btn-primary tw-min-w-[175px]">Add billing profile</button>
       <!-- <button matRipple [routerLink]="paymentMethodsRoute" class="btn btn-primary tw-min-w-[175px]">Payment
         Methods
       </button>
@@ -73,13 +75,9 @@
     </div>
   </div>
   <div *ngIf="billingProfiles$ | async as billingProfiles" class="tw-flex-grow">
-    <div *ngIf="billingProfiles.length > 0; else emptyListPrompt"
-         grid-presentation-layout
-         [dataSource]="billingProfiles"
-         addBtnPosition="last"
-         rowHeight="auto"
-         columnTemplate="repeat(auto-fill,minmax(min(400px,100%),1fr))"
-         [gridItemTemplate]="billingProfileTemplate">
+    <div *ngIf="billingProfiles.length > 0; else emptyListPrompt" grid-presentation-layout
+      [dataSource]="billingProfiles" addBtnPosition="last" rowHeight="auto"
+      columnTemplate="repeat(auto-fill,minmax(min(400px,100%),1fr))" [gridItemTemplate]="billingProfileTemplate">
 
       <!-- <button card addNew (click)="addBillingProfile()"
               class="tw-text-primary tw-font-semibold hover:tw-shadow-2xl">
@@ -92,26 +90,25 @@
 
 <ng-template #billingProfileTemplate let-data="data">
   <div card class="tw-p-8 tw-min-h-[400px]">
-    <admin-billing-profile [billingProfile]="data"
-                               (deleteClicked)="deleteBillingProfile(data)" (editClicked)="editBillingProfile(data)"></admin-billing-profile>
+    <admin-billing-profile [billingProfile]="data" (deleteClicked)="deleteBillingProfile(data)"
+      (editClicked)="editBillingProfile(data)"></admin-billing-profile>
   </div>
 </ng-template>
 
 <ng-template #emptyListPrompt>
   <admin-add-billing-profile-prompt class="tw-block tw-mt-16"
-                                        [addBillingProfileBtnClickAction]="addBillingProfile"></admin-add-billing-profile-prompt>
+    [addBillingProfileBtnClickAction]="addBillingProfile"></admin-add-billing-profile-prompt>
 </ng-template>
 
 <offcanvas [show]="showOffcanvas" class="tw-bg-body">
 
-  <button content
-          class="tw-absolute tw-right-4 tw-top-4"
-          (click)="showOffcanvas = false">
+  <button content class="tw-absolute tw-right-4 tw-top-4" (click)="showOffcanvas = false">
     <fa-icon icon="times" size="lg"></fa-icon>
   </button>
 
   <div content class="tw-w-full tw-max-w-md tw-mx-auto tw-px-4 tw-my-10">
-    <h1 class="heading-4 tw-text-center">Add billing profile</h1>
+    <h1 class="heading-4 tw-text-center" *ngIf="!edit">Add billing profile</h1>
+    <h1 class="heading-4 tw-text-center" *ngIf="edit">Edit billing profile</h1>
     <billing-profile-form [data]="billingData" id="billingProfileForm"></billing-profile-form>
   </div>
 

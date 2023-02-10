@@ -8,6 +8,7 @@ import { SimpleTable } from '../tables/simple-table';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DeaUsageTableComponent extends SimpleTable<DeaSubUserUsage> {
+  
   protected initializeDisplayedColumns(): string[] {
     return ['timestamp', 'email', 'source', 'balance'];
   }

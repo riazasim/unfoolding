@@ -3,7 +3,7 @@
                                 (searchedTerm)="usageTable.filter = $event">
   <dea-usage-table table
                    #usageTable
-                   [data]="this.data$ | async"
+                   [data]="usageList"
                    [loading]="this.loading">
   </dea-usage-table>
 </material-panel-table>

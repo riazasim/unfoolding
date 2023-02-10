@@ -14,6 +14,7 @@ import { GenericApiService } from './services/generic-api.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HeaderInterceptor } from './services/dea-http-interceptor';
 import { CookieService } from 'ngx-cookie-service';
+import { AuthInterceptor } from './services/auth.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,10 +32,15 @@ import { CookieService } from 'ngx-cookie-service';
     DeaRegistrationService,
     GenericApiService,
     CookieService,
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: HeaderInterceptor,
+    //   multi: true,
+    // },
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: HeaderInterceptor,
-      multi: true,
+      useClass: AuthInterceptor,
+      multi: true
     },
   ],
   bootstrap: [AppComponent]

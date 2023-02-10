@@ -7,28 +7,28 @@
         <th cdk-header-cell *cdkHeaderCellDef scope="col"
             mat-sort-header="timestamp">Timestamp
         </th>
-        <td cdk-cell *cdkCellDef="let row">{{row.createdAt.date | date:"yyyy-MM-dd HH:mm"}}</td>
+        <td cdk-cell *cdkCellDef="let row">{{row.attributes.createdAt | date:"yyyy-MM-dd HH:mm"}}</td>
       </ng-container>
 
       <ng-container cdkColumnDef="email">
         <th cdk-header-cell *cdkHeaderCellDef scope="col"
             mat-sort-header="email">User email
         </th>
-        <td cdk-cell *cdkCellDef="let row">{{row.email}}</td>
+        <td cdk-cell *cdkCellDef="let row">{{row.attributes.email}}</td>
       </ng-container>
 
       <ng-container cdkColumnDef="source">
         <th cdk-header-cell *cdkHeaderCellDef mat-sort-header="source"
             scope="col">Action
         </th>
-        <td cdk-cell *cdkCellDef="let row">{{row.source }}</td>
+        <td cdk-cell *cdkCellDef="let row">{{row.attributes.source }}</td>
       </ng-container>
 
       <ng-container cdkColumnDef="balance">
         <th cdk-header-cell *cdkHeaderCellDef mat-sort-header="balance"
             scope="col">Balance
         </th>
-        <td cdk-cell *cdkCellDef="let row">{{row.balance}}</td>
+        <td cdk-cell *cdkCellDef="let row">{{row.attributes.balance}}</td>
       </ng-container>
 
 

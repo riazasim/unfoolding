@@ -7,7 +7,7 @@
     tw-auto-rows tw-content-between tw-gap-4">
     <div>
       <dt>Payment account ID</dt>
-      <dd>{{billingProfile.paymentAccountId}}</dd>
+      <dd>{{billingProfile.id}}</dd>
     </div>
     <div>
       <dt>Name</dt>
@@ -27,7 +27,7 @@
     </div>
     <div>
       <dt>VAT number</dt>
-      <dd>{{billingProfile.vatNum}}</dd>
+      <dd>{{billingProfile.vatNumber}}</dd>
     </div>
     <div>
       <dt>Country</dt>
@@ -35,14 +35,14 @@
     </div>
     <div>
       <dt>Registration number</dt>
-      <dd>{{billingProfile.registrationNum}}</dd>
+      <dd>{{billingProfile.registrationNumber}}</dd>
     </div>
   </dl>
   <div class="tw-grid tw-grid-cols-1 min-sm:tw-grid-cols-4
   tw-auto-rows tw-content-between tw-gap-4" style="margin-top: 7%;">
     <button type="button" class="btn btn-warning" style="background: transparent;
         color: #85a5c8;
-    border: 1px solid; border-radius: 0px;" *ngIf="withDelete" (click)="deleteClicked.emit()">Delete</button>
+    border: 1px solid; border-radius: 0px;" *ngIf="withDelete" (click)="delete(billingProfile)">Delete</button>
     <button type="button" class="btn btn-warning" style="background: transparent;
         color: #85a5c8;
     border: 1px solid; border-radius: 0px;" (click)="editClicked.emit()">Edit</button>

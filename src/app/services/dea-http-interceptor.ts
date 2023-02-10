@@ -5,17 +5,13 @@ import { BearerTokenService } from './bearer-token/bearer-token.service';
 
 @Injectable()
 export class HeaderInterceptor implements HttpInterceptor {
-    constructor(private bearerTokenService: BearerTokenService){}
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    
-const httpOptions = {
-  withCredentials: true, 
-};  
-    
+  constructor(private bearerTokenService: BearerTokenService) { }
+  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    const headers = new HttpHeaders({
+      'Token': sessionStorage.getItem('token') ? sessionStorage.getItem('token') : ""
 
-    const request = req.clone(httpOptions);
-
-
+    })
+    request = request.clone({ headers });
     return next.handle(request);
   }
 }

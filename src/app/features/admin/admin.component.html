@@ -6,16 +6,16 @@
                            *ngIf="router.url !='/admin/onboarding'"
                            >
     <ul menu class="header-menu-list"> 
-      <li (click)="routetobilling()">{{this.fullName}}</li>
+      <li (click)="routetobilling()">{{this.userName}}</li>
       <li class="header-menu-list-item">
         <fa-icon icon="bell" size="lg"
                  class="menu-icon" tabindex="0"
                  role="button">
         </fa-icon>
-        <div *ngIf="notificationsCount !== null && notificationsCount > 0"
+        <!-- <div *ngIf="notificationsCount !== null && notificationsCount > 0"
              [matBadge]="notificationsCount" matBadgeColor="warn"
              class="tw-h-full tw-top-0 min-md:tw-top-[-10px] tw-right-[5px]">
-        </div>
+        </div> -->
         <span class="menu-label">Notificări</span>
       </li>
       <li class="header-menu-list-item">

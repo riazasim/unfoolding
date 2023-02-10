@@ -35,6 +35,7 @@ export class AdminComponent {
   user:any;
   public notificationsCount = 5;
   fullName :any 
+  userName: any;
 
   constructor(
     // private readonly logoutService: LogoutService,
@@ -45,9 +46,7 @@ export class AdminComponent {
     navigationMenuSettingsProvider: DeaNavigationMenuContentProviderService) {
     this.userInfo = rolesService.getuserInfoSubject();
     this.user = localStorage.getItem("user-role");
-    console.log(this.user);
-    this.user = JSON.parse(this.user);
-    this.fullName = this.user[0].attributes.firstName +" "+this.user[0].attributes.lastName
+    this.userName = JSON.parse(this.user);
     this.logoImgSrc = assetsProvider.asset('shared', 'logo.png');
     this.navigationMenuItems$ = navigationMenuSettingsProvider.getContent();
     this.currentLocation$ = currentLocationService.getLocation$();

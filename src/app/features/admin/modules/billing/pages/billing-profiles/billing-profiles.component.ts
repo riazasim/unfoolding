@@ -21,10 +21,10 @@ function createBillingProfile(): BillingProfileModel {
     address: faker.address.streetAddress(true),
     country: faker.address.country(),
     name: faker.company.companyName(),
-    paymentAccountId: faker.datatype.uuid(),
+    id: faker.datatype.uuid(),
     paymentAccountNickname: faker.random.alphaNumeric(10),
-    registrationNum: faker.datatype.number(100000).toString(),
-    vatNum: faker.datatype.number({ min: 0, max: 50 })
+    registrationNumber: faker.datatype.number(100000).toString(),
+    vatNumber: faker.datatype.number({ min: 0, max: 50 })
   };
 }
 
@@ -49,7 +49,9 @@ export class BillingProfilesComponent {
   public addBillingProfile = () => {
     this.deabillingApiService.billingDataObs.next(null)
     this.showOffcanvas = true;
+    this.edit= false;
   }
+  edit: boolean;
 
   constructor(private readonly dialogService: MatDialog,
               private readonly changeDetector: ChangeDetectorRef,
@@ -96,11 +98,11 @@ export class BillingProfilesComponent {
       )
       .subscribe({
         next: () => {
-          this.actualBillingProfiles = this.actualBillingProfiles.filter(x => x.paymentAccountId !== data.paymentAccountId);
+          this.actualBillingProfiles = this.actualBillingProfiles.filter(x => x.id !== data.id);
           this.billingProfiles$ = of(this.actualBillingProfiles);
           this.changeDetector.detectChanges();
 
-          this.deabillingApiService.deleteOne(data.paymentAccountId)
+          this.deabillingApiService.deleteOne(data.id)
           .pipe(
                 finalize(() => this.loaderOrchestrator.setLoaderVisibility(false))
               )
@@ -121,5 +123,6 @@ export class BillingProfilesComponent {
   public editBillingProfile(data: BillingProfileModel){
     this.deabillingApiService.billingDataObs.next(data)
     this.showOffcanvas = true;
+    this.edit= true;
   }
 }

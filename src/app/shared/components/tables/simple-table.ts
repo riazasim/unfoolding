@@ -35,12 +35,15 @@ export abstract class SimpleTable<T> {
   public set data(data: Nullable<ReadonlyArray<T>>) {
     this._dataSource.data = this.dataTransformer(data ?? []).concat();
   }
+  @Input() list:any[];
 
   public displayedColumns: string[];
 
   constructor() {
+    console.log("List in parent",this.list)
     this.displayedColumns = this.initializeDisplayedColumns();
   }
+
 
   protected abstract initializeDisplayedColumns(): string[];
 

@@ -1,10 +1,10 @@
 export interface BillingProfileModel {
-  paymentAccountId: string;
+  id: string;
   paymentAccountNickname?: string;
   name: string;
   address: string;
   accountType: string;
-  vatNum: number;
+  vatNumber: number;
   country: string;
-  registrationNum: string;
+  registrationNumber: string;
 }

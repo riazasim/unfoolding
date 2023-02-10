@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { IFormGroup } from '@rxweb/types';
 import { WireForm } from 'src/app/directives/wire-form copy';
 import { BillingProfileModel } from 'src/app/models/billing-profile.model';
@@ -19,7 +20,8 @@ export class DeaBillingProfileFormComponent implements OnInit {
 
   @Input() data: any;
 
-  constructor(private fb: FormBuilder, private deabillingApiService: DeabillingApiService, private cd: ChangeDetectorRef) { }
+  constructor(private fb: FormBuilder, private deabillingApiService: DeabillingApiService, private cd: ChangeDetectorRef,
+    private _snackBar: MatSnackBar) { }
   public ngOnInit(): void {
     this.formGroup = this.fb.group({
       paymentAccountNickname: new FormControl('', [Validators.required]),
@@ -58,13 +60,14 @@ export class DeaBillingProfileFormComponent implements OnInit {
   submit() {
     // this.loader = true;
     let payload = this.formGroup.value;
-    payload.vatNum = payload.vatNum
+    payload.vatNumber = payload.vatNumber
     if(!this.data){
       this.deabillingApiService
       .addOne(payload)
       .subscribe({
         next: (response: BillingProfileModel) => {
           console.log(response);
+          this._snackBar.open('Profile added', 'Successfully');
         },
         complete: () => {
         },

@@ -1,5 +1,6 @@
 export const environment = {
   production: false,
+  API_URL:'http://54.158.190.241:8080/',
   assetsRoot: '',
   config: {
     poolingInterval: 0,
@@ -9,7 +10,7 @@ export const environment = {
     root: '/api',
     namespaces: {
       subUserUsages: '',
-      subUser: '/sub-users',
+      subUser: 'sub-users',
       dashboard: '',
       security: '',
       user: '',

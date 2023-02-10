@@ -29,11 +29,11 @@ import { langToLocaleMapping } from './functions/factories';
     MatSnackBarModule,
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: BearerTokenInterceptor,
-      multi: true
-    }
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: BearerTokenInterceptor,
+    //   multi: true
+    // }
   ]
 })
 export class CoreModule {

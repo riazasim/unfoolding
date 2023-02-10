@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Store } from '@ngrx/store';
 import { filter, finalize, fromEvent, map, Observable, partition, switchMap, take } from 'rxjs';
@@ -15,6 +15,7 @@ import { AssetsProviderService } from 'src/app/services/assets-provider/assets-p
 import { DeaSubUserModel } from 'src/app/models/user.model';
 import { DeaAssets } from 'src/app/models/assets.type';
 import { LoaderOrchestratorService } from 'src/app/services/loader-orchestrator.service';
+import { DeaSubUserApiService } from 'src/app/services/dea-sub-user-api.service';
 
 type OffCanvasComponentType = 'invitations' | 'import' | 'newUser';
 
@@ -28,10 +29,9 @@ type OffCanvasComponentType = 'invitations' | 'import' | 'newUser';
       }
     `
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UsersComponent implements OnInit, OnDestroy, FormDataHandler<DeaAddSubUserFormModel> {
-
+  userModel: any;
   public readonly subUsers$: Observable<ReadonlyArray<DeaSubUserModel>>;
   public readonly currentWorkingSubUser: Observable<Nullable<DeaSubUserModel>>;
 
@@ -74,24 +74,21 @@ export class UsersComponent implements OnInit, OnDestroy, FormDataHandler<DeaAdd
   };
   public readonly deleteSubUser = (id: string | number) => {
     this.loaderOrchestrator.setLoaderVisibility(true);
-    // this.subUsersService
-    //   .deleteOne(id)
-    //   .pipe(
-    //     finalize(() => this.loaderOrchestrator.setLoaderVisibility(false))
-    //   )
-    //   .subscribe({
-    //     error: (err: HttpErrorResponse) => handleErrorsBySnackbar(err, this.snackbarService, err.error['detail']),
-    //     complete: () => this.store.dispatch(deleteSubUserAction({ id: Number(id) }))
-    //   });
+    this.subUsersService
+      .deleteUser(id).subscribe((Res) => {
+        {
+          this.getUser()
+        }
+      });
   };
 
   constructor(
-    // private readonly subUsersService: DeaSubUserApiService,
-              private readonly assetsProvider: AssetsProviderService<DeaAssets>,
-              private readonly snackbarService: MatSnackBar,
-              private readonly loaderOrchestrator: LoaderOrchestratorService,
-              private readonly changeDetector: ChangeDetectorRef,
-              private readonly store: Store) {
+    private readonly subUsersService: DeaSubUserApiService,
+    private readonly assetsProvider: AssetsProviderService<DeaAssets>,
+    private readonly snackbarService: MatSnackBar,
+    private readonly loaderOrchestrator: LoaderOrchestratorService,
+    private readonly changeDetector: ChangeDetectorRef,
+    private readonly store: Store) {
     this.subUsers$ = this.store.select(selectAllSubUsers);
     this.currentWorkingSubUser = this.store.select(selectCurrentlySelectedSubUser);
   }
@@ -99,21 +96,32 @@ export class UsersComponent implements OnInit, OnDestroy, FormDataHandler<DeaAdd
   ngOnDestroy(): void {
     this.store.dispatch(clearSubUsersAction());
   }
-
+  public usersList: any[] = [];
   ngOnInit(): void {
     this.loaderOrchestrator.setLoaderVisibility(true);
-    // this.subUsersService
-    //   .requestList()
-    //   .pipe(
-    //     finalize(() => this.loaderOrchestrator.setLoaderVisibility(false))
-    //   )
-    //   .subscribe({
-    //     next: users => this.store.dispatch(addSubUsersAction({ users })),
-    //     error: (err: HttpErrorResponse) => handleErrorsBySnackbar(err, this.snackbarService, err.error['detail'])
-    //   });
+    this.getUser();
   }
-
-
+  getUserData(data) {
+    this.userModel = data;
+  }
+  refreshList(event) {
+    this.getUser();
+    this.showOffCanvas = false;
+  }
+  getUser() {
+    this.subUsersService
+      .getUserList(Number(JSON.parse(sessionStorage.getItem('user')).id))
+      .pipe(
+        finalize(() => this.loaderOrchestrator.setLoaderVisibility(false))
+      )
+      .subscribe({
+        next: users => {
+          // this.store.dispatch(addSubUsersAction({ users }))
+          this.usersList = users?.data?.items;
+        },
+        error: (err: HttpErrorResponse) => handleErrorsBySnackbar(err, this.snackbarService, err.error['detail'])
+      });
+  }
   public closeCanvas() {
     this.showOffCanvas = false;
     this.offCanvasComponent = 'newUser';

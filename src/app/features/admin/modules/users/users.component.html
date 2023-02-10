@@ -1,11 +1,11 @@
-<ng-container *ngIf="this.subUsers$ | async as usersList;">
+<ng-container>
 
-  <div *ngIf="usersList.length > 0; else emptyListPrompt" class="tw-flex-grow">
+  <div  class="tw-flex-grow">
 
     <material-panel-table [buttonLabel]="'Add User'" (buttonClicked)="this.addUser()"
       (searchedTerm)="usersTable.filter = $event">
 
-      <dea-users-table [data]="this.usersList" [loading]="false" [deleteUserAction]="this.deleteSubUser"
+      <dea-users-table [list]="usersList" (passUserData)="getUserData($event)" (deleteSubUser)="deleteSubUser($event)" [loading]="false" [deleteUserAction]="this.deleteSubUser"
         [goToUserAction]="this.goToUser" table #usersTable>
       </dea-users-table>
 
@@ -23,7 +23,7 @@
   </div>
 </ng-template>
 
-<offcanvas [show]="this.showOffCanvas">
+<offcanvas *ngIf="showOffCanvas" [show]="this.showOffCanvas">
   <div content class="tw-h-full tw-flex tw-flex-col tw-p-4">
     <button class="tw-self-end tw-cursor-pointer" (click)="this.closeCanvas()">
       <fa-icon icon="times" size="lg"></fa-icon>
@@ -31,9 +31,10 @@
 
     <ng-container [ngSwitch]="this.offCanvasComponent">
       <div *ngSwitchCase="'newUser'" class="tw-w-full tw-max-w-md tw-mx-auto">
-        <dea-users-add-user-form [seed]="this.currentWorkingSubUser | async"
+        <dea-users-add-user-form  [userModel]="userModel"
           (formSubmitted)="this.handleFormData($event)" [downloadTemplateBtnClickAction]="this.downloadTemplate"
-          [importUsersBtnClickAction]="this.importUsers">
+          [importUsersBtnClickAction]="this.importUsers" (refreshList)="refreshList($event)"
+          >
         </dea-users-add-user-form>
       </div>
       <div *ngSwitchCase="'import'" class="tw-mt-8 tw-max-w-sm tw-mx-auto">

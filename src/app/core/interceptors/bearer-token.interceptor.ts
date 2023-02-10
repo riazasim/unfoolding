@@ -2,7 +2,7 @@ import { HttpContextToken, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest,
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, map, catchError, throwError } from 'rxjs';
-import { BearerTokenService } from 'src/app/services/bearer-token.service';
+import { BearerTokenService } from 'src/app/services/bearer-token/bearer-token.service';
 import { SESSION_TOKEN } from '../constants/auth.constant';
 
 export const NO_TOKEN_REQUEST = new HttpContextToken(() => false);

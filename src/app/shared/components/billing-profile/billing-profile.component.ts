@@ -28,6 +28,9 @@ import { Nullable } from 'src/app/models/navigation-menu.model';
 })
 export class BillingProfileComponent {
 constructor( private readonly router: Router,){
+  setTimeout(()=>{
+console.log("deleteClicked",this.billingProfile)
+  },1000)
 
 }
   @Input()
@@ -37,12 +40,17 @@ constructor( private readonly router: Router,){
   public billingProfile: Nullable<BillingProfileModel> = null;
 
   @Output()
-  public readonly deleteClicked = new EventEmitter<void>();
+  public readonly deleteClicked = new EventEmitter();
 
   @Output()
   public readonly editClicked = new EventEmitter<void>();
   routrdashboard(){
     this.router.navigate(['admin/dashboard'])
+  }
+  public delete(billingProfile){
+    console.log("Billing profile",billingProfile);
+    this.deleteClicked.emit(billingProfile)
+
   }
 }
 

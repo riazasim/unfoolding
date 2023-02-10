@@ -22,7 +22,7 @@ export class DeabillingApiService {
    * For now those endpoints will use the default namespace
    */
   public requestList(): Observable<BillingProfileModel[]> {
-    return this.apiClient.getArray('api', 'admin/billing-profiles');
+    return this.apiClient.getArray('api', 'admin/billing-profiles');   
   }
 
 //   public getOne(id: number | string): Observable<BillingProfileModel> {
@@ -30,7 +30,7 @@ export class DeabillingApiService {
 //   }
 
   public deleteOne(id: number | string): Observable<void> {
-    return this.apiClient.delete('api', `admin/billing-profiles/${id}`);
+    return this.apiClient.delete('api', `billing-profiles/${id}`);
   }
 
   public addOne(data: BillingProfileModel): Observable<BillingProfileModel> {

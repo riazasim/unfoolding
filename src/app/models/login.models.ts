@@ -10,4 +10,6 @@ export interface DeaLoginResponseModel {
   role: DeaUserRole;
   user_info:any;
   token: string;
+  firstName:any,
+  lastName:any,
 }

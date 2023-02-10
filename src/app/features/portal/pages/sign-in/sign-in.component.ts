@@ -60,10 +60,14 @@ export class SignInComponent implements OnInit {
         next: (response: DeaLoginResponseModel) => {
           this.bearerTokenService.authToken = response.token;
           this.bearerTokenService.authCookie = response.token;
+        sessionStorage.setItem('user',  JSON.stringify(response))
+          JSON.stringify(sessionStorage.setItem('token',response.token))
           this.rolesService.setUserRoles([response.role]);
-          this.rolesService.setuserInfoSubject([response.user_info]);
+          this.rolesService.setuserInfoSubject([response.firstName +" "+ response.lastName]);
           localStorage.setItem("role", response.role)
-          localStorage.setItem("user-role", JSON.stringify([response.user_info]))
+          localStorage.setItem("user-role", JSON.stringify([response.firstName +" "+ response.lastName]))
+          console.log(response.user_info);
+          
           this.loader = false;
           this.cd.detectChanges();
         },
@@ -82,7 +86,8 @@ export class SignInComponent implements OnInit {
         error: (err: HttpErrorResponse) => {
           this.loader = false;
           this.cd.detectChanges();
-          handleErrorsBySnackbar(err, this.snackbarService, err.error['detail'])
+          console.log("error",err)
+          handleErrorsBySnackbar(err, this.snackbarService, err?.error['detail'])
         }
       });
   }

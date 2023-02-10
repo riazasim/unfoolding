@@ -5,6 +5,7 @@ import { url } from '@rxweb/reactive-form-validators';
 import { namespaces } from 'd3-selection';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { DeaApiNamespaces } from '../models/api.type';
 import { ResponseArrayWrapper, ResponseItemWrapper } from '../models/response-wrappers.types';
 import { GenericApiModule } from '../shared/generic-api.module';
@@ -27,7 +28,7 @@ export class GenericApiService<NS> {
     protected readonly httpClient: HttpClient,
     private bearerTokenService: BearerTokenService,
     @Inject(API_ROOT) @Optional() protected readonly apiRoot: string) {
-    this.apiRoot = apiRoot ?? 'http://54.175.0.165:8080/';
+    this.apiRoot = apiRoot ?? environment.API_URL;
   
   }
 
