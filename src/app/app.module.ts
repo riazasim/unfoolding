@@ -15,6 +15,9 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HeaderInterceptor } from './services/dea-http-interceptor';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthInterceptor } from './services/auth.interceptor';
+import { SpinnerInterceptor } from './services/spinner.interceptor';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,7 +28,10 @@ import { AuthInterceptor } from './services/auth.interceptor';
     CoreModule,
     FontAwesomeModule,
     SharedModule,
-    SpAccessLoaderModule
+    ReactiveFormsModule,
+    FormsModule,
+    SpAccessLoaderModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     DeaLoginService,
@@ -37,6 +43,11 @@ import { AuthInterceptor } from './services/auth.interceptor';
     //   useClass: HeaderInterceptor,
     //   multi: true,
     // },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SpinnerInterceptor,
+      multi: true
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

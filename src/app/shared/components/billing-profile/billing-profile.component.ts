@@ -27,11 +27,7 @@ import { Nullable } from 'src/app/models/navigation-menu.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BillingProfileComponent {
-constructor( private readonly router: Router,){
-  setTimeout(()=>{
-console.log("deleteClicked",this.billingProfile)
-  },1000)
-
+constructor( private readonly router: Router){
 }
   @Input()
   public withDelete = true;
@@ -48,7 +44,6 @@ console.log("deleteClicked",this.billingProfile)
     this.router.navigate(['admin/dashboard'])
   }
   public delete(billingProfile){
-    console.log("Billing profile",billingProfile);
     this.deleteClicked.emit(billingProfile)
 
   }

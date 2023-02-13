@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { IFormGroup } from '@rxweb/types';
@@ -19,7 +19,7 @@ export class DeaBillingProfileFormComponent implements OnInit {
   formGroup!: FormGroup;
 
   @Input() data: any;
-
+  @Output() checkRefresh = new EventEmitter;
   constructor(private fb: FormBuilder, private deabillingApiService: DeabillingApiService, private cd: ChangeDetectorRef,
     private _snackBar: MatSnackBar) { }
   public ngOnInit(): void {
@@ -36,7 +36,7 @@ export class DeaBillingProfileFormComponent implements OnInit {
     this.deabillingApiService.billingDataObs.subscribe((data: any) => {
       this.data = data;
       console.log(this.data);
-      
+
       if (this.data) {
         this.formGroup.patchValue({
           paymentAccountNickname: data.paymentAccountNickname,
@@ -48,7 +48,7 @@ export class DeaBillingProfileFormComponent implements OnInit {
           registrationNumber: data.registrationNumber,
         })
       }
-      else{
+      else {
         this.formGroup.reset();
       }
       this.cd.detectChanges();
@@ -61,32 +61,34 @@ export class DeaBillingProfileFormComponent implements OnInit {
     // this.loader = true;
     let payload = this.formGroup.value;
     payload.vatNumber = payload.vatNumber
-    if(!this.data){
+    if (!this.data) {
       this.deabillingApiService
-      .addOne(payload)
-      .subscribe({
-        next: (response: BillingProfileModel) => {
-          console.log(response);
-          this._snackBar.open('Profile added', 'Successfully');
-        },
-        complete: () => {
-        },
-        error: (err: HttpErrorResponse) => {
-        }
-      });
+        .addOne(payload)
+        .subscribe({
+          next: (response: BillingProfileModel) => {
+            console.log(response);
+            this._snackBar.open('Profile added', 'Successfully');
+            this.checkRefresh.emit(true);
+          },
+          complete: () => {
+          },
+          error: (err: HttpErrorResponse) => {
+          }
+        });
     }
-    else{
+    else {
       this.deabillingApiService
-      .updateOne(payload,this.data.id)
-      .subscribe({
-        next: (response: BillingProfileModel) => {
-          console.log(response);
-        },
-        complete: () => {
-        },
-        error: (err: HttpErrorResponse) => {
-        }
-      });
+        .updateOne(payload, this.data.id)
+        .subscribe({
+          next: (response: BillingProfileModel) => {
+            this._snackBar.open('Profile Updated', 'Successfully');
+            this.checkRefresh.emit(true);
+          },
+          complete: () => {
+          },
+          error: (err: HttpErrorResponse) => {
+          }
+        });
     }
   }
 

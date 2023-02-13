@@ -25,5 +25,7 @@ export class DeaUsageApiService {
     return this.httpClient.get<any>(this.API_URL+'api/sub-user-usages/export-csv');
     // return this.apiClient.get('default','sub-user-usages/export-csv');
   }
-
+  public searchUsageList(data,id:number): Observable<any> {
+    return this.httpClient.post<any>(this.API_URL+'api/sub-user-usages/search/'+id,data);
+  }
 }

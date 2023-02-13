@@ -24,7 +24,7 @@ export class DeaUsageComponent implements OnInit {
   public data$: Observable<DeaSubUserUsage[]>;
   public loading = true;
   public usageList: any[] = [];
-
+  private userId: number;
   constructor(
     private readonly usageApiService: DeaUsageApiService,
               private readonly snackbarService: MatSnackBar,
@@ -33,6 +33,7 @@ export class DeaUsageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userId = Number(JSON.parse(sessionStorage.getItem('user')).id);
     this.loaderOrchestrator.setLoaderVisibility(true);
     this.getUsage();
   }
@@ -47,7 +48,6 @@ export class DeaUsageComponent implements OnInit {
         next: users => {
           // this.store.dispatch(addSubUsersAction({ users }))
           this.usageList = users?.data?.items;
-          console.log("getUserList", this.usageList);
         },
         error: (err: HttpErrorResponse) => handleErrorsBySnackbar(err, this.snackbarService, err.error['detail'])
       });
@@ -63,5 +63,18 @@ export class DeaUsageComponent implements OnInit {
       .subscribe({
         error: (err: HttpErrorResponse) => handleErrorsBySnackbar(err, this.snackbarService, err.error['detail'])
       });
+  }
+  public searchedText(event) {
+    const data = {
+      data: {
+        attributes: {
+          searchTerm: event
+        }
+      }
+    }
+    this.usageApiService.searchUsageList(data, this.userId).subscribe((Response) => {
+      console.log(Response);
+      this.usageList = Response?.data?.items;
+    })
   }
 }

@@ -52,6 +52,9 @@ export class DeaUsersTableComponent extends SimpleTable<DeaSubUserModel> impleme
       .subscribe({
         next: () => {
           this.deleteSubUser.emit(id);
+        },
+        complete: () => {
+          
         }
       });
   }

@@ -14,6 +14,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { handleErrorsBySnackbar } from 'src/app/services/snackbar-handlers.functions';
 import { deleteSubUserAction } from 'src/app/shared/user-store/actions';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 function createBillingProfile(): BillingProfileModel {
   return {
@@ -58,6 +59,7 @@ export class BillingProfilesComponent {
               private deabillingApiService: DeabillingApiService,
               private readonly loaderOrchestrator: LoaderOrchestratorService,
               private readonly router: Router,
+              private readonly _snackBar:MatSnackBar,
               // private snackbarService: SnackbarS,
               private readonly bpo: BreakpointObserver,) {
     this.billingProfiles$ = this.deabillingApiService.requestList();
@@ -98,9 +100,8 @@ export class BillingProfilesComponent {
       )
       .subscribe({
         next: () => {
-          this.actualBillingProfiles = this.actualBillingProfiles.filter(x => x.id !== data.id);
-          this.billingProfiles$ = of(this.actualBillingProfiles);
-          this.changeDetector.detectChanges();
+          // this.actualBillingProfiles = this.actualBillingProfiles.filter(x => x.id !== data.id);
+          // this.billingProfiles$ = of(this.actualBillingProfiles);
 
           this.deabillingApiService.deleteOne(data.id)
           .pipe(
@@ -109,7 +110,9 @@ export class BillingProfilesComponent {
               .subscribe({
                 // error: (err: HttpErrorResponse) => handleErrorsBySnackbar(err, this.snackbarService, err.error['detail']),
                 next: (resp: any)=>{
-                  console.log(resp);
+                  this.billingProfiles$ = this.deabillingApiService.requestList();
+                  this._snackBar.open('Profile delete', 'Successfully');
+                    this.changeDetector.detectChanges();
                 },
                 complete: () => {
                   
@@ -119,7 +122,11 @@ export class BillingProfilesComponent {
         }
       });
   }
-
+  passRefresh(event){
+    this.showOffcanvas=false;
+    this.billingProfiles$ = this.deabillingApiService.requestList();
+    this.changeDetector.detectChanges();
+  }
   public editBillingProfile(data: BillingProfileModel){
     this.deabillingApiService.billingDataObs.next(data)
     this.showOffcanvas = true;

@@ -109,7 +109,7 @@
   <div content class="tw-w-full tw-max-w-md tw-mx-auto tw-px-4 tw-my-10">
     <h1 class="heading-4 tw-text-center" *ngIf="!edit">Add billing profile</h1>
     <h1 class="heading-4 tw-text-center" *ngIf="edit">Edit billing profile</h1>
-    <billing-profile-form [data]="billingData" id="billingProfileForm"></billing-profile-form>
+    <billing-profile-form [data]="billingData" (checkRefresh)="passRefresh($event)" id="billingProfileForm"></billing-profile-form>
   </div>
 
 </offcanvas>

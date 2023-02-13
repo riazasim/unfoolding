@@ -1,36 +1,180 @@
-<div class="tw-flex-grow tw-flex tw-flex-col tw-gap-8">
+<div class="tw-flex-grow tw-flex tw-flex-col tw-gap-8" style="background-color: white;">
     <div class="tw-flex tw-flex-wrap tw-gap-8">
-<mat-stepper class="no-header-mat-stepper tw-w-full">
-    <mat-step>
-        <ng-template matStepContent>
-            <img [src]="this.coverImgSrc1" alt="" class="tw-h-full tw-w-full tw-object-fill" />
-        </ng-template>
-    </mat-step>
-    <mat-step>
-        <ng-template matStepContent>
-            <img [src]="this.coverImgSrc2" alt="" class="tw-h-full tw-w-full tw-object-fill" />
-        </ng-template>
-    </mat-step>
-    <mat-step>
-        <ng-template matStepContent>
-            <img [src]="this.coverImgSrc3" alt="" class="tw-h-full tw-w-full tw-object-fill" />
-        </ng-template>
-    </mat-step>
-    <mat-step>
-        <ng-template matStepContent>
-            <img [src]="this.coverImgSrc4" alt="" class="tw-h-full tw-w-full tw-object-fill" />
-        </ng-template>
-    </mat-step>
-    <mat-step>
-        <ng-template matStepContent>
-            <img [src]="this.coverImgSrc5" alt="" class="tw-h-full tw-w-full tw-object-fill" />
-        </ng-template>
-    </mat-step>
-    <mat-step>
-        <ng-template matStepContent>
-            <img [src]="this.coverImgSrc6" alt="" class="tw-h-full tw-w-full tw-object-fill"
-                (click)="gotoDashboard()" />
-        </ng-template>
-    </mat-step>
-</mat-stepper>
-</div></div>
+        <mat-stepper class="no-header-mat-stepper tw-w-full">
+            <mat-step>
+                <ng-template matStepContent>
+                    <div class="min-w-screen min-h-screen bg-indigo-500 flex items-center justify-center px-5 py-5">
+                        <div class="w-full mx-auto rounded-3xl  bg-white px-10 pt-16 pb-10 text-gray-600"
+                            style="max-width: 350px">
+                            <div class="overflow-hidden relative mb-10">
+                                <div class="overflow-hidden relative cursor-grab relative">
+                                    <img [src]="this.coverImgSrc1" alt="" class="tw-h-full tw-w-full tw-object-fill" />
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-center px-5 py-5">
+                                <strong class="w-2 h-2 rounded-full mx-1">Welcome</strong>
+                            </div>
+                            <div class="d-flex justify-content-center py-3">
+                                <div class="dot active"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </ng-template>
+            </mat-step>
+            <mat-step>
+                <ng-template matStepContent>
+                    <div class="min-w-screen min-h-screen bg-indigo-500 flex items-center justify-center px-5 py-5">
+                        <div class="w-full mx-auto rounded-3xl  bg-white px-10 pt-16 pb-10 text-gray-600"
+                            style="max-width: 350px">
+                            <div class="overflow-hidden relative mb-10">
+                                <div class="overflow-hidden relative cursor-grab relative">
+                                    <img [src]="this.coverImgSrc2" alt="" class="tw-h-full tw-w-full tw-object-fill" />
+                                </div>
+                            </div>
+                            <div class="px-3">
+                                <div class="d-flex justify-content-center  py-3"><strong
+                                        class="w-2 h-2 rounded-full mx-1">Dashboard</strong></div>
+                                <div class="text-center py-3">Get a glimpse of the current situation
+                                    through our centralised dashboard.</div>
+
+                            </div>
+                            <div class="d-flex justify-content-center py-3">
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot active"></div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </mat-step>
+            <mat-step>
+                <ng-template matStepContent>
+                    <div class="min-w-screen min-h-screen bg-indigo-500 flex items-center justify-center px-5 py-5">
+                        <div class="w-full mx-auto rounded-3xl  bg-white px-10 pt-16 pb-10 text-gray-600"
+                            style="max-width: 350px">
+                            <div class="overflow-hidden relative mb-10">
+                                <div class="overflow-hidden relative cursor-grab relative">
+                                    <img [src]="this.coverImgSrc3" alt="" class="tw-h-full tw-w-full tw-object-fill" />
+                                </div>
+                            </div>
+                            <div class="px-3">
+                                <div class="d-flex justify-content-center  py-3"><strong
+                                        class="w-2 h-2 rounded-full mx-1">Users</strong></div>
+                                <div class="text-center py-3">Add as many users as you want
+                                    and increase their productivity.</div>
+
+                            </div>
+                            <div class="d-flex justify-content-center py-3">
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot active"></div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </mat-step>
+            <mat-step>
+                <ng-template matStepContent>
+                    <div class="min-w-screen min-h-screen bg-indigo-500 flex items-center justify-center px-5 py-5">
+                        <div class="w-full mx-auto rounded-3xl  bg-white px-10 pt-16 pb-10 text-gray-600"
+                            style="max-width: 350px">
+                            <div class="overflow-hidden relative mb-10">
+                                <div class="overflow-hidden relative cursor-grab relative">
+                                    <img [src]="this.coverImgSrc4" alt="" class="tw-h-full tw-w-full tw-object-fill" />
+                                </div>
+                            </div>
+                            <div class="px-5">
+                                <div class="d-flex justify-content-center  py-3"><strong
+                                        class="w-2 h-2 rounded-full mx-1">Usage</strong></div>
+                                <div class="text-center py-3">Keep track of the usage
+                                    and set limits, alerts etc.</div>
+
+                            </div>
+                            <div class="d-flex justify-content-center py-3">
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot active"></div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </mat-step>
+            <mat-step>
+                <ng-template matStepContent>
+                    <div class="min-w-screen min-h-screen bg-indigo-500 flex items-center justify-center px-5 py-5">
+                        <div class="w-full mx-auto rounded-3xl  bg-white px-10 pt-16 pb-10 text-gray-600"
+                            style="max-width: 350px">
+                            <div class="overflow-hidden relative mb-10">
+                                <div class="overflow-hidden relative cursor-grab relative">
+                                    <img [src]="this.coverImgSrc5" alt="" class="tw-h-full tw-w-full tw-object-fill" />
+                                </div>
+                            </div>
+                            <div>
+                                <div class="d-flex justify-content-center  py-3"><strong
+                                        class="w-2 h-2 rounded-full mx-1">Billing</strong></div>
+                                <div class="text-center py-3" style="min-width: 115%;">You can manage several companies
+                                    under your account.
+                                    Users can only be attached to one account.</div>
+
+                            </div>
+                            <div class="d-flex justify-content-center py-3">
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot active"></div>
+                                <div class="dot"></div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </mat-step>
+            <mat-step>
+                <ng-template matStepContent>
+                    <div class="min-w-screen min-h-screen bg-indigo-500 flex items-center justify-center px-5 py-5">
+                        <div class="w-full mx-auto rounded-3xl  bg-white px-10 pt-16 pb-10 text-gray-600"
+                            style="max-width: 350px">
+                            <div class="overflow-hidden relative mb-10">
+                                <div class="overflow-hidden relative cursor-grab relative">
+                                    <img [src]="this.coverImgSrc6" alt="" class="tw-h-full tw-w-full tw-object-fill" />
+                                </div>
+                            </div>
+                            <div class="px-3">
+                                <div class="d-flex justify-content-center  py-3"><strong
+                                        class="w-2 h-2 rounded-full mx-1">Congrats !</strong></div>
+                                <div class="text-center py-3">
+                                    <button class="btn btn-primary btnWidt" (click)="gotoDashboard()">Let's
+                                        start!</button>
+                                </div>
+
+                            </div>
+                            <div class="d-flex justify-content-center py-3">
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot active"></div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </mat-step>
+        </mat-stepper>
+    </div>
+</div>

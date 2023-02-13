@@ -3,7 +3,7 @@
   <div  class="tw-flex-grow">
 
     <material-panel-table [buttonLabel]="'Add User'" (buttonClicked)="this.addUser()"
-      (searchedTerm)="usersTable.filter = $event">
+      (searchedTerm)="usersTable.filter = $event" (searchedText)="searchedText($event)">
 
       <dea-users-table [list]="usersList" (passUserData)="getUserData($event)" (deleteSubUser)="deleteSubUser($event)" [loading]="false" [deleteUserAction]="this.deleteSubUser"
         [goToUserAction]="this.goToUser" table #usersTable>

@@ -10,11 +10,14 @@ import { IconicPasswordWrapperComponent } from './components/password-wrapper/ic
 import { IconicSelectWrapperComponent } from './components/select-wrapper/iconic-select-wrapper.component';
 import { CreditCardDirectivesModule } from 'angular-cc-library';
 import { SpAccessPromptsModule } from './components/prompts/sp-access-prompts.module';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 const commonExports = [
   IconicInputWrapperComponent,
   IconicPasswordWrapperComponent,
   IconicSelectWrapperComponent,
+  SpinnerComponent
 ]
 
 @NgModule({
@@ -24,6 +27,7 @@ const commonExports = [
   imports: [
     CommonModule,
     FormsModule,
+    MatProgressSpinnerModule,
     MatPaginatorModule,
     CdkTableModule,
     ReactiveFormsModule,

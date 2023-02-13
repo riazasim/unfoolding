@@ -92,12 +92,13 @@ export class UsersComponent implements OnInit, OnDestroy, FormDataHandler<DeaAdd
     this.subUsers$ = this.store.select(selectAllSubUsers);
     this.currentWorkingSubUser = this.store.select(selectCurrentlySelectedSubUser);
   }
-
+  private userId: number;
   ngOnDestroy(): void {
     this.store.dispatch(clearSubUsersAction());
   }
   public usersList: any[] = [];
   ngOnInit(): void {
+    this.userId = Number(JSON.parse(sessionStorage.getItem('user')).id);
     this.loaderOrchestrator.setLoaderVisibility(true);
     this.getUser();
   }
@@ -110,7 +111,7 @@ export class UsersComponent implements OnInit, OnDestroy, FormDataHandler<DeaAdd
   }
   getUser() {
     this.subUsersService
-      .getUserList(Number(JSON.parse(sessionStorage.getItem('user')).id))
+      .getUserList(this.userId)
       .pipe(
         finalize(() => this.loaderOrchestrator.setLoaderVisibility(false))
       )
@@ -182,5 +183,16 @@ export class UsersComponent implements OnInit, OnDestroy, FormDataHandler<DeaAdd
     //   });
 
   }
-
+  public searchedText(event) {
+    const data = {
+      data: {
+        attributes: {
+          searchTerm: event
+        }
+      }
+    }
+    this.subUsersService.searchUserList(data, this.userId).subscribe((Response) => {
+      this.usersList = Response?.data?.items;
+    })
+  }
 }

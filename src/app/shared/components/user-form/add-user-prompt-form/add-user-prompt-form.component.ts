@@ -97,7 +97,6 @@ export class DeaAddUserFormComponent extends WireForm<DeaAddSubUserFormModel> im
 
     this.formSubmitted.subscribe((payload: any) => {
       // payload.id = this.userInfo[0].attributes.id;
-      console.log("Sessions", JSON.parse(sessionStorage.getItem('user')))
       this.deaSubUserApiService.addOne(payload, JSON.parse(sessionStorage.getItem('user')).id).subscribe({
         next: (resp: any) => {
           console.log(resp);
@@ -130,6 +129,20 @@ export class DeaAddUserFormComponent extends WireForm<DeaAddSubUserFormModel> im
   public get phoneNumber(): AbstractControl | null {
     return this._formGroup?.get('phoneNumber');
   }
-
-
+  download() {
+    window.open('/assets/resources/sub_users.csv', '_self');
+  }
+  public myFiles: any = [];
+  onFileChange(files) {
+    for (var i of files.target.files) {
+      this.myFiles.push(i);
+    }
+    if (this.myFiles.length > 0) {
+      const formData = new FormData();
+      for (var j = 0; j < this.myFiles.length; j++) {
+        formData.append("file", this.myFiles[j]);
+      }
+    }
+    console.log("this.myFiles",this.myFiles)
+  }
 }

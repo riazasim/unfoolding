@@ -27,6 +27,9 @@ export class DeaSubUserApiService {
   public getUserList(id: number): Observable<any> {
     return this.httpClient.get<any>(this.API_URL + 'api/sub-users/' + id);
   }
+  public searchUserList(data:any,id: number): Observable<any> {
+    return this.httpClient.post<any>(this.API_URL + 'api/sub-users/search/' + id,data);
+  }
   public deleteUser(id: number | string): Observable<any> {
     return this.httpClient.delete<any>(this.API_URL + 'api/sub-users/' + id);
   }

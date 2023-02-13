@@ -61,7 +61,7 @@ export class DeaNavigationMenuContentProviderService implements ObservableConten
       label: 'Billing',
       icon: 'dollar-sign',
       activeOnSegment: 'billing',
-      destination: 'billing/profiles',
+      destination: 'billing/history',
       iconModifierClass: '',
       requiredRoles: [],
     }

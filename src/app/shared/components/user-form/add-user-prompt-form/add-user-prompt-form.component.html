@@ -3,18 +3,18 @@
       class="sp-access-bootstrap-form tw-flex tw-flex-col tw-my-8">
 
   <div class="tw-relative tw-w-full tw-flex tw-items-center tw-flex-col-reverse tw-gap-y-4">
-    <thumbnail-load-input-wrapper>
-      <input type="file" accept="image/*"/>
-    </thumbnail-load-input-wrapper>
+ 
     <div class="min-md:tw-absolute tw-right-0 tw-top-0 tw-bottom-0 tw-flex tw-flex-col tw-gap-y-4 tw-justify-center">
       <button type="button" matRipple *ngIf="this.importUsersBtnClickAction"
               (click)="this.importUsersBtnClickAction()"
               class="btn btn-primary tw-whitespace-nowrap">Import Users
       </button>
-
+   <thumbnail-load-input-wrapper>
+      <input type="file" accept="image/*" (change)="onFileChange($event)"/>
+    </thumbnail-load-input-wrapper>
       <button type="button" matRipple *ngIf="this.downloadTemplateBtnClickAction"
-              (click)="this.downloadTemplateBtnClickAction()"
-              class="btn btn-outline-primary tw-whitespace-nowrap" style="background: transparent;  color: #85a5c8;">
+             
+        (click)="download()"     class="btn btn-outline-primary tw-whitespace-nowrap" style="background: transparent;  color: #85a5c8;">
         <fa-icon icon="download"></fa-icon>
         Download Template
       </button>

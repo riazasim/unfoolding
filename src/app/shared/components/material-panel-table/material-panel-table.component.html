@@ -7,7 +7,7 @@
 
       <searchbar *ngIf="this.showSearchbar" class="tw-w-full tw-max-w-xs">
         <fa-icon [icon]="this.searchIcon" class="tw-text-black"></fa-icon>
-        <input type="search" input placeholder="" #searchbar>
+        <input type="search" input placeholder="" (ngModelChange)="searchText.next($event)" [(ngModel)]="textForSearch" >
       </searchbar>
 
       <button class="btn btn-primary tw-min-w-[4rem] min-md:tw-ml-auto max-md:tw-self-center" matRipple
