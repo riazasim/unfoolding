@@ -25,6 +25,7 @@ export class DeaAddUserFormComponent extends WireForm<DeaAddSubUserFormModel> im
   userInfo: any;
   public form: FormGroup;
   @Output() refreshList = new EventEmitter;
+  @Output() filesToUpload = new EventEmitter;
   constructor(private deaSubUserApiService: DeaSubUserApiService,
     private rolesService: RolesService,
     private readonly fb: FormBuilder,
@@ -140,9 +141,10 @@ export class DeaAddUserFormComponent extends WireForm<DeaAddSubUserFormModel> im
     if (this.myFiles.length > 0) {
       const formData = new FormData();
       for (var j = 0; j < this.myFiles.length; j++) {
-        formData.append("file", this.myFiles[j]);
+        formData.append("importCSV", this.myFiles[j]);
       }
+      this.filesToUpload.emit(formData)
     }
-    console.log("this.myFiles",this.myFiles)
+    console.log("this.myFiles", this.myFiles)
   }
 }

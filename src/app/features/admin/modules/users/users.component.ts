@@ -86,6 +86,7 @@ export class UsersComponent implements OnInit, OnDestroy, FormDataHandler<DeaAdd
     private readonly subUsersService: DeaSubUserApiService,
     private readonly assetsProvider: AssetsProviderService<DeaAssets>,
     private readonly snackbarService: MatSnackBar,
+    private _snackBar: MatSnackBar,
     private readonly loaderOrchestrator: LoaderOrchestratorService,
     private readonly changeDetector: ChangeDetectorRef,
     private readonly store: Store) {
@@ -194,5 +195,20 @@ export class UsersComponent implements OnInit, OnDestroy, FormDataHandler<DeaAdd
     this.subUsersService.searchUserList(data, this.userId).subscribe((Response) => {
       this.usersList = Response?.data?.items;
     })
+  }
+  public formDataToPass;
+  getFilesToUpload(formData) {
+    this.formDataToPass = formData;
+    this.offCanvasComponent = 'import';
+  }
+  passFormData(event) {
+    this.subUsersService.uploadMedia(event, this.userId).subscribe((Response) => {
+      console.log("Response of upload media API", Response);
+      this.offCanvasComponent = 'invitations';
+      this._snackBar.open('User Added', 'Successfully');
+    },
+      (Error) => {
+        console.log("API error of upload media", Error);
+      })
   }
 }

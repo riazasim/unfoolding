@@ -30,6 +30,9 @@ export class DeaSubUserApiService {
   public searchUserList(data:any,id: number): Observable<any> {
     return this.httpClient.post<any>(this.API_URL + 'api/sub-users/search/' + id,data);
   }
+  public uploadMedia(data:any,id: number): Observable<any> {
+    return this.httpClient.post<any>(this.API_URL + 'api/sub-users/import-csv/' + id,data);
+  }
   public deleteUser(id: number | string): Observable<any> {
     return this.httpClient.delete<any>(this.API_URL + 'api/sub-users/' + id);
   }

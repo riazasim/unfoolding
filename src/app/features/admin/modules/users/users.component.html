@@ -33,12 +33,12 @@
       <div *ngSwitchCase="'newUser'" class="tw-w-full tw-max-w-md tw-mx-auto">
         <dea-users-add-user-form  [userModel]="userModel"
           (formSubmitted)="this.handleFormData($event)" [downloadTemplateBtnClickAction]="this.downloadTemplate"
-          [importUsersBtnClickAction]="this.importUsers" (refreshList)="refreshList($event)"
+          [importUsersBtnClickAction]="this.importUsers" (filesToUpload)="getFilesToUpload($event)" (refreshList)="refreshList($event)"
           >
         </dea-users-add-user-form>
       </div>
       <div *ngSwitchCase="'import'" class="tw-mt-8 tw-max-w-sm tw-mx-auto">
-        <dea-users-import-users-prompt></dea-users-import-users-prompt>
+        <dea-users-import-users-prompt [formDataToPass]="formDataToPass" (passDataToUpload)="passFormData($event)"></dea-users-import-users-prompt>
       </div>
       <div *ngSwitchCase="'invitations'" class="tw-mt-8 tw-max-w-sm tw-mx-auto">
         <dea-users-send-invitations-prompt></dea-users-send-invitations-prompt>

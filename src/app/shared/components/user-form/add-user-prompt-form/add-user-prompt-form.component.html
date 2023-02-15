@@ -8,10 +8,20 @@
     </thumbnail-load-input-wrapper>
     <div class="min-md:tw-absolute tw-right-0 tw-top-0 tw-bottom-0 tw-flex tw-flex-col tw-gap-y-4 tw-justify-center">
       <button type="button" matRipple *ngIf="this.importUsersBtnClickAction"
-              (click)="this.importUsersBtnClickAction()"
-              class="btn btn-primary tw-whitespace-nowrap">Import Users
+              
+              (change)="onFileChange($event)"
+              class="btn btn-primary tw-whitespace-nowrap">
+              <input id="files" style="visibility:hidden; max-width: 0px !important; margin-top: -5px !important;" type="file">Import Users
       </button>
-
+      <!-- (click)="this.importUsersBtnClickAction()" -->
+      <!-- <div>
+        <label for="files" class="btn btn btn-primary tw-whitespace-nowrap"">Select Image</label>
+        <input id="files" style="visibility:hidden;" type="file">
+    </div>
+      <input type="file" *ngIf="this.importUsersBtnClickAction"
+      (change)="onFileChange($event)"
+      class="btn btn-primary tw-whitespace-nowrap"> -->
+      <!-- <input type="file" accept="*" (change)="onFileChange($event)"/>Import Users -->
       <button type="button" matRipple *ngIf="this.downloadTemplateBtnClickAction"
               (click)="this.downloadTemplateBtnClickAction()"
               class="btn btn-outline-primary tw-whitespace-nowrap" style="background: transparent;  color: #85a5c8;">
