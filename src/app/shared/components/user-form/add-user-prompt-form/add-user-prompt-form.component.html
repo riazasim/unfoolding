@@ -1,23 +1,21 @@
-<form [formGroup]="form"
-      (ngSubmit)="onSubmit()"
-      class="sp-access-bootstrap-form tw-flex tw-flex-col tw-my-8">
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="sp-access-bootstrap-form tw-flex tw-flex-col tw-my-8">
 
   <div class="tw-relative tw-w-full tw-flex tw-items-center tw-flex-col-reverse tw-gap-y-4">
     <thumbnail-load-input-wrapper>
-      <input formControlName="image" type="file" accept="image/*"/>
+      <input formControlName="image" type="file" accept="image/*" />
     </thumbnail-load-input-wrapper>
     <div class="min-md:tw-absolute tw-right-0 tw-top-0 tw-bottom-0 tw-flex tw-flex-col tw-gap-y-4 tw-justify-center">
-      <!-- <button type="button" matRipple *ngIf="this.importUsersBtnClickAction"
-              
-              (change)="onFileChange($event)"
-              class="btn btn-primary tw-whitespace-nowrap">
-              <input id="files" style="max-width: 100px !important;" type="file">Import Users
-      </button> -->
       <div class="upload-btn-wrapper">
-        <button class="btn" (change)="onFileChange($event)">Import Users</button>
-        <input type="file" name="myfile" />
+        <button type="button" matRipple *ngIf="this.importUsersBtnClickAction" (change)="onFileChange($event)"
+          class="btn btn-primary tw-whitespace-nowrap">
+          <input id="files" type="file" accept=".csv">Import Users
+        </button>
       </div>
-      
+      <!-- <div class="upload-btn-wrapper">
+        <button type="button" matRipple class="btn" *ngIf="this.importUsersBtnClickAction" (change)="onFileChange($event)">Import Users</button>
+        <input type="file" name="myfile" />
+      </div> -->
+
       <!-- (click)="this.importUsersBtnClickAction()" -->
       <!-- <div>
         <label for="files" class="btn btn btn-primary tw-whitespace-nowrap"">Select Image</label>
@@ -28,8 +26,8 @@
       class="btn btn-primary tw-whitespace-nowrap"> -->
       <!-- <input type="file" accept="*" (change)="onFileChange($event)"/>Import Users -->
       <button type="button" matRipple *ngIf="this.downloadTemplateBtnClickAction"
-              (click)="this.downloadTemplateBtnClickAction()"
-              class="btn btn-outline-primary tw-whitespace-nowrap" style="background: transparent;  color: #85a5c8;">
+        (click)="this.downloadTemplateBtnClickAction()" class="btn btn-outline-primary tw-whitespace-nowrap"
+        style="background: transparent;  color: #85a5c8;">
         <fa-icon icon="download"></fa-icon>
         <!-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="20" viewBox="0 0 16 20" fill="none">
           <path d="M15 19H1M3 8L8 13M8 13L13 8M8 13V1" stroke="#85A5C8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -42,11 +40,10 @@
 
   <div class="tw-mt-8 tw-w-full tw-flex tw-flex-col tw-flex-wrap min-md:tw-flex-row tw-gap-y-8 tw-gap-x-8">
 
-    <div 
-         class="tw-flex tw-flex-col tw-flex-grow">
+    <div class="tw-flex tw-flex-col tw-flex-grow">
 
       <label class="sp-access-form-label">First name</label>
-      <input type="text" formControlName="firstName" class="sp-access-form-control"/>
+      <input type="text" formControlName="firstName" class="sp-access-form-control" />
 
       <!-- <ng-container *ngIf="firstName.touched">
         <small class="errors-container" *ngIf="this.firstName.errors as validationErrors">
@@ -58,11 +55,10 @@
 
     </div>
 
-    <div
-         class="tw-flex tw-flex-col tw-flex-grow">
+    <div class="tw-flex tw-flex-col tw-flex-grow">
 
       <label class="sp-access-form-label">Middle name</label>
-      <input type="text" formControlName="middleName" class="sp-access-form-control"/>
+      <input type="text" formControlName="middleName" class="sp-access-form-control" />
 
       <!-- <ng-container *ngIf="middleName.touched">
         <small class="errors-container" *ngIf="this.middleName.errors as validationErrors">
@@ -73,10 +69,9 @@
       </ng-container> -->
     </div>
 
-    <div 
-         class="tw-flex tw-flex-col tw-flex-grow">
+    <div class="tw-flex tw-flex-col tw-flex-grow">
       <label class="sp-access-form-label">Last name</label>
-      <input type="text" formControlName="lastName" class="sp-access-form-control"/>
+      <input type="text" formControlName="lastName" class="sp-access-form-control" />
 
       <!-- <ng-container *ngIf="lastName.touched">
         <small class="errors-container" *ngIf="lastName.errors as validationErrors">
@@ -89,10 +84,9 @@
     </div>
   </div>
 
-  <div 
-       class="tw-flex tw-flex-col tw-mt-8 tw-w-full">
+  <div class="tw-flex tw-flex-col tw-mt-8 tw-w-full">
     <label class="sp-access-form-label">Position</label>
-    <input type="text" formControlName="position" class="tw-w-full sp-access-form-control"/>
+    <input type="text" formControlName="position" class="tw-w-full sp-access-form-control" />
 
     <!-- <ng-container *ngIf="position.touched">
       <small class="errors-container" *ngIf="this.position.errors as validationErrors">
@@ -107,7 +101,7 @@
 
     <div class="tw-flex tw-flex-col tw-flex-grow">
       <label class="sp-access-form-label">Email</label>
-      <input type="email" formControlName="email" class="sp-access-form-control"/>
+      <input type="email" formControlName="email" class="sp-access-form-control" />
 
       <!-- <ng-container *ngIf="email.touched">
         <small class="errors-container" *ngIf="this.email.errors as validationErrors">
@@ -119,12 +113,11 @@
 
     </div>
 
-    <div 
-         class="tw-flex tw-flex-col tw-flex-grow">
+    <div class="tw-flex tw-flex-col tw-flex-grow">
 
       <label class="sp-access-form-label">Phone Number</label>
-      <input type="tel" formControlName="phoneNumber" class="sp-access-form-control"/>
-<!-- 
+      <input type="tel" formControlName="phoneNumber" class="sp-access-form-control" />
+      <!-- 
       <ng-container *ngIf="phoneNumber.touched">
         <small class="errors-container" *ngIf="this.phoneNumber.errors as validationErrors">
           <div *ngFor="let error of validationErrors | keyvalue" class="invalid">
@@ -140,4 +133,3 @@
   <button type="submit" class="btn btn-primary tw-mx-auto tw-w-[200px] tw-mt-8" matRipple>Next</button>
 
 </form>
-

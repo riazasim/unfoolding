@@ -198,6 +198,7 @@ export class UsersComponent implements OnInit, OnDestroy, FormDataHandler<DeaAdd
     })
   }
   public formDataToPass;
+  public formDataToinvite;
   getFilesToUpload(formData) {
     this.formDataToPass = formData;
     this.offCanvasComponent = 'import';
@@ -212,4 +213,14 @@ export class UsersComponent implements OnInit, OnDestroy, FormDataHandler<DeaAdd
         console.log("API error of upload media", Error);
       })
   }
+  // passForminvition(event) {
+  //   this.subUsersService.sendinvite().subscribe((Response) => {
+  //     console.log("Response of upload media API", Response);
+  //     // this.offCanvasComponent = 'invitations';
+  //     this._snackBar.open('User Added', 'Successfully');
+  //   },
+  //     (Error) => {
+  //       console.log("API error of upload media", Error);
+  //     })
+  // }
 }

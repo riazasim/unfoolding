@@ -5,7 +5,7 @@
       <ng-container cdkColumnDef="balance">
         <th cdk-header-cell *cdkHeaderCellDef scope="col" mat-sort-header="balance">Billing profile
         </th>
-        <td cdk-cell *cdkCellDef="let row">{{row?.attributes?.billingProfile  | titlecase}}</td>
+        <td cdk-cell *cdkCellDef="let row">{{row?.attributes?.billingProfile | titlecase}}</td>
       </ng-container>
       <ng-container cdkColumnDef="license">
         <th cdk-header-cell *cdkHeaderCellDef scope="col" mat-sort-header="license">Doucment
@@ -18,8 +18,8 @@
         </th>
         <td cdk-cell *cdkCellDef="let row">
           <a target="_blank" [download]="row.attributes.refId" [href]="'history-entry/'+row.attributes.refId">
-            <fa-icon icon="download"></fa-icon>
             {{row?.attributes?.refId}}
+            <fa-icon icon="download"></fa-icon>
           </a>
         </td>
       </ng-container>
@@ -35,20 +35,27 @@
         </th>
         <td cdk-cell *cdkCellDef="let row">{{row?.attributes?.amount | currency: 'EUR'}}</td>
       </ng-container>
-
-
       <ng-container cdkColumnDef="status">
         <th cdk-header-cell *cdkHeaderCellDef scope="col" mat-sort-header="status">
         </th>
+        <td cdk-cell *cdkCellDef="let row" (click)="payBtnClickAction && payBtnClickAction(row)">
+          <span class="tw-text-primary tw-font-bold">Pay</span>
+        </td>
+      </ng-container>
+
+
+      <!-- <ng-container cdkColumnDef="status">
+        <th cdk-header-cell *cdkHeaderCellDef scope="col" mat-sort-header="status">
+        </th>
         <td cdk-cell *cdkCellDef="let row">
-          <ng-container [ngSwitch]="row?.attributes?.status">
+          <ng-container [ngSwitch]="row?.attributes?.status?.toLowerCase()">           
             <span *ngSwitchCase="'paid'" class="tw-text-primary tw-font-bold">Paid</span>
             <button *ngSwitchCase="'unpaid'" (click)="payBtnClickAction && payBtnClickAction(row)"
               class="tw-text-primary tw-font-bold">Pay
             </button>
           </ng-container>
         </td>
-      </ng-container>
+      </ng-container> -->
 
       <!-- Header and Row Declarations -->
       <tr cdk-header-row *cdkHeaderRowDef="displayedColumns"></tr>
@@ -58,9 +65,10 @@
           <span *ngIf="loading">
             <!-- Se încarcă datele -->
           </span>
-          <span *ngIf="dataSource.data.length === 0 && !loading">Nu există înregistrări</span>
-          <span *ngIf="dataSource.data.length > 0  && !loading">Nicio înregistrare nu corespunde criteriilor de
-            căutare</span>
+          <span *ngIf="dataSource.data.length === 0 && !loading">There are no records
+          </span>
+          <span *ngIf="dataSource.data.length > 0  && !loading">No records match the criteria of
+            search</span>
         </td>
       </tr>
     </table>

@@ -41,7 +41,8 @@
         <dea-users-import-users-prompt [formDataToPass]="formDataToPass" (passDataToUpload)="passFormData($event)"></dea-users-import-users-prompt>
       </div>
       <div *ngSwitchCase="'invitations'" class="tw-mt-8 tw-max-w-sm tw-mx-auto">
-        <dea-users-send-invitations-prompt></dea-users-send-invitations-prompt>
+        <!-- [formDataToinvite]="formDataToinvite" (passDataToUpload)="passForminvition($event)" -->
+        <dea-users-send-invitations-prompt ></dea-users-send-invitations-prompt>
       </div>
     </ng-container>
   </div>

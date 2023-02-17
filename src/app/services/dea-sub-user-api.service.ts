@@ -33,6 +33,9 @@ export class DeaSubUserApiService {
   public uploadMedia(data:any,id: number): Observable<any> {
     return this.httpClient.post<any>(this.API_URL + 'api/sub-users/import-csv/' + id,data);
   }
+  // public sendinvite(): Observable<any> {
+  //   return this.httpClient.post<any>(this.API_URL + 'api/sub-users/send-invite-email');
+  // }
   public deleteUser(id: number | string): Observable<any> {
     return this.httpClient.delete<any>(this.API_URL + 'api/sub-users/' + id);
   }
