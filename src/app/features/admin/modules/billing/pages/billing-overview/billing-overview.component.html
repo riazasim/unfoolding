@@ -1,0 +1,60 @@
+<div class="tw-flex-grow tw-flex tw-flex-col tw-gap-y-6">
+    <div  class="row">
+        <!-- <h2 class="heading-5 !tw-font-bold">Payment Methods</h2> -->
+        <div class="col-md-12">
+        <nav mat-tab-nav-bar>
+            <a [routerLink]="" mat-tab-link style="color: #85A5C8; border-bottom: 2px solid #85A5C8;"> Billing Overview
+            </a>
+            <a [routerLink]="managesubscription" mat-tab-link> Manage Subscription</a>
+            <a [routerLink]="billingHistoryRoute" mat-tab-link> Billing History </a>
+            <a [routerLink]="paymentMethodsRoute" mat-tab-link mat-tab-link>
+                Billing Methods </a>
+        </nav>
+        </div>
+    </div>
+
+    <div class="tw-flex-grow tw-flex tw-flex-col tw-gap-8">
+        <div class="tw-flex tw-flex-wrap tw-gap-8">
+            <div card class="tw-w-full tw-flex tw-flex-col user-dist-by-source tw-p-4">
+                <h3 class="heading-5 tw-text-center tw-mb-10">User distribution by app</h3>
+                <div class="tw-flex-grow tw-mr-12">
+                    <ngx-charts-pie-chart [legend]="legend" [doughnut]="true" [explodeSlices]="true"
+                        [legendPosition]="this.legendPosition" [results]="this.pieChardData"></ngx-charts-pie-chart>
+                </div>
+                <div class="tw-text-right min-md:tw-pr-6 tw-mt-4">
+                    <button>Last 30 days</button>
+                </div>
+            </div>
+            <div card class="tw-flex-grow top-5-users">
+                <h3 class="heading-5 tw-text-center tw-mb-10">Top 5 users</h3>
+                <ul class="tw-flex tw-flex-col tw-gap-y-4 tw-text-muted tw-mb-8">
+                    <li class="tw-flex tw-justify-between">
+                        <span>Popescu Ion</span>
+                        <span>100</span>
+                    </li>
+                    <li class="tw-flex tw-justify-between">
+                        <span>Georgescu George</span>
+                        <span>100</span>
+                    </li>
+                    <li class="tw-flex tw-justify-between">
+                        <span>Ionescu Razvan</span>
+                        <span>100</span>
+                    </li>
+                    <li class="tw-flex tw-justify-between">
+                        <span>Umar Farooq</span>
+                        <span>100</span>
+                    </li>
+                    <li class="tw-flex tw-justify-between">
+                        <span>Smith Dan</span>
+                        <span>100</span>
+                    </li>
+                </ul>
+
+                <div class="tw-text-right">
+                    <button>Last 30 days</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

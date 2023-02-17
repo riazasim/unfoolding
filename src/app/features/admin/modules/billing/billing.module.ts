@@ -26,6 +26,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { SpAccessPromptsModule } from 'src/app/shared/components/prompts/sp-access-prompts.module';
 import { MatTabsModule } from '@angular/material/tabs';
 import { LineChartModule, PieChartModule } from '@swimlane/ngx-charts';
+import { BillingOverviewComponent } from './pages/billing-overview/billing-overview.component';
+import { ManageSubscriptionComponent } from './pages/manage-subscription/manage-subscription.component';
 @NgModule({
   declarations: [
     BillingProfilesComponent,
@@ -33,6 +35,8 @@ import { LineChartModule, PieChartModule } from '@swimlane/ngx-charts';
     PaymentMethodsComponent,
     ProductsComponent,
     InvoiceComponent,
+    BillingOverviewComponent,
+    ManageSubscriptionComponent,
   ],
   imports: [
     CommonModule,

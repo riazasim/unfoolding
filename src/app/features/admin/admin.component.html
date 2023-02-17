@@ -38,7 +38,10 @@
                                     *ngIf="router.url !='/admin/onboarding'">
   </sp-access-modern-navigation-menu>
 
-  <div main class="tw-p-4 min-md:tw-px-10 min-md:tw-py-8 tw-min-h-full tw-flex tw-flex-col">
+  <div  *ngIf="router.url =='/admin/onboarding'" main style="background-color: white !important;" class="tw-min-h-full tw-flex tw-flex-col">
+    <router-outlet class="tw-hidden"></router-outlet>
+  </div>
+  <div  *ngIf="router.url !='/admin/onboarding'" main class="tw-p-4 min-md:tw-px-10 min-md:tw-py-8 tw-min-h-full tw-flex tw-flex-col">
     <router-outlet class="tw-hidden"></router-outlet>
   </div>
 </div>

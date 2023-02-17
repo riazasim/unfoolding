@@ -4,37 +4,79 @@
 @import "swiper/modules/pagination/pagination.min.css";
 @import "~bootstrap/dist/css/bootstrap.css";
 
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+::ng-deep .mat-tab-link {
+  font-family: 'Roboto' !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  font-size: 18px !important;
+  line-height: 16px !important;
+}
+
+.upload-btn-wrapper .btn {
+  border: 2px solid var(--primary-dark-color);
+  color: white;
+  background-color: var(--primary-dark-color);
+  padding: 8px 52px;
+  border-radius: 40px;
+  font-weight: bold;
+}
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
 :root {
-    --app-border-radius: 10px;
-    --control-height: 53px;
-    --body-bg: #F4F6F8;
-  }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+  --app-border-radius: 10px;
+  --control-height: 53px;
+  --body-bg: #F4F6F8;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 .input-container input {
-    border: none;
-    width: 100%;
-    text-align: center !important;
-    &:focus {
-      box-shadow: unset;
-    }
+  border: none;
+  width: 100%;
+  text-align: center !important;
+
+  &:focus {
+    box-shadow: unset;
   }
-.tabs{
+}
+
+.tabs {
   background: transparent;
   border-bottom: 1px solid black;
   border-radius: 0px;
   padding: 4px;
   margin: 0px 22px 0px 0px;
   color: black;
+
   &:active {
     color: #85A5C8;
     border-bottom: 1px solid #85A5C8;
   }
-  
- 
+
+
 }
 
-.text-justify{
+.text-justify {
   text-align: justify !important;
 }

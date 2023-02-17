@@ -15,6 +15,8 @@ export class PaymentMethodsComponent {
 
   public readonly billingHistoryRoute = `../history`;
   public readonly billingProfilesRoute = `../profiles`;
+  public readonly billingOverviewRoute = `../overview`;
+  public readonly managesubscription = `../subscription`;
 
   public cards$: Observable<CreditCard[]>;
   public showOffcanvas = false;

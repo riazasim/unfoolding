@@ -21,7 +21,7 @@ export class OnboardingComponent implements OnInit, OnDestroy {
   public loader: boolean;
   public subscription: Subscription[] = [];
   @ViewChild(MatStepper)
-  private readonly registrationWizard!: MatStepper;
+  public readonly registrationWizard!: MatStepper;
   constructor(
     private readonly router: Router,
     assetsProvider: AssetsProviderService<DeaAssets>,
@@ -41,6 +41,7 @@ export class OnboardingComponent implements OnInit, OnDestroy {
   keyboardInput(event: any) {
     if (event.key === 'Enter') {
       this.registrationWizard.next();
+      console.log("junior",this.registrationWizard)
     }
   }
   gotoDashboard() {

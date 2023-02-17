@@ -46,43 +46,43 @@ export class BillingProfilesComponent {
   public billingProfiles$: Observable<BillingProfileModel[]>;
   public pieChardData: { name: string, value: number }[] = [];
   private actualBillingProfiles: BillingProfileModel[] = [];
-  private  BillingProfileMode :[]
+  private BillingProfileMode: []
   public addBillingProfile = () => {
     this.deabillingApiService.billingDataObs.next(null)
     this.showOffcanvas = true;
-    this.edit= false;
+    this.edit = false;
   }
   edit: boolean;
 
   constructor(private readonly dialogService: MatDialog,
-              private readonly changeDetector: ChangeDetectorRef,
-              private deabillingApiService: DeabillingApiService,
-              private readonly loaderOrchestrator: LoaderOrchestratorService,
-              private readonly router: Router,
-              private readonly _snackBar:MatSnackBar,
-              // private snackbarService: SnackbarS,
-              private readonly bpo: BreakpointObserver,) {
+    private readonly changeDetector: ChangeDetectorRef,
+    private deabillingApiService: DeabillingApiService,
+    private readonly loaderOrchestrator: LoaderOrchestratorService,
+    private readonly router: Router,
+    private readonly _snackBar: MatSnackBar,
+    // private snackbarService: SnackbarS,
+    private readonly bpo: BreakpointObserver,) {
     this.billingProfiles$ = this.deabillingApiService.requestList();
-    
-   // let final_val = this.billingProfiles$.pipe(isEmpty(),);  
-   if(localStorage.getItem("profile") == "NO"){
-    
+
+    // let final_val = this.billingProfiles$.pipe(isEmpty(),);  
+    if (localStorage.getItem("profile") == "NO") {
+
       this.router.navigate(['admin/billing/profiles'])
-    }else{
-      if(this.billingProfiles$.valueOf.length >= 0){
+    } else {
+      if (this.billingProfiles$.valueOf.length >= 0) {
         this.router.navigate(['admin/dashboard'])
-      }else{
-     
-  
-      
+      } else {
+
+
+
+      }
+
     }
-    
-  }
-    
+
     bpo.observe('(min-width:768px)')
-    .subscribe({
-      next: (bpState) => this.legend = bpState.matches
-    });
+      .subscribe({
+        next: (bpState) => this.legend = bpState.matches
+      });
   }
 
   public deleteBillingProfile(data: BillingProfileModel) {
@@ -104,32 +104,32 @@ export class BillingProfilesComponent {
           // this.billingProfiles$ = of(this.actualBillingProfiles);
 
           this.deabillingApiService.deleteOne(data.id)
-          .pipe(
-                finalize(() => this.loaderOrchestrator.setLoaderVisibility(false))
-              )
-              .subscribe({
-                // error: (err: HttpErrorResponse) => handleErrorsBySnackbar(err, this.snackbarService, err.error['detail']),
-                next: (resp: any)=>{
-                  this.billingProfiles$ = this.deabillingApiService.requestList();
-                  this._snackBar.open('Profile delete', 'Successfully');
-                    this.changeDetector.detectChanges();
-                },
-                complete: () => {
-                  
-                }
-              });
+            .pipe(
+              finalize(() => this.loaderOrchestrator.setLoaderVisibility(false))
+            )
+            .subscribe({
+              // error: (err: HttpErrorResponse) => handleErrorsBySnackbar(err, this.snackbarService, err.error['detail']),
+              next: (resp: any) => {
+                this.billingProfiles$ = this.deabillingApiService.requestList();
+                this._snackBar.open('Profile delete', 'Successfully');
+                this.changeDetector.detectChanges();
+              },
+              complete: () => {
+
+              }
+            });
 
         }
       });
   }
-  passRefresh(event){
-    this.showOffcanvas=false;
+  passRefresh(event) {
+    this.showOffcanvas = false;
     this.billingProfiles$ = this.deabillingApiService.requestList();
     this.changeDetector.detectChanges();
   }
-  public editBillingProfile(data: BillingProfileModel){
+  public editBillingProfile(data: BillingProfileModel) {
     this.deabillingApiService.billingDataObs.next(data)
     this.showOffcanvas = true;
-    this.edit= true;
+    this.edit = true;
   }
 }

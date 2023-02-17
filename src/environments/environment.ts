@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  API_URL:'http://3.89.124.191:8080/',
+  API_URL:'http://54.163.23.236:8080/',
   assetsRoot: '',
   config: {
     poolingInterval: 0,

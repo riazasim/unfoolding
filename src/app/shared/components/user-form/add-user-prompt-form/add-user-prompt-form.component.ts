@@ -40,6 +40,7 @@ export class DeaAddUserFormComponent extends WireForm<DeaAddSubUserFormModel> im
   public updateFlag: boolean = false;
   public ngOnInit(): void {
     this.form = this.fb.group({
+      image: ['', Validators.required],
       firstName: ['', Validators.required],
       middleName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -51,6 +52,7 @@ export class DeaAddUserFormComponent extends WireForm<DeaAddSubUserFormModel> im
     setTimeout(() => {
       if (this.userModel) {
         this.form.patchValue({
+          image: this.userModel.image,
           firstName: this.userModel.firstName,
           middleName: this.userModel.middleName,
           lastName: this.userModel.lastName,
@@ -65,11 +67,13 @@ export class DeaAddUserFormComponent extends WireForm<DeaAddSubUserFormModel> im
   }
   onSubmit() {
     if (this.form.valid) {
+debugger
       const data = {
         data: {
           attributes: this.form.value
         }
       }
+      console.log("user updata data", data)
       if (this.updateFlag) {
         this.deaSubUserApiService.updateUser(data, JSON.parse(sessionStorage.getItem('user')).id).subscribe(
           (Response) => {
@@ -107,6 +111,9 @@ export class DeaAddUserFormComponent extends WireForm<DeaAddSubUserFormModel> im
 
     })
   }
+  // public get image(): AbstractControl | null {
+  //   return this._formGroup?.get('image');
+  // }
   public get firstName(): AbstractControl | null {
     return this._formGroup?.get('firstName');
   }

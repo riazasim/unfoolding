@@ -36,6 +36,8 @@ export class BillingHistoryComponent {
 
   public readonly billingProfilesRoute = `../profiles`;
   public readonly paymentMethodsRoute = `../payment-methods`;
+  public readonly billingOverviewRoute = `../overview`;
+  public readonly managesubscription = `../subscription`;
 
   public paymentHistoryEntries$: Observable<BillingHistoryEntryModel[]>;
 

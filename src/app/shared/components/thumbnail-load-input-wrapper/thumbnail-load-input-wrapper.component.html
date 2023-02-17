@@ -2,7 +2,9 @@
   class="tw-h-36 tw-w-36 tw-rounded-full tw-relative tw-bg-white tw-shadow-xl tw-flex tw-overflow-hidden">
   <img *ngIf="thumbnail" [src]="thumbnail" class="tw-w-full tw-h-full tw-object-fill" alt="" />
   <fa-icon *ngIf="defaultIcon && !thumbnail" class="tw-m-auto tw-text-primary" size="4x" [icon]="defaultIcon"></fa-icon>
-
+  <!-- <svg xmlns="http://www.w3.org/2000/svg" width="78" height="87" viewBox="0 0 78 87" fill="none">
+    <path d="M76 85V75.7778C76 70.886 74.0509 66.1946 70.5815 62.7356C67.112 59.2766 62.4065 57.3333 57.5 57.3333H20.5C15.5935 57.3333 10.8879 59.2766 7.41852 62.7356C3.9491 66.1946 2 70.886 2 75.7778V85M57.5 20.4444C57.5 30.631 49.2173 38.8889 39 38.8889C28.7827 38.8889 20.5 30.631 20.5 20.4444C20.5 10.2579 28.7827 2 39 2C49.2173 2 57.5 10.2579 57.5 20.4444Z" stroke="#85A5C8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg> -->
   <label #fileInputLabel class="tw-flex tw-absolute tw-bottom-0
   tw-bg-glass-sm hover:tw-bg-glass-xl
   tw-left-0 tw-right-0 tw-h-12 tw-m-auto tw-cursor-pointer">

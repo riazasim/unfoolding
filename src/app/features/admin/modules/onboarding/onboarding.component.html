@@ -1,3 +1,4 @@
+<body style="background-color: white !important;">
 <div class="tw-flex-grow tw-flex tw-flex-col tw-gap-8" style="background-color: white;">
     <div class="tw-flex tw-flex-wrap tw-gap-8">
         <mat-stepper class="no-header-mat-stepper tw-w-full">
@@ -5,7 +6,7 @@
                 <ng-template matStepContent>
                     <div class="min-w-screen min-h-screen bg-indigo-500 flex items-center justify-center px-5 py-5">
                         <div class="w-full mx-auto rounded-3xl  bg-white px-10 pt-16 pb-10 text-gray-600"
-                            style="max-width: 350px">
+                            style="max-width: 300px;">
                             <div class="overflow-hidden relative mb-10">
                                 <div class="overflow-hidden relative cursor-grab relative">
                                     <img [src]="this.coverImgSrc1" alt="" class="tw-h-full tw-w-full tw-object-fill" />
@@ -15,12 +16,12 @@
                                 <strong class="w-2 h-2 rounded-full mx-1">Welcome</strong>
                             </div>
                             <div class="d-flex justify-content-center py-3">
-                                <div class="dot active"></div>
-                                <div class="dot"></div>
-                                <div class="dot"></div>
-                                <div class="dot"></div>
-                                <div class="dot"></div>
-                                <div class="dot"></div>
+                                <div (click)="registrationWizard.selectedIndex=0;" class="dot active"></div>
+                                <div (click)="registrationWizard.selectedIndex=1;" class="dot"></div>
+                                <div (click)="registrationWizard.selectedIndex=2;" class="dot"></div>
+                                <div (click)="registrationWizard.selectedIndex=3;" class="dot"></div>
+                                <div (click)="registrationWizard.selectedIndex=4;" class="dot"></div>
+                                <div (click)="registrationWizard.selectedIndex=5;" class="dot"></div>
                             </div>
                         </div>
                     </div>
@@ -31,7 +32,7 @@
                 <ng-template matStepContent>
                     <div class="min-w-screen min-h-screen bg-indigo-500 flex items-center justify-center px-5 py-5">
                         <div class="w-full mx-auto rounded-3xl  bg-white px-10 pt-16 pb-10 text-gray-600"
-                            style="max-width: 350px">
+                            style="max-width: 300px;">
                             <div class="overflow-hidden relative mb-10">
                                 <div class="overflow-hidden relative cursor-grab relative">
                                     <img [src]="this.coverImgSrc2" alt="" class="tw-h-full tw-w-full tw-object-fill" />
@@ -45,12 +46,12 @@
 
                             </div>
                             <div class="d-flex justify-content-center py-3">
-                                <div class="dot"></div>
-                                <div class="dot"></div>
-                                <div class="dot"></div>
-                                <div class="dot"></div>
-                                <div class="dot"></div>
-                                <div class="dot active"></div>
+                                <div (click)="registrationWizard.selectedIndex=0;" class="dot"></div>
+                                <div (click)="registrationWizard.selectedIndex=1;" class="dot active"></div>
+                                <div (click)="registrationWizard.selectedIndex=2;" class="dot"></div>
+                                <div (click)="registrationWizard.selectedIndex=3;" class="dot"></div>
+                                <div (click)="registrationWizard.selectedIndex=4;" class="dot"></div>
+                                <div (click)="registrationWizard.selectedIndex=5;" class="dot"></div>
                             </div>
                         </div>
                     </div>
@@ -60,7 +61,7 @@
                 <ng-template matStepContent>
                     <div class="min-w-screen min-h-screen bg-indigo-500 flex items-center justify-center px-5 py-5">
                         <div class="w-full mx-auto rounded-3xl  bg-white px-10 pt-16 pb-10 text-gray-600"
-                            style="max-width: 350px">
+                            style="max-width: 300px;">
                             <div class="overflow-hidden relative mb-10">
                                 <div class="overflow-hidden relative cursor-grab relative">
                                     <img [src]="this.coverImgSrc3" alt="" class="tw-h-full tw-w-full tw-object-fill" />
@@ -74,12 +75,12 @@
 
                             </div>
                             <div class="d-flex justify-content-center py-3">
-                                <div class="dot"></div>
-                                <div class="dot"></div>
-                                <div class="dot"></div>
-                                <div class="dot"></div>
-                                <div class="dot"></div>
-                                <div class="dot active"></div>
+                                <div  (click)="registrationWizard.selectedIndex=0;" class="dot"></div>
+                                <div  (click)="registrationWizard.selectedIndex=1;" class="dot"></div>
+                                <div  (click)="registrationWizard.selectedIndex=2;" class="dot active"></div>
+                                <div  (click)="registrationWizard.selectedIndex=3;" class="dot"></div>
+                                <div  (click)="registrationWizard.selectedIndex=4;" class="dot"></div>
+                                <div  (click)="registrationWizard.selectedIndex=5;" class="dot"></div>
                             </div>
                         </div>
                     </div>
@@ -89,7 +90,7 @@
                 <ng-template matStepContent>
                     <div class="min-w-screen min-h-screen bg-indigo-500 flex items-center justify-center px-5 py-5">
                         <div class="w-full mx-auto rounded-3xl  bg-white px-10 pt-16 pb-10 text-gray-600"
-                            style="max-width: 350px">
+                            style="max-width: 300px;">
                             <div class="overflow-hidden relative mb-10">
                                 <div class="overflow-hidden relative cursor-grab relative">
                                     <img [src]="this.coverImgSrc4" alt="" class="tw-h-full tw-w-full tw-object-fill" />
@@ -103,12 +104,12 @@
 
                             </div>
                             <div class="d-flex justify-content-center py-3">
-                                <div class="dot"></div>
-                                <div class="dot"></div>
-                                <div class="dot"></div>
-                                <div class="dot"></div>
-                                <div class="dot"></div>
-                                <div class="dot active"></div>
+                                <div (click)="registrationWizard.selectedIndex=0;" class="dot"></div>
+                                <div (click)="registrationWizard.selectedIndex=1;" class="dot"></div>
+                                <div (click)="registrationWizard.selectedIndex=2;" class="dot"></div>
+                                <div (click)="registrationWizard.selectedIndex=3;" class="dot active"></div>
+                                <div (click)="registrationWizard.selectedIndex=4;" class="dot"></div>
+                                <div (click)="registrationWizard.selectedIndex=5;" class="dot"></div>
                             </div>
                         </div>
                     </div>
@@ -118,7 +119,7 @@
                 <ng-template matStepContent>
                     <div class="min-w-screen min-h-screen bg-indigo-500 flex items-center justify-center px-5 py-5">
                         <div class="w-full mx-auto rounded-3xl  bg-white px-10 pt-16 pb-10 text-gray-600"
-                            style="max-width: 350px">
+                            style="max-width: 300px;">
                             <div class="overflow-hidden relative mb-10">
                                 <div class="overflow-hidden relative cursor-grab relative">
                                     <img [src]="this.coverImgSrc5" alt="" class="tw-h-full tw-w-full tw-object-fill" />
@@ -133,12 +134,12 @@
 
                             </div>
                             <div class="d-flex justify-content-center py-3">
-                                <div class="dot"></div>
-                                <div class="dot"></div>
-                                <div class="dot"></div>
-                                <div class="dot"></div>
-                                <div class="dot active"></div>
-                                <div class="dot"></div>
+                                <div (click)="registrationWizard.selectedIndex=0;" class="dot"></div>
+                                <div (click)="registrationWizard.selectedIndex=1;" class="dot"></div>
+                                <div (click)="registrationWizard.selectedIndex=2;" class="dot"></div>
+                                <div (click)="registrationWizard.selectedIndex=3;" class="dot"></div>
+                                <div (click)="registrationWizard.selectedIndex=4;" class="dot active"></div>
+                                <div (click)="registrationWizard.selectedIndex=5;" class="dot"></div>
                             </div>
                         </div>
                     </div>
@@ -148,7 +149,7 @@
                 <ng-template matStepContent>
                     <div class="min-w-screen min-h-screen bg-indigo-500 flex items-center justify-center px-5 py-5">
                         <div class="w-full mx-auto rounded-3xl  bg-white px-10 pt-16 pb-10 text-gray-600"
-                            style="max-width: 350px">
+                            style="max-width: 300px;">
                             <div class="overflow-hidden relative mb-10">
                                 <div class="overflow-hidden relative cursor-grab relative">
                                     <img [src]="this.coverImgSrc6" alt="" class="tw-h-full tw-w-full tw-object-fill" />
@@ -164,12 +165,12 @@
 
                             </div>
                             <div class="d-flex justify-content-center py-3">
-                                <div class="dot"></div>
-                                <div class="dot"></div>
-                                <div class="dot"></div>
-                                <div class="dot"></div>
-                                <div class="dot"></div>
-                                <div class="dot active"></div>
+                                <div (click)="registrationWizard.selectedIndex=0;" class="dot"></div>
+                                <div (click)="registrationWizard.selectedIndex=1;" class="dot"></div>
+                                <div (click)="registrationWizard.selectedIndex=2;" class="dot"></div>
+                                <div (click)="registrationWizard.selectedIndex=3;" class="dot"></div>
+                                <div (click)="registrationWizard.selectedIndex=4;" class="dot"></div>
+                                <div (click)="registrationWizard.selectedIndex=5;" class="dot active"></div>
                             </div>
                         </div>
                     </div>
@@ -178,3 +179,4 @@
         </mat-stepper>
     </div>
 </div>
+</body>

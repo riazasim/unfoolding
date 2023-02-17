@@ -120,6 +120,7 @@ export class UsersComponent implements OnInit, OnDestroy, FormDataHandler<DeaAdd
         next: users => {
           // this.store.dispatch(addSubUsersAction({ users }))
           this.usersList = users?.data?.items;
+          console.log("user loist", this.usersList)
         },
         error: (err: HttpErrorResponse) => handleErrorsBySnackbar(err, this.snackbarService, err.error['detail'])
       });

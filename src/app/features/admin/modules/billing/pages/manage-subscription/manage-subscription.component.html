@@ -1,0 +1,22 @@
+<div class="tw-flex-grow tw-flex tw-flex-col tw-gap-y-6">
+    <div class="row">
+        <!-- <h2 class="heading-5 !tw-font-bold">Payment Methods</h2> -->
+        <div class="col-md-12">
+            <nav mat-tab-nav-bar>
+                <a [routerLink]="billingOverviewRoute" mat-tab-link> Billing Overview </a>
+                <a [routerLink]="" mat-tab-link style="color: #85A5C8; border-bottom: 2px solid #85A5C8;"> Manage
+                    Subscription</a>
+                <a [routerLink]="billingHistoryRoute" mat-tab-link> Billing History </a>
+                <a [routerLink]="paymentMethodsRoute" mat-tab-link mat-tab-link>
+                    Billing Methods </a>
+            </nav>
+        </div>
+        <div class="col-md-12 text-center mt-2">
+            <h1 class="heading-4 current-location">Embed from Stripe</h1>
+            <p class="heading-4 current-location">https://stripe.com/use-cases/saas</p>
+            <div class="overflow-hidden relative cursor-grab relative pt-3">
+                <img [src]="this.subscpImgSrc1" alt="" class="tw-h-full tw-w-full tw-object-fill" />
+            </div>
+        </div>
+    </div>
+</div>
