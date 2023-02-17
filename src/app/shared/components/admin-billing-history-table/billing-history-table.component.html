@@ -1,25 +1,25 @@
 <div class="tw-w-full tw-shadow-xl">
   <ng-scrollbar track="horizontal" [autoHeightDisabled]="false">
     <table class="sp-access-material-table no-wrap tw-overflow-hidden" matSort [class.loading]="loading"
-      aria-label="Usage Table" cdk-table [dataSource]="dataSource">
+      aria-label="Usage Table" cdk-table [dataSource]="billingList">
       <ng-container cdkColumnDef="balance">
         <th cdk-header-cell *cdkHeaderCellDef scope="col" mat-sort-header="balance">Billing profile
         </th>
-        <td cdk-cell *cdkCellDef="let row">{{row.balance  | titlecase}}</td>
+        <td cdk-cell *cdkCellDef="let row">{{row?.attributes?.billingProfile  | titlecase}}</td>
       </ng-container>
       <ng-container cdkColumnDef="license">
         <th cdk-header-cell *cdkHeaderCellDef scope="col" mat-sort-header="license">Doucment
         </th>
-        <td cdk-cell *cdkCellDef="let row">{{row.licenceSerialNumber | titlecase}}</td>
+        <td cdk-cell *cdkCellDef="let row">{{row?.attributes?.document | titlecase}}</td>
       </ng-container>
 
       <ng-container cdkColumnDef="refId">
         <th cdk-header-cell *cdkHeaderCellDef scope="col" mat-sort-header="refId">REF ID
         </th>
         <td cdk-cell *cdkCellDef="let row">
-          <a target="_blank" [download]="row.refId" [href]="'history-entry/'+row.refId">
+          <a target="_blank" [download]="row.attributes.refId" [href]="'history-entry/'+row.attributes.refId">
             <fa-icon icon="download"></fa-icon>
-            {{row.refId}}
+            {{row?.attributes?.refId}}
           </a>
         </td>
       </ng-container>
@@ -27,13 +27,13 @@
       <ng-container cdkColumnDef="date">
         <th cdk-header-cell *cdkHeaderCellDef scope="col" mat-sort-header="date">Date
         </th>
-        <td cdk-cell *cdkCellDef="let row">{{row.date | date}}</td>
+        <td cdk-cell *cdkCellDef="let row">{{row?.attributes?.date | date}}</td>
       </ng-container>
 
       <ng-container cdkColumnDef="amount">
         <th cdk-header-cell *cdkHeaderCellDef scope="col" mat-sort-header="amount">Amount
         </th>
-        <td cdk-cell *cdkCellDef="let row">{{row.amount | currency: 'EUR'}}</td>
+        <td cdk-cell *cdkCellDef="let row">{{row?.attributes?.amount | currency: 'EUR'}}</td>
       </ng-container>
 
 
@@ -41,7 +41,7 @@
         <th cdk-header-cell *cdkHeaderCellDef scope="col" mat-sort-header="status">
         </th>
         <td cdk-cell *cdkCellDef="let row">
-          <ng-container [ngSwitch]="row.status.toLowerCase()">
+          <ng-container [ngSwitch]="row?.attributes?.status">
             <span *ngSwitchCase="'paid'" class="tw-text-primary tw-font-bold">Paid</span>
             <button *ngSwitchCase="'unpaid'" (click)="payBtnClickAction && payBtnClickAction(row)"
               class="tw-text-primary tw-font-bold">Pay

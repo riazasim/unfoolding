@@ -8,7 +8,7 @@ import { Nullable } from 'src/app/models/navigation-menu.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PaymentCardComponent {
-
+  @Input() dataList: any = [];
   @Input()
   public creditCard: Nullable<CreditCard> = null;
 
@@ -17,5 +17,12 @@ export class PaymentCardComponent {
 
   @Input()
   public deleteAction: Nullable<(card: CreditCard) => void> = null;
-
+  /**
+   *
+   */
+  constructor() {
+    setTimeout(() => {
+      console.log("datalist in payment card componet", this.creditCard)
+    }, 1000);
+  }
 }

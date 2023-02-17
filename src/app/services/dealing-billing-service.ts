@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable, Injector } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { DeaApiNamespaces } from '../models/api.type';
 import { BillingProfileModel } from '../models/billing-profile.model';
 import { ResponseItemWrapper } from '../models/response-wrappers.types';
@@ -13,9 +15,10 @@ export class DeabillingApiService {
     apiClient: any;
     billingAPIObs = new Subject();
     billingDataObs = new Subject();
-  constructor(private injector: Injector) {
+    private API_URL = environment.API_URL;
+  constructor(private injector: Injector, private readonly httpClient:HttpClient,
+    ) {
     this.apiClient = this.injector.get(GenericApiService<DeaApiNamespaces>)
-
   }
 
   /**
@@ -24,7 +27,12 @@ export class DeabillingApiService {
   public requestList(): Observable<BillingProfileModel[]> {
     return this.apiClient.getArray('api', 'admin/billing-profiles');   
   }
-
+  public requestListOfBilling(): Observable<any> {
+    return this.httpClient.get<any>(this.API_URL + 'api/billing-histories');
+  }
+  public requestListOfBillingMethods(id: number | string): Observable<any> {
+    return this.httpClient.get<any>(this.API_URL + `api/payment-methods/${id}`);
+  }
 //   public getOne(id: number | string): Observable<BillingProfileModel> {
 //     return this.apiClient.getOne('default', `sub-users/${id}`);
 //   }

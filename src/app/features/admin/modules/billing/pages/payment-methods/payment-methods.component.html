@@ -20,8 +20,8 @@
       </button> -->
 
     <!-- </div> -->
-    <div *ngIf="cards$ | async as cards" class="tw-flex tw-gap-4 tw-flex-wrap tw-justify-center tw-min-h-[42px]">
-      <button matRipple *ngIf="cards.length > 0;" card addNew (click)="addPaymentMethod()"
+    <div  class="tw-flex tw-gap-4 tw-flex-wrap tw-justify-center tw-min-h-[42px]">
+      <button matRipple *ngIf="!(billingMethodsList.length > 0);" card addNew (click)="addPaymentMethod()"
         class="btn btn-primary tw-min-w-[175px]">
         Add payment method
       </button>
@@ -33,8 +33,8 @@
       </button> -->
     </div>
   </div>
-  <div *ngIf="cards$ | async as cards" class="tw-flex-grow">
-    <div *ngIf="cards.length > 0; else emptyListPrompt" grid-presentation-layout [dataSource]="cards"
+  <div *ngIf="billingMethodsList.length>0" class="tw-flex-grow">
+    <div *ngIf="billingMethodsList.length>0" grid-presentation-layout [dataSource]="billingMethodsList"
       [gridItemTemplate]="paymentMethodTemplate" addBtnPosition="last" rowHeight="auto"
       columnTemplate="repeat(auto-fill,minmax(min(450px,100%),1fr))">
 

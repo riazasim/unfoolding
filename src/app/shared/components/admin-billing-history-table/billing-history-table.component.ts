@@ -12,8 +12,18 @@ export class BillingHistoryTableComponent extends SimpleTable<BillingHistoryEntr
 
   @Input()
   public payBtnClickAction: Nullable<(historicEntry: BillingHistoryEntryModel) => void> = null;
-
+  @Input() billingList: any = []
   protected initializeDisplayedColumns(): string[] {
-    return ['balance','license', 'refId', 'date', 'amount',  'status'];
+    return ['balance', 'license', 'refId', 'date', 'amount', 'status'];
+  }
+  /**
+   *
+   */
+  constructor() {
+    super();
+    setTimeout(() => {
+      console.log("Data in list", this.billingList);
+    }, 1000)
+
   }
 }

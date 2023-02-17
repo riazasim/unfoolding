@@ -24,6 +24,6 @@
   </div>
   <div class="tw-flex-grow">
     <admin-billing-history-table #historyTable [loading]="false" [payBtnClickAction]="payInvoice"
-      [data]="paymentHistoryEntries$ | async"></admin-billing-history-table>
+      [billingList]="billingList"></admin-billing-history-table>
   </div>
 </div>
