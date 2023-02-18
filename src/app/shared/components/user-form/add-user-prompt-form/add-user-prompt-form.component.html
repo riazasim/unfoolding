@@ -2,7 +2,7 @@
 
   <div class="tw-relative tw-w-full tw-flex tw-items-center tw-flex-col-reverse tw-gap-y-4">
     <thumbnail-load-input-wrapper>
-      <input formControlName="image" type="file" accept="image/*" />
+      <input type="file" accept="image/*" (change)="onImageUpload($event)"/>
     </thumbnail-load-input-wrapper>
     <div class="min-md:tw-absolute tw-right-0 tw-top-0 tw-bottom-0 tw-flex tw-flex-col tw-gap-y-4 tw-justify-center">
       <div class="upload-btn-wrapper">

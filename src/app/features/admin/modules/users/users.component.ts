@@ -203,24 +203,43 @@ export class UsersComponent implements OnInit, OnDestroy, FormDataHandler<DeaAdd
     this.formDataToPass = formData;
     this.offCanvasComponent = 'import';
   }
+  public emailsForInvite: Array<any> = [];
   passFormData(event) {
     this.subUsersService.uploadMedia(event, this.userId).subscribe((Response) => {
       console.log("Response of upload media API", Response);
+      if (Response.data) {
+        this.emailsForInvite = Response.data.items ? Response.data.items : [];
+      }
+
       this.offCanvasComponent = 'invitations';
-      this._snackBar.open('User Added', 'Successfully');
+      this.changeDetector.detectChanges();
+      this._snackBar.open('Import User', 'Successfully', {
+        duration: 3000
+      });
     },
       (Error) => {
         console.log("API error of upload media", Error);
       })
   }
-  // passForminvition(event) {
-  //   this.subUsersService.sendinvite().subscribe((Response) => {
-  //     console.log("Response of upload media API", Response);
-  //     // this.offCanvasComponent = 'invitations';
-  //     this._snackBar.open('User Added', 'Successfully');
-  //   },
-  //     (Error) => {
-  //       console.log("API error of upload media", Error);
-  //     })
-  // }
+  passForminvition(event) {
+    this.subUsersService.sendinvite(event).subscribe((Response) => {
+      console.log("Response of upload media API", Response);
+      this.offCanvasComponent = 'newUser';
+      this._snackBar.open('Email Invites sent', 'Successfully', {
+        duration: 3000
+      });
+    },
+      (Error) => {
+        this._snackBar.open('Something went wrong', 'Error', {
+          duration: 3000
+        });
+        console.log("API error of upload media", Error);
+      })
+  }
+  getEmailsListToInvite(event) {
+    this.passForminvition(event);
+  }
+  getCancelRequest(event) {
+    this.offCanvasComponent = "newUser";
+  }
 }

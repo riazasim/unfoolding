@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { DeaAssets } from 'src/app/models/assets.type';
 import { AssetsProviderService } from 'src/app/services/assets-provider/assets-provider.service';
 
@@ -15,7 +15,9 @@ import { AssetsProviderService } from 'src/app/services/assets-provider/assets-p
   ]
 })
 export class DeaSendInvitationsPromptComponent {
-  // @Input() formDataToinvite;
+  @Input() emailsForInvite;
+  @Output() sendEmailForInvite = new EventEmitter;
+  @Output() sendCancelRequest = new EventEmitter;
   public readonly promptHeading = 'Send invitation';
   public readonly promptParagraph = `You can now send an invitation to your users to download the our Data Entry Automation add-in.\n You can always do this later by accessing the Users list.`;
   public readonly promptImgSrc: string;
@@ -23,6 +25,11 @@ export class DeaSendInvitationsPromptComponent {
   constructor(assetsProvider: AssetsProviderService<DeaAssets>) {
     this.promptImgSrc = assetsProvider.asset('portal', 'send-invitations-prompt-img.png');
   }
+  passEmailsBack(){
+    this.sendEmailForInvite.emit(this.emailsForInvite);
+  }
 
-
+  passCancelRequest(){
+    this.sendCancelRequest.emit(true);
+  }
 }

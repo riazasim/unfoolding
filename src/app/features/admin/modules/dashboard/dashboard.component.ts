@@ -77,7 +77,6 @@ export class DashboardComponent implements OnInit {
       )
       .subscribe({
         next: (data1: any) => {
-          debugger
           const data = data1.data.attributes[0];
           this.count = Number(data.subUserCount);
           this.usage = data.availableUsage;

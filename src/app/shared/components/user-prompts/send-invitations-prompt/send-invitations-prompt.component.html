@@ -4,6 +4,6 @@
                   [textContent]="this.promptParagraph">
 </sp-access-prompt>
 <div class="tw-flex tw-justify-center tw-flex-wrap-reverse tw-gap-8">
-  <button class="btn btn-outline-danger tw-min-w-[130px]">Cancel</button>
-  <button class="btn btn-primary tw-min-w-[130px]">Next</button>
+  <button class="btn btn-outline-danger tw-min-w-[130px]" (click)="passCancelRequest()">Cancel</button>
+  <button class="btn btn-primary tw-min-w-[130px]" (click)="passEmailsBack()">Next</button>
 </div>

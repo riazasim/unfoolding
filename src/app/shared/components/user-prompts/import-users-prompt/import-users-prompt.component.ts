@@ -17,6 +17,7 @@ import { AssetsProviderService } from 'src/app/services/assets-provider/assets-p
 export class DeaImportUsersPromptComponent {
   @Input() formDataToPass;
   @Output() passDataToUpload=new EventEmitter;
+  @Output() sendCancelRequest = new EventEmitter;
   public readonly promptImgSrc: string;
   public readonly promptHeading = 'Import users';
   public readonly promptParagraph = `User import completed successfully!\nIn your user list you can find all your users and their status (active or pending).`;
@@ -26,5 +27,8 @@ export class DeaImportUsersPromptComponent {
   }
 passFormData(){
 this.passDataToUpload.emit(this.formDataToPass);
+}
+passCancelRequest(){
+  this.sendCancelRequest.emit(true);
 }
 }

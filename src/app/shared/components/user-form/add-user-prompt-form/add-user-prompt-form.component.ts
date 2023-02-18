@@ -40,7 +40,6 @@ export class DeaAddUserFormComponent extends WireForm<DeaAddSubUserFormModel> im
   public updateFlag: boolean = false;
   public ngOnInit(): void {
     this.form = this.fb.group({
-      image: ['', Validators.required],
       firstName: ['', Validators.required],
       middleName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -52,7 +51,6 @@ export class DeaAddUserFormComponent extends WireForm<DeaAddSubUserFormModel> im
     setTimeout(() => {
       if (this.userModel) {
         this.form.patchValue({
-          image: this.userModel.image,
           firstName: this.userModel.firstName,
           middleName: this.userModel.middleName,
           lastName: this.userModel.lastName,
@@ -67,15 +65,18 @@ export class DeaAddUserFormComponent extends WireForm<DeaAddSubUserFormModel> im
   }
   onSubmit() {
     if (this.form.valid) {
-debugger
-      const data = {
-        data: {
-          attributes: this.form.value
-        }
-      }
-      console.log("user updata data", data)
+  
+      // data1.image = this.imageforData;
+      const formData = new FormData();
+      formData.append('data[attributes][firstName]', this.form.value.firstName);
+      formData.append('data[attributes][middleName]', this.form.value.middleName);
+      formData.append('data[attributes][lastName]', this.form.value.lastName);
+      formData.append('data[attributes][position]', this.form.value.position);
+      formData.append('data[attributes][email]', this.form.value.email);
+      formData.append('data[attributes][phoneNumber]', this.form.value.phoneNumber);
+      formData.append('image', this.imageforData)
       if (this.updateFlag) {
-        this.deaSubUserApiService.updateUser(data, JSON.parse(sessionStorage.getItem('user')).id).subscribe(
+        this.deaSubUserApiService.updateUser(formData, JSON.parse(sessionStorage.getItem('user')).id).subscribe(
           (Response) => {
             console.log("Response of update API", Response);
             this.refreshList.emit(true)
@@ -86,7 +87,7 @@ debugger
           }
         )
       } else {
-        this.deaSubUserApiService.addUser(data, JSON.parse(sessionStorage.getItem('user')).id).subscribe(
+        this.deaSubUserApiService.addUser(formData, JSON.parse(sessionStorage.getItem('user')).id).subscribe(
           (Response) => {
             console.log("Response of Add API", Response);
             this.refreshList.emit(true)
@@ -153,5 +154,21 @@ debugger
       this.filesToUpload.emit(formData)
     }
     console.log("this.myFiles", this.myFiles)
+  }
+  public files: any = [];
+  public imageforData;
+  onImageUpload(files) {
+    for (var i of files.target.files) {
+      this.files.push(i);
+    }
+    if (this.files.length > 0) {
+      const formData = new FormData();
+      for (var j = 0; j < this.files.length; j++) {
+        formData.append("image", this.files[j]);
+      }
+
+      this.imageforData = formData;
+      console.log("image For data", this.imageforData)
+    }
   }
 }
