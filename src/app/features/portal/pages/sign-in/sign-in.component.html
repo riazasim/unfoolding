@@ -21,7 +21,9 @@
     </div> -->
     <!-- </div> -->
     <div class="mb-3">
-      <input class="input" [type]="showPassword ? 'text' : 'password'" formControlName="password" inputRef placeholder="Password">
+      <mat-icon class="lock_Icon">lock</mat-icon>
+      <input class="input" [type]="showPassword ? 'text' : 'password'" formControlName="password" inputRef
+        placeholder="Password">
       <mat-icon matSuffix style="cursor: pointer; margin-left: -40px;
       padding-top: 4px;" (click)="toggleShowPassword()">
         {{!showPassword?'visibility':'visibility_off'}}</mat-icon>

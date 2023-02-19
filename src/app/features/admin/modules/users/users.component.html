@@ -5,7 +5,7 @@
     <material-panel-table [buttonLabel]="'Add User'" (buttonClicked)="this.addUser()"
       (searchedTerm)="usersTable.filter = $event" (searchedText)="searchedText($event)">
 
-      <dea-users-table [list]="usersList" (passUserData)="getUserData($event)" (deleteSubUser)="deleteSubUser($event)"
+      <dea-users-table  [list]="usersList" (passUserData)="getUserData($event)" (deleteSubUser)="deleteSubUser($event)"
         [loading]="false" [deleteUserAction]="this.deleteSubUser" [goToUserAction]="this.goToUser" table #usersTable>
       </dea-users-table>
 

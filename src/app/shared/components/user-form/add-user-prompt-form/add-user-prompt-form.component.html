@@ -1,8 +1,8 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="sp-access-bootstrap-form tw-flex tw-flex-col tw-my-8">
 
   <div class="tw-relative tw-w-full tw-flex tw-items-center tw-flex-col-reverse tw-gap-y-4">
-    <thumbnail-load-input-wrapper>
-      <input type="file" accept="image/*" (change)="onImageUpload($event)"/>
+    <thumbnail-load-input-wrapper [imageSrc]="imageSrc">
+      <input type="file"  accept="image/*" (change)="onImageUpload($event)"/>
     </thumbnail-load-input-wrapper>
     <div class="min-md:tw-absolute tw-right-0 tw-top-0 tw-bottom-0 tw-flex tw-flex-col tw-gap-y-4 tw-justify-center">
       <div class="upload-btn-wrapper">
@@ -26,7 +26,7 @@
       class="btn btn-primary tw-whitespace-nowrap"> -->
       <!-- <input type="file" accept="*" (change)="onFileChange($event)"/>Import Users -->
       <button type="button" matRipple *ngIf="this.downloadTemplateBtnClickAction"
-        (click)="this.downloadTemplateBtnClickAction()" class="btn btn-outline-primary tw-whitespace-nowrap"
+        (click)="download()" class="btn btn-outline-primary tw-whitespace-nowrap"
         style="background: transparent;  color: #85a5c8;">
         <fa-icon icon="download"></fa-icon>
         <!-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="20" viewBox="0 0 16 20" fill="none">

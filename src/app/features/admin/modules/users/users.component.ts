@@ -41,6 +41,7 @@ export class UsersComponent implements OnInit, OnDestroy, FormDataHandler<DeaAdd
   public readonly addUser = () => {
     this.showOffCanvas = true;
     this.offCanvasComponent = 'newUser';
+    this.userModel=null;
   };
   public readonly downloadTemplate = () => {
     const a = document.createElement('a');

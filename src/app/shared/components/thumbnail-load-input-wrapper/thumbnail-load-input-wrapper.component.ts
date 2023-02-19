@@ -6,6 +6,7 @@ import {
   ElementRef,
   Input,
   NgModule,
+  OnInit,
   ViewChild
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -22,8 +23,8 @@ import { Nullable } from 'src/app/models/navigation-menu.model';
   templateUrl: 'thumbnail-load-input-wrapper.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SpAccessThumbnailLoadInputWrapperComponent {
-
+export class SpAccessThumbnailLoadInputWrapperComponent implements OnInit {
+  @Input() imageSrc
   @ViewChild('fileInputLabel')
   set input(ref: ElementRef<HTMLLabelElement>) {
     const label = ref.nativeElement;
@@ -40,11 +41,22 @@ export class SpAccessThumbnailLoadInputWrapperComponent {
       .subscribe({
         next: val => {
           this.thumbnail = val as string;
+
           this.changeDetector.detectChanges();
         }
       });
   }
+  ngOnInit(): void {
+    console.log("imageSrc", this.imageSrc)
+    setTimeout(() => {
+      if (this.imageSrc) {
+        console.log("here is thumbanail", this.thumbnail)
+        this.thumbnail = this.imageSrc;
+        this.changeDetector.detectChanges();
+      }
+    }, 200)
 
+  }
   @Input()
   public customSize: Nullable<{ width: string, height: string }> = null;
 
@@ -55,7 +67,7 @@ export class SpAccessThumbnailLoadInputWrapperComponent {
   public defaultIcon: IconProp = 'user';
 
   constructor(private readonly changeDetector: ChangeDetectorRef,
-              private readonly sanitizer: DomSanitizer) {
+    private readonly sanitizer: DomSanitizer) {
   }
 
 }
@@ -68,4 +80,4 @@ export class SpAccessThumbnailLoadInputWrapperComponent {
   ],
   exports: [SpAccessThumbnailLoadInputWrapperComponent]
 })
-export class SpAccessThumbnailLoadInputWrapperModule {}
+export class SpAccessThumbnailLoadInputWrapperModule { }

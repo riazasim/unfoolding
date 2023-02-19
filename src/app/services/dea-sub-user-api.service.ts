@@ -59,7 +59,7 @@ export class DeaSubUserApiService {
     return this.httpClient.post(this.API_URL + `api/sub-users/${id}`, payload);
   }
   public updateUser(payload, id): Observable<any> {
-    return this.httpClient.put(this.API_URL + `api/sub-users/${id}`, payload);
+    return this.httpClient.put(this.API_URL + `api/sub-users/update/${id}`, payload);
   }
 
   public updateOne(data: Omit<DeaSubUserModel, 'id'>, id: string | number): Observable<DeaSubUserModel> {

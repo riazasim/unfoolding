@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -26,9 +26,11 @@ export class DeaAddUserFormComponent extends WireForm<DeaAddSubUserFormModel> im
   public form: FormGroup;
   @Output() refreshList = new EventEmitter;
   @Output() filesToUpload = new EventEmitter;
+  public imageSrc: string = '';
   constructor(private deaSubUserApiService: DeaSubUserApiService,
     private rolesService: RolesService,
     private readonly fb: FormBuilder,
+    protected readonly cdr: ChangeDetectorRef,
     private readonly dialogService: MatDialog,
     private _snackBar: MatSnackBar
   ) {
@@ -50,6 +52,7 @@ export class DeaAddUserFormComponent extends WireForm<DeaAddSubUserFormModel> im
     this.userInfo = this.rolesService.getuserInfoSubject();
     setTimeout(() => {
       if (this.userModel) {
+        console.log("this.userModel", this.userModel)
         this.form.patchValue({
           firstName: this.userModel.firstName,
           middleName: this.userModel.middleName,
@@ -59,13 +62,17 @@ export class DeaAddUserFormComponent extends WireForm<DeaAddSubUserFormModel> im
           phoneNumber: this.userModel.phoneNumber
         })
         this.updateFlag = true;
-      }
-    }, 2000)
+        // this.imageSrc = 'https://upload.wikimedia.org/wikipedia/commons/f/ff/Imran_Ahmed_Khan_Niazi_-_UNGA_%2848784380531%29_%28cropped%29.jpg';
 
+        this.imageSrc = this.userModel.image ? this.userModel.image : '';
+        this.cdr.detectChanges();
+      }
+    }, 100)
+    console.log("imageSrc", this.imageSrc)
   }
   onSubmit() {
     if (this.form.valid) {
-  
+
       // data1.image = this.imageforData;
       const formData = new FormData();
       formData.append('data[attributes][firstName]', this.form.value.firstName);
@@ -74,7 +81,11 @@ export class DeaAddUserFormComponent extends WireForm<DeaAddSubUserFormModel> im
       formData.append('data[attributes][position]', this.form.value.position);
       formData.append('data[attributes][email]', this.form.value.email);
       formData.append('data[attributes][phoneNumber]', this.form.value.phoneNumber);
-      formData.append('image', this.imageforData)
+      if (this.files.length > 0) {
+        for (var j = 0; j < this.files.length; j++) {
+          formData.append("image", this.files[j]);
+        }
+      }
       if (this.updateFlag) {
         this.deaSubUserApiService.updateUser(formData, JSON.parse(sessionStorage.getItem('user')).id).subscribe(
           (Response) => {
@@ -158,17 +169,15 @@ export class DeaAddUserFormComponent extends WireForm<DeaAddSubUserFormModel> im
   public files: any = [];
   public imageforData;
   onImageUpload(files) {
+    this.files = [];
     for (var i of files.target.files) {
       this.files.push(i);
     }
-    if (this.files.length > 0) {
-      const formData = new FormData();
-      for (var j = 0; j < this.files.length; j++) {
-        formData.append("image", this.files[j]);
-      }
-
-      this.imageforData = formData;
-      console.log("image For data", this.imageforData)
-    }
+    // if (this.files.length > 0) {
+    //   const formData = new FormData();
+    //   for (var j = 0; j < this.files.length; j++) {
+    //     formData.append("image", this.files[j]);
+    //   }
+    // }
   }
 }
