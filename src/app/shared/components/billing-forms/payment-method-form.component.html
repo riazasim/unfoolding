@@ -1,10 +1,10 @@
-<form [id]="id" class="sp-access-bootstrap-form tw-flex tw-flex-col">
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="sp-access-bootstrap-form tw-flex tw-flex-col">
 
   <div class="tw-flex tw-flex-col tw-flex-grow">
     <label class="sp-access-form-label">Card Number</label>
     <div class="tw-relative">
       <input type="tel" class="sp-access-form-control tw-w-full"
-             #ccNumber="ccNumber"
+             #ccNumber="ccNumber" formControlName="CardNo"
              autocomplete="cc-number" ccNumber/>
       <ng-container *ngIf="ccNumber.resolvedScheme$ | async as scheme">
         <img *ngIf="scheme | spAccessCardIcon as image"
@@ -20,43 +20,46 @@
   <div class="tw-flex tw-flex-col min-sm:tw-flex-row tw-flex-grow tw-gap-4">
     <div class="tw-flex tw-flex-col">
       <label class="sp-access-form-label">MM / YY</label>
-      <input class="sp-access-form-control" type="tel" autocomplete="cc-exp" ccExp>
+      <input class="sp-access-form-control"  formControlName="Expiry" type="tel" autocomplete="cc-exp" ccExp>
     </div>
     <div class="tw-flex tw-flex-col">
       <label class="sp-access-form-label">CVV</label>
-      <input class="sp-access-form-control" type="tel" autocomplete="off" ccCVC>
+      <input class="sp-access-form-control" formControlName="CVV" type="tel" autocomplete="off" ccCVC>
     </div>
   </div>
 
   <div class="tw-flex tw-flex-col tw-w-full">
     <label class="sp-access-form-label">Cardholder name</label>
-    <input type="text" class="tw-w-full sp-access-form-control"/>
+    <input type="text" class="tw-w-full sp-access-form-control" formControlName="Name"/>
   </div>
 
   <div class="tw-flex tw-flex-col tw-w-full">
     <label class="sp-access-form-label">Country</label>
-    <input type="text" class=" tw-w-full sp-access-form-control"/>
+    <input type="text" class=" tw-w-full sp-access-form-control" formControlName="Country"/>
   </div>
 
   <div class="tw-flex tw-flex-col tw-w-full">
     <label class="sp-access-form-label">Address line 1</label>
-    <input type="text" class="tw-w-full sp-access-form-control"/>
+    <input type="text" class="tw-w-full sp-access-form-control" formControlName="Address1"/>
   </div>
 
   <div class="tw-flex tw-flex-col tw-w-full">
     <label class="sp-access-form-label">Address line 2</label>
-    <input type="text" class="tw-w-full sp-access-form-control"/>
+    <input type="text" class="tw-w-full sp-access-form-control" formControlName="Address2"/>
   </div>
 
   <div class="tw-flex tw-flex-wrap tw-w-full tw-gap-4">
     <div class="tw-flex tw-flex-col tw-flex-grow">
       <label class="sp-access-form-label">Postcode</label>
-      <input type="text" class="tw-w-full sp-access-form-control"/>
+      <input type="text" class="tw-w-full sp-access-form-control" formControlName="Postal"/>
     </div>
     <div class="tw-flex tw-flex-col tw-flex-grow">
       <label class="sp-access-form-label">City</label>
-      <input type="text" class="tw-w-full sp-access-form-control"/>
+      <input type="text" class="tw-w-full sp-access-form-control" formControlName="City"/>
     </div>
+  </div>
+  <div class="tw-mt-4 min-sm:tw-mt-8 tw-text-center">
+    <button style="min-width: 26%;" type="submit" class="btn btn-primary">Save</button>
   </div>
 
 </form>

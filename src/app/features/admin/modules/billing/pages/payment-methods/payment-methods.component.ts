@@ -48,8 +48,24 @@ export class PaymentMethodsComponent implements OnInit,OnDestroy {
   }
   private userId: number;
   ngOnInit(): void {
+    this.invokeStripe();
     this.userId = Number(JSON.parse(sessionStorage.getItem('user')).id);
     this.getBillingMethods();
+  }
+  makePayment(amount: any) {
+    const paymentHandler = (<any>window).StripeCheckout.configure({
+      key: 'pk_test_51Me10kB3LokP83TGaBXpZsOwqmAjlrIQS5EjLVTRb7hwHRI5V3rvdazyqQHZZVRbgoZHE8IZyzlzmD1E3JqYu00j00BfSupVsU',
+      locale: 'auto',
+      token: function (stripeToken: any) {
+        console.log(stripeToken);
+        alert('Stripe token generated!');
+      },
+    });
+    paymentHandler.open({
+      name: 'Positronx',
+      description: '3 widgets',
+      amount: amount * 100,
+    });
   }
   public billingMethodsList: any = [];
   public getBillingMethods() {
@@ -66,6 +82,26 @@ export class PaymentMethodsComponent implements OnInit,OnDestroy {
         }
       )
     )
+  }
+  paymentHandler: any = null;
+  invokeStripe() {
+    if (!window.document.getElementById('stripe-script')) {
+      const script = window.document.createElement('script');
+      script.id = 'stripe-script';
+      script.type = 'text/javascript';
+      script.src = '';
+      script.onload = () => {
+        this.paymentHandler = (<any>window).StripeCheckout.configure({
+          key: 'pk_test_51H7bbSE2RcKvfXD4DZhu',
+          locale: 'auto',
+          token: function (stripeToken: any) {
+            console.log(stripeToken);
+            alert('Payment has been successfull!');
+          },
+        });
+      };
+      window.document.body.appendChild(script);
+    }
   }
   ngOnDestroy(): void {
     this.subscription.forEach(s => s.unsubscribe());
